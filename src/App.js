@@ -10,7 +10,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Sneakers/>}/> 
-        <Route path='/page2' element ={<Page2/>}/>   
+        <Route path='/page2' element ={<Page2/>}/>
+        <Route path='/Sneakers' element ={<Sneakers/>}/>   
       </Routes>
     </BrowserRouter>
     </div>
