@@ -5,9 +5,9 @@ const Sneakers = () => {
 
   const Update_MySql_DB = () =>{
 
-    const type = 'Swimming'
-    const release_year = 2021
-    const name = 'MaximM Swimmers'
+    const type = 'Hackig'
+    const release_year = 2024
+    const name = 'MaximM Joggers'
     const image = 'Image Link from site'
 
     axios.post('http://localhost:1989/shoelist', {

@@ -14,31 +14,41 @@ const DB = mysql.createConnection({
     database:'maxim',
 })
 
-app.get('/', (req,res) =>{
-    res.send('Get Funcions works!')
+app.get('/result', (req,res) =>{
+
+    const SQL = 'SELECT * FROM maxim.sneakers;'
+    DB.query(SQL, (err, data) =>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
 })
 
 app.listen(port, () =>{
-    console.log(`App listening on port ${port}...`);
+    console.log(`App listening on ports ${port}...`);
 });
 
 app.post('/shoelist', (req,res) =>{
 
-    const type = req.body.type
-    const release_year = req.body.release_year
-    const name = req.body.name
-    const image = req.body.image
+    // const type = req.body.type
+    // const release_year = req.body.release_year
+    // const name = req.body.name
+    // const image = req.body.image
+
+    const type = 'B-END Type'
+    const release_year = 2024
+    const name = 'B-END Name'
+    const image = 'B-END Image'
     
+
 
     DB.query(
         'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?, ?, ?, ?);',
-        [type, release_year, name, image], 
-
-        (err, res) => {
+        [type, release_year, name, image], (err, data) => {
             if (err){
-                console.log(err)
+                return res.json(err)
             } else{
-                console.log('MySql DB Updated1')
+                console.log('Updated DB!')
+                return res.json(data)
             }
         }
     )
