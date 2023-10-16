@@ -29,9 +29,10 @@ function Sneakers(){
   
   return(
       <div className='middle'>
-  {/* Creating a div for each comic in the array */}
+
       {Sneakers.length > 0 ? (
         <p>Loaded!</p>
+        
       ) : (
         //if the comics are not loaded fast enough show a loading screen
           <p id='loading'>Loading...</p> 

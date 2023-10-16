@@ -1,20 +1,16 @@
 import React from 'react'
 import axios from 'axios'
+import { useState } from 'react'
 
 const Sneakers = () => {
 
   const Update_MySql_DB = () =>{
 
-    const type = 'Hackig'
-    const release_year = 2024
-    const name = 'MaximM Joggers'
-    const image = 'Image Link from site'
-
     axios.post('http://localhost:1989/shoelist', {
-      type: type, 
-      release_year: release_year ,
-      name: name  ,
-      image: image 
+      type: Info.type,
+      release_year: Info.release_year,
+      name: Info.name,
+      image: Info.image
     })
 
     .then(() =>{
@@ -23,10 +19,34 @@ const Sneakers = () => {
 
   }
 
+  const [Info, setInfo] = useState({
+    type:"",
+    release_year:"",
+    name:"",
+    image:"",
+  })
+
+  const getData = (event) =>{
+    const name = event.target.name
+    const value = event.target.value
+
+    setInfo((previous) => {
+      return{...previous,[name]: value}
+    })
+
+  }
+  
   return (
     <>
     <div>sneakers</div>
     <button onClick={Update_MySql_DB}>Update MySql DB</button>
+    <img src='https://i.ibb.co/xMQRVh6/ballers-1.png' alt='shoes' style={{width: "9%"}} />
+    <input name='type' id='type' type='text' placeholder='type' onChange={getData}/>
+    <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData}/>
+    <input name='name' id='name' type='text' placeholder='name' onChange={getData}/>
+    <input name='image' id='image' type='text' placeholder='image' onChange={getData}/>
+
+    <h1>{Info.name}</h1>
     </>
   )
 }

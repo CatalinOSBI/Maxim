@@ -1,4 +1,4 @@
-const express =require('express')
+const express = require('express')
 const mysql = require('mysql')
 const app = express()
 const port = 1989
@@ -15,8 +15,8 @@ const DB = mysql.createConnection({
 })
 
 app.get('/result', (req,res) =>{
-
     const SQL = 'SELECT * FROM maxim.sneakers;'
+    
     DB.query(SQL, (err, data) =>{
         if(err) return res.json(err)
         return res.json(data)
@@ -29,15 +29,15 @@ app.listen(port, () =>{
 
 app.post('/shoelist', (req,res) =>{
 
-    // const type = req.body.type
-    // const release_year = req.body.release_year
-    // const name = req.body.name
-    // const image = req.body.image
+    const type = req.body.type
+    const release_year = req.body.release_year
+    const name = req.body.name
+    const image = req.body.image
 
-    const type = 'B-END Type'
-    const release_year = 2024
-    const name = 'B-END Name'
-    const image = 'B-END Image'
+    // const type = 'B-END Type'
+    // const release_year = 2024
+    // const name = 'B-END Name'
+    // const image = 'B-END Image'
     
 
 
