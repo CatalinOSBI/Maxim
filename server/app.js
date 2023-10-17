@@ -6,7 +6,7 @@ const cors =require('cors')
 
 app.use(cors());
 app.use(express.json())
-
+//-----------------ESTABLISHING THE CONNEXION-----------------//
 const DB = mysql.createConnection({
     host:'localhost',
     user:'root',
@@ -14,36 +14,36 @@ const DB = mysql.createConnection({
     database:'maxim',
 })
 
-app.get('/result', (req,res) =>{
-    const SQL = 'SELECT * FROM maxim.sneakers;'
-    
-    DB.query(SQL, (err, data) =>{
-        if(err) return res.json(err)
-        return res.json(data)
-    })
-})
-
 app.listen(port, () =>{
     console.log(`App listening on ports ${port}...`);
 });
 
+//-----------------GET-----------------//
+app.get('/result', (req,res) =>{
+    const SQL = 'SELECT * FROM maxim.sneakers;'
+    
+    DB.query(SQL, (err, data) =>{
+        if (err){
+            return res.json(err)
+        } else{
+            return res.json(data)
+        }
+    })
+})
+//-----------------GET-----------------//
+
+
+
+//-----------------POST-----------------//
 app.post('/shoelist', (req,res) =>{
 
     const type = req.body.type
     const release_year = req.body.release_year
     const name = req.body.name
     const image = req.body.image
+    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?, ?, ?, ?);'
 
-    // const type = 'B-END Type'
-    // const release_year = 2024
-    // const name = 'B-END Name'
-    // const image = 'B-END Image'
-    
-
-
-    DB.query(
-        'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?, ?, ?, ?);',
-        [type, release_year, name, image], (err, data) => {
+    DB.query(SQL,[type, release_year, name, image], (err, data) => {
             if (err){
                 return res.json(err)
             } else{
@@ -54,3 +54,23 @@ app.post('/shoelist', (req,res) =>{
     )
 
 })
+//-----------------POST-----------------//
+
+
+
+//-----------------DELETE-----------------//
+app.delete('/result/:id', (req, res) =>{
+
+    const sneakerId = req.params.id;
+    const SQL = "DELETE FROM `maxim`.`sneakers` WHERE (`id` = ?) "
+
+    DB.query(SQL, [sneakerId], (err, data)=>{
+        if (err){
+            return res.json(err)
+        } else{
+            console.log('Removed item from DB!')
+            return res.json(data)
+        }
+    })
+})
+//-----------------DELETE-----------------//
