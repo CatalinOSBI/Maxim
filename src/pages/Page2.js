@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Page2 = () => {
   return (
@@ -45,7 +46,7 @@ function Sneakers(){
           <h1>{Sneakers.name}</h1>
           <p>{Sneakers.type}</p>
           <p>{Sneakers.release_year}</p>
-          <button style={{width:'60px'}}>Update</button>
+          <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
           <button style={{width:'60px'}} onClick={()=>deleteSneaker(Sneakers.id)}>Delete</button>
         </div>       
       ))
