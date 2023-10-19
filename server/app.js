@@ -35,15 +35,17 @@ app.get('/result', (req,res) =>{
 
 
 //-----------------POST-----------------//
-app.post('/shoelist', (req,res) =>{
+app.post('/result', (req,res) =>{
 
-    const type = req.body.type
-    const release_year = req.body.release_year
-    const name = req.body.name
-    const image = req.body.image
-    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?, ?, ?, ?);'
+    const values=[
+        req.body.type,
+        req.body.release_year,
+        req.body.name,
+        req.body.image
+    ]
+    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?);'
 
-    DB.query(SQL,[type, release_year, name, image], (err, data) => {
+    DB.query(SQL,[values], (err, data) => {
             if (err){
                 return res.json(err)
             } else{
@@ -74,3 +76,46 @@ app.delete('/result/:id', (req, res) =>{
     })
 })
 //-----------------DELETE-----------------//
+
+
+
+//-----------------PUT-----------------//
+app.put('/result/:id', (req, res) =>{
+
+    const sneakerId = req.params.id;
+    const SQL = "UPDATE `maxim`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ? WHERE (`id` = ?); "
+
+    const values=[
+        req.body.type,
+        req.body.release_year,
+        req.body.name,
+        req.body.image
+    ]
+
+    DB.query(SQL, [...values,sneakerId], (err, data)=>{
+        if (err){
+            return res.json(err)
+        } else{
+            console.log('Updated item from DB!')
+            return res.json(data)
+        }
+    })
+})
+//-----------------PUT-----------------//
+
+
+
+//-----------------CUSTOM GET-----------------//
+app.get('/result/:id', (req,res) =>{
+    const SQL = 'SELECT * FROM maxim.sneakers WHERE id=?;'
+    const sneakerId = req.params.id
+    
+    DB.query(SQL,[sneakerId], (err, data) =>{
+        if (err){
+            return res.json(err)
+        } else{
+            return res.json(data)
+        }
+    })
+})
+//-----------------CUSTOM GET-----------------//

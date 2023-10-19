@@ -6,12 +6,7 @@ const Sneakers = () => {
 
   const Update_MySql_DB = () =>{
 
-    axios.post('http://localhost:1989/shoelist', {
-      type: Info.type,
-      release_year: Info.release_year,
-      name: Info.name,
-      image: Info.image
-    })
+    axios.post('http://localhost:1989/result',Info )
 
     .then(() =>{
       console.log('MySql DB Updated2')
