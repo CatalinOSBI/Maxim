@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Sneakers = () => {
 
   const Update_MySql_DB = () =>{
 
-    axios.post('http://localhost:1989/result',Info )
+    axios.post('http://localhost:1989/sneakers',Info )
 
     .then(() =>{
       console.log('MySql DB Updated2')
@@ -42,8 +42,11 @@ const Sneakers = () => {
     <input name='image' id='image' type='text' placeholder='image' onChange={getData}/>
 
     <h1>{Info.name}</h1>
+
     </>
   )
 }
+
+
 
 export default Sneakers

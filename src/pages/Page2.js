@@ -19,7 +19,7 @@ function Sneakers(){
   const [Sneakers, setSneakers] = useState ([])
 
   useEffect(()=>{
-    axios.get("http://localhost:1989/result")
+    axios.get("http://localhost:1989/sneakers")
     
         .then(res => {
             setSneakers(res.data)
@@ -31,7 +31,7 @@ function Sneakers(){
 
   const deleteSneaker = (id) =>{
 
-    axios.delete("http://localhost:1989/result/"+id)
+    axios.delete("http://localhost:1989/sneakers/"+id)
     window.location.reload()
   }
 

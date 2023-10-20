@@ -11,21 +11,19 @@ function Update() {
 
 
   //Post request to fill in the inputs with the current data
-  const [Sneakers, setSneakers] = useState ([])
     const [type, settype] = useState ('')
     const [release_year, setrelease_year] = useState ('')
     const [name, setname] = useState ('')
     const [image, setimage] = useState ('')
 
     useEffect(()=>{
-      axios.get("http://localhost:1989/result/"+id)
+      axios.get("http://localhost:1989/sneakers/"+id)
       
           .then(res => {
               settype(res.data[0].type)
               setrelease_year(res.data[0].release_year)
               setname(res.data[0].name)
               setimage(res.data[0].image)
-              setSneakers(res.data)
           })   
     // Putting the API Response in an array      
     },[]);
@@ -34,7 +32,7 @@ function Update() {
 
    
 
-    axios.put('http://localhost:1989/result/'+ id, Info)
+    axios.put('http://localhost:1989/sneakers/'+ id, Info)
     .then(res => {
       console.log('PUT Request Successful');
       console.log('Response Data:', res.data);

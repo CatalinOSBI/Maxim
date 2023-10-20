@@ -19,7 +19,7 @@ app.listen(port, () =>{
 });
 
 //-----------------GET-----------------//
-app.get('/result', (req,res) =>{
+app.get('/sneakers', (req,res) =>{
     const SQL = 'SELECT * FROM maxim.sneakers;'
     
     DB.query(SQL, (err, data) =>{
@@ -35,7 +35,7 @@ app.get('/result', (req,res) =>{
 
 
 //-----------------POST-----------------//
-app.post('/result', (req,res) =>{
+app.post('/sneakers', (req,res) =>{
 
     const values=[
         req.body.type,
@@ -61,7 +61,7 @@ app.post('/result', (req,res) =>{
 
 
 //-----------------DELETE-----------------//
-app.delete('/result/:id', (req, res) =>{
+app.delete('/sneakers/:id', (req, res) =>{
 
     const sneakerId = req.params.id;
     const SQL = "DELETE FROM `maxim`.`sneakers` WHERE (`id` = ?) "
@@ -80,7 +80,7 @@ app.delete('/result/:id', (req, res) =>{
 
 
 //-----------------PUT-----------------//
-app.put('/result/:id', (req, res) =>{
+app.put('/sneakers/:id', (req, res) =>{
 
     const sneakerId = req.params.id;
     const SQL = "UPDATE `maxim`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ? WHERE (`id` = ?); "
@@ -106,7 +106,7 @@ app.put('/result/:id', (req, res) =>{
 
 
 //-----------------CUSTOM GET-----------------//
-app.get('/result/:id', (req,res) =>{
+app.get('/sneakers/:id', (req,res) =>{
     const SQL = 'SELECT * FROM maxim.sneakers WHERE id=?;'
     const sneakerId = req.params.id
     
@@ -119,3 +119,52 @@ app.get('/result/:id', (req,res) =>{
     })
 })
 //-----------------CUSTOM GET-----------------//
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-=---------------------------------------------------------
+
+app.get('/sneaker2/filter', (req, res) => {
+    const { type, release_year } = req.query;
+  
+    let query = 'SELECT * FROM sneakers WHERE 1'; // Start with a true condition
+  
+    const queryParams = [];
+  
+    if (type) {
+      query += ' AND type = ?';
+      queryParams.push(type);
+    }
+  
+    if (release_year) {
+      query += ' AND release_year = ?';
+      queryParams.push(release_year);
+    }
+  
+    DB.query(query, queryParams, (err, data) => {
+        if (err){
+            return res.json(err)
+        } else{
+            return res.json(data)
+        }
+  
+    });
+  });
+  
+  
