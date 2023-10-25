@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 function LoadingPage() {
@@ -9,34 +9,28 @@ function LoadingPage() {
   );
 }
 
-function RotatingCube() {
+function Sneaker(props) {
+const Sneaker = useGLTF('./sneaker.glb')
 
-  useFrame((state) => {
+useFrame((state) => {
     const t = state.clock.getElapsedTime()
-    console.log(t)
+    console.log()
   })
   return (
     <>
-    <mesh rotation={[0, 0.01, 0]}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshLambertMaterial color='red' />
-    </mesh>
+      <primitive object={Sneaker.scene}/>
     </>
   );
 }
 
 function SimpleScene() {
-  const [cubeColor, setCubeColor] = useState("red");
+
   const clock = new THREE.Clock()
   clock.start()
 
   
   const changeCubeColor = () => {
-    setCubeColor("blue");
-
     const t = clock.getElapsedTime()
-
- 
     console.log(t)
   };
 
@@ -47,12 +41,12 @@ function SimpleScene() {
     <div>
       <button onClick={changeCubeColor}>Change Color to Blue</button>
       <Canvas 
-        style={{ position: 'relative', height: '40vh', width: '100%', border: 'solid red' }}
+        style={{ position: 'relative', height: '50vh', width: '50vw', border: 'solid red'}}
         camera={{ fov: 75, position: [0, 0, 2] }}>
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 15, 10]} angle={0} />
-        <RotatingCube cubeColor={cubeColor} />
-        <OrbitControls />
+      <ambientLight intensity={0.7} />
+      <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
+      <OrbitControls enablePan={true} />
+      <Sneaker/>
       </Canvas>
     </div>
     <button onClick={changeCubeColor}>asd</button>
