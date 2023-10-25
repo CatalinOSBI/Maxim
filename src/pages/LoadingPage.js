@@ -10,12 +10,20 @@ function LoadingPage() {
 }
 
 function Sneaker(props) {
+  const ref = useRef()
   const { nodes, materials } = useGLTF("./Sneaker/scene.glb");
+
+  useFrame(() => {
+    ref.current.position.y = -0.5;
+    ref.current.position.x = 0
+
+  })
+
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[0, 0, 0]} scale={0.001}>
-        <group rotation={[0, 0, 0]}>
-          <group rotation={[Math.PI, 0, 0]} scale={100}>
+    <group {...props} dispose={null} ref={ref}>
+      <group rotation={[0, 0, 0]} scale={0.001} ref={ref}>
+        <group rotation={[0, 0, 0]} ref={ref}>
+          <group rotation={[Math.PI, 0, 0]} scale={65} ref={ref}>
             <mesh
               castShadow
               receiveShadow
@@ -112,7 +120,7 @@ function SimpleScene() {
       <ambientLight intensity={0.7} />
       <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
       <Environment preset="dawn" background blur={1} />
-      <OrbitControls enablePan={false} autoRotate={true} />
+      <OrbitControls enablePan={false} autoRotate={false} />
       <Sneaker/>
       </Canvas>
     </div>
