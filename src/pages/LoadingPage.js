@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
+import { OrbitControls, Environment, useGLTF} from '@react-three/drei';
 import * as THREE from 'three';
 
 function LoadingPage() {
@@ -12,11 +12,21 @@ function LoadingPage() {
 function Sneaker(props) {
   const ref = useRef()
   const { nodes, materials } = useGLTF("./Sneaker/scene.glb");
+  const[mover, setmover] = useState(-2.5)
 
-  useFrame(() => {
-    ref.current.position.y = -0.5;
-    ref.current.position.x = 0
+  
 
+  useFrame((state) => {
+    setmover(mover + 0.005 )
+    const timer = state.clock.getElapsedTime()
+
+  
+    console.log(mover)
+
+    ref.current.rotation.set(1.8+ Math.cos(timer / 1) / 4, 1 + Math.cos(timer / 1.8) /2,  0.3)
+    ref.current.position.x =  mover
+    ref.current.position.y = Math.cos(timer / 1) / 15
+   
   })
 
   return (
@@ -108,32 +118,29 @@ function SimpleScene() {
     console.log(t)
   };
 
-
+let bgColor = '#e60000'
 
   return (
     <>
-    <div>
-      <button onClick={changeCubeColor}>Change Color to Blue</button>
+    <div >
       <Canvas 
-        style={{ position: 'relative', height: '50vh', width: '50vw', border: 'solid red'}}
+        style={{ position: 'relative', height: '100vh', width: '100vw'}}
         camera={{ fov: 75, position: [0, 0, 2] }}>
-      <ambientLight intensity={0.7} />
-      <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
-      <Environment preset="dawn" background blur={1} />
+        <color attach='background' args={[bgColor]}/>
+      <ambientLight intensity={1.1} />
+      <spotLight position={[1, 6, 1.5]} angle={2} penumbra={1} intensity={100} castShadow shadow-mapSize={[2048, 2048]} color='#4e82b4' />
+      <spotLight position={[5, 5, -5]} angle={0.3} penumbra={1} intensity={150} castShadow={true} shadow-mapSize={[256, 256]} color="#4e82b4" />
+      <spotLight position={[-2, 4.8, 0.3]} angle={3} penumbra={1} intensity={80} castShadow={true} shadow-mapSize={[256, 256]} color="#FAF7B8" />
+      <spotLight position={[-1.5, 13.6, -0.3]} angle={0.6} penumbra={1} intensity={1000} castShadow={true} shadow-mapSize={[256, 256]} color="violet" />
+      <hemisphereLight position={[0.272,10,0]} intensity={0.7}/>
       <OrbitControls enablePan={false} autoRotate={false} />
-      <Sneaker/>
+      {/* <Environment preset='dawn'/> */}
+      <Sneaker position={[0,0,0.3]} scale={[0.7,0.7,0.7]}/>
       </Canvas>
     </div>
-    <button onClick={changeCubeColor}>asd</button>
     </>
-    
+  
   );
 }
 
 export default LoadingPage;
-
-
-// useFrame((state) => {
-//   const t = state.clock.getElapsedTime()
-//   console.log()
-// })
