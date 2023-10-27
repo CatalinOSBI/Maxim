@@ -3,7 +3,7 @@ import './App.css';
 import Sneakers from './pages/Sneakers';
 import Page2 from './pages/Page2';
 import Update from './pages/Update';
-import LoadingPage from './pages/LoadingPage';
+import LoadingScreen from './pages/LoadingPage/LoadingScreen';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path='/page2' element ={<Page2/>}/>
         <Route path='/Sneakers' element ={<Sneakers/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
-        <Route path='/Loading' element ={<LoadingPage/>}/> 
+        <Route path='/Loading' element ={<LoadingScreen/>}/> 
       </Routes>
     </BrowserRouter>
     </div>
