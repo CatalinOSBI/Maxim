@@ -1,7 +1,17 @@
+@font-face {
+    font-family:'Zabal';
+    src: url(./Fonts/ZabalDEMO-Ultra.ttf) format('truetype');
+  }
+
 @keyframes Slide {
     0%   {transform: translateX(0);}
     100% {transform: translateX(100vw);}
   }
+
+  @keyframes Size {
+    0%   {box-shadow: 18px -14px 87px -2px rgba(90, 0, 0, 0.4);}
+    100% {box-shadow: 18px -14px 87px -2px rgba(90, 0, 0, 1);}
+  } 
 
 *{
     margin: 0;
@@ -15,18 +25,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position:absolute;
     overflow: hidden;
 }
 
 h1{
-    font-size: 8rem;
+    font-family: 'Zabal';
+    font-size: 12rem;
     color: white;
+    letter-spacing: 0.5rem;
+    text-shadow: 4px 27px 42px rgba(0,0,0,0.55);
 }
 
 .Slider{
     width: 100vw;
-    height: 8rem;
+    height: 16rem;
     /* border: solid 1px white; */
     display: flex;
     justify-content: center;
@@ -44,6 +57,8 @@ h1{
     position: absolute;
     transition: all 1s;
     border-top-right-radius: 90px;
+    animation: Size 4s ease-in-out ;
+    box-shadow: 18px -14px 87px -2px rgba(90, 0, 0, 1);
 }
 
 .top{
