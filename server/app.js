@@ -41,9 +41,10 @@ app.post('/sneakers', (req,res) =>{
         req.body.type,
         req.body.release_year,
         req.body.name,
-        req.body.image
+        req.body.image,
+        req.body.image_noBG
     ]
-    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`) VALUES (?);'
+    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`, `image_noG`) VALUES (?);'
 
     DB.query(SQL,[values], (err, data) => {
             if (err){
@@ -83,13 +84,14 @@ app.delete('/sneakers/:id', (req, res) =>{
 app.put('/sneakers/:id', (req, res) =>{
 
     const sneakerId = req.params.id;
-    const SQL = "UPDATE `maxim`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ? WHERE (`id` = ?); "
+    const SQL = "UPDATE `maxim`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ?, `image_noBG` = ? WHERE (`id` = ?); "
 
     const values=[
         req.body.type,
         req.body.release_year,
         req.body.name,
-        req.body.image
+        req.body.image,
+        req.body.image_noBG
     ]
 
     DB.query(SQL, [...values,sneakerId], (err, data)=>{

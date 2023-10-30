@@ -56,13 +56,6 @@ const getValue = () => {
     window.location.reload()
   }
 
-  // function noResult(){
-  //   setTimeout(() => {
-  //     console.log("no result found");
-  //   }, 3000);
-  // }
-
-
   return(
     <>
       <div className='productContainer'>

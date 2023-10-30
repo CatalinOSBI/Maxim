@@ -29,33 +29,32 @@
     overflow: hidden;
 }
 
-h1{
+.Title{
     font-family: 'Zabal';
-    font-size: 12rem;
+    font-size: 16rem;
     color: white;
     letter-spacing: 0.5rem;
     text-shadow: 4px 27px 42px rgba(0,0,0,0.55);
 }
 
 .Slider{
-    width: 100vw;
-    height: 16rem;
+    width: 120vw;
+    height: 20rem;
     /* border: solid 1px white; */
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     background-color: #cf0000;
-    animation: Slide linear 4.5s ;
     transform: translateX(100vw)
 }
 
 .Square{
-    width: 450px;
-    height: 450px;
+    width: 17.6vw;
+    height: 35vh;
     background-color: white;
     position: absolute;
-    transition: all 1s;
+    transition: box-shadow 1s;
     border-top-right-radius: 90px;
     animation: Size 4s ease-in-out ;
     box-shadow: 18px -14px 87px -2px rgba(90, 0, 0, 1);

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF} from '@react-three/drei';
 
@@ -11,26 +11,23 @@ function Model() {
 function Sneaker(props) {
   const ref = useRef()
   const { nodes, materials } = useGLTF("./Sneaker/scene.glb");
-  const[mover, setmover] = useState(-2.5)
 
   
-
-  useFrame((state) => {
-    setmover(mover + 0.0075 )
+  
+  useFrame((state,delta) => {
     const timer = state.clock.getElapsedTime()
-
   
-    console.log(mover)
+
 
     ref.current.rotation.set(1.8+ Math.cos(timer / 1) / 4, 1 + Math.cos(timer / 1.8) /2,  0.3)
-    ref.current.position.x =  mover
+    ref.current.position.x += delta * 1.20
     ref.current.position.y = Math.cos(timer / 1) / 15
    
   })
 
   return (
     <group {...props} dispose={null} ref={ref}>
-      <group rotation={[0, 0, 0]} scale={0.001} ref={ref}>
+      <group scale={0.001} ref={ref}>
         <group rotation={[0, 0, 0]} ref={ref}>
           <group rotation={[Math.PI, 0, 0]} scale={65} ref={ref}>
             <mesh
@@ -108,8 +105,6 @@ function Sneaker(props) {
 
 function Scene() {
 
-let bgColor = '#e60000'
-
   return (
     <>
     <div >
@@ -123,7 +118,7 @@ let bgColor = '#e60000'
       <spotLight position={[-2, 4.8, 0.3]} angle={3} penumbra={1} intensity={80} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <spotLight position={[-1.5, 13.6, -0.3]} angle={0.6} penumbra={1} intensity={1000} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <hemisphereLight position={[0.272,10,0]} intensity={0.7}/>
-      <Sneaker position={[0,0,0.3]} scale={[0.7,0.7,0.7]}/>
+      <Sneaker position={[-2.5,0,0.3]} scale={[0.7,0.7,0.7]}/>
       </Canvas>
     </div>
     </>
