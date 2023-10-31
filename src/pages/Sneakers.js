@@ -10,8 +10,10 @@ const Sneakers = () => {
 
     .then(() =>{
       console.log('MySql DB Updated2')
+      console.log(Info)
+      
     })
-
+    
   }
 
   const [Info, setInfo] = useState({
@@ -36,7 +38,6 @@ const Sneakers = () => {
       <>
       <div>sneakers</div>
       <button onClick={Update_MySql_DB}>Update MySql DB</button>
-      <img src='https://i.ibb.co/xMQRVh6/ballers-1.png' alt='shoes' style={{width: "9%"}} />
       <input name='type' id='type' type='text' placeholder='type' onChange={getData}/>
       <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData}/>
       <input name='name' id='name' type='text' placeholder='name' onChange={getData}/>

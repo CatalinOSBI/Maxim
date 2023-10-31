@@ -11,9 +11,9 @@ function App() {
     <div className="App">
     <BrowserRouter>
       <Routes>
-        <Route index element={<Sneakers/>}/> 
+        <Route index element={<LoadingScreen/>}/> 
         <Route path='/page2' element ={<Page2/>}/>
-        <Route path='/Sneakers' element ={<Sneakers/>}/>   
+        <Route path='/Add' element ={<Sneakers/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
         <Route path='/Loading' element ={<LoadingScreen/>}/> 
       </Routes>

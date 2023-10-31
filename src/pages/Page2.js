@@ -64,7 +64,8 @@ const getValue = () => {
         Sneakers.map(Sneakers =>
       (
         <div key={Sneakers.id} className='Product'>
-          <h1>{Sneakers.name}</h1>
+          <img src={Sneakers.image} alt='Sneaker Image' style={{width:'300px'}}/>
+          <p>{Sneakers.name}</p>
           <p>{Sneakers.type}</p>
           <p>{Sneakers.release_year}</p>
           <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
@@ -95,7 +96,9 @@ const getValue = () => {
       <option value={'Any'}>Any</option>
       <option value={'Casual'}>Casual</option> 
       <option value={'Running'}>Running</option>
+      <option value={'Sport'}>Sport</option>
       <option value={'Climbing'}>Climbing</option>
+      <option value={'Homewear'}>Homewear</option>
       </select>
     </label>
 

@@ -44,7 +44,7 @@ app.post('/sneakers', (req,res) =>{
         req.body.image,
         req.body.image_noBG
     ]
-    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`, `image_noG`) VALUES (?);'
+    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`, `image_noBG`) VALUES (?);'
 
     DB.query(SQL,[values], (err, data) => {
             if (err){
