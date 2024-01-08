@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import {useRef} from 'react'
 
 const Page2 = () => {
   return (
@@ -18,27 +19,54 @@ const Page2 = () => {
 function Sneakers(){
   const [Sneakers, setSneakers] = useState ([])
   const [apiUrl, setapiUrl] = useState ('http://localhost:1989/sneaker2/filter?&')
+  const [dynamicjustifyContent, setdynamicjustifyContent] = useState('space-between')
+  const typeRef = useRef('Any')
+  const yearRef = useRef('Any')
+
+  // GET VALUE START
 
 const getValue = () => {
 
-  let filterType ='type='+ document.getElementById('type').value
+  console.log(typeRef.current.value)
 
-  if (filterType === 'type=Any'){
+  let filterType ='type='+ typeRef.current.value
+
+  if (filterType === 'type=Any')
+  {
     filterType=''
   }
 
-  let filterYear ='release_year='+ document.getElementById('year').value
+  let filterYear ='release_year='+ yearRef.current.value
 
-  if (filterYear === 'release_year=Any'){
+  if (filterYear === 'release_year=Any')
+  {
     filterYear=''
   }
 
   let newApiUrl = `http://localhost:1989/sneaker2/filter?${filterType}&${filterYear}`
   setapiUrl(newApiUrl)
  
-  console.log(apiUrl)
 }
 
+  // GET VALUE END
+
+  // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
+
+  useEffect(() => {
+
+
+    if (typeRef.current.value === 'Any' && yearRef.current.value === 'Any' )
+    {
+    setdynamicjustifyContent('space-between')
+    }
+    else
+    {
+      setdynamicjustifyContent('center')
+    } 
+
+  },[typeRef.current.value, yearRef.current.value])
+
+  // CHECK ANY END
 
   useEffect(()=>{
     axios.get(apiUrl)
@@ -58,13 +86,13 @@ const getValue = () => {
 
   return(
     <>
-      <div className='productContainer'>
-
+      <div className='productContainer' style={{justifyContent: dynamicjustifyContent}}>
       {Sneakers.length > 0 ? (
         Sneakers.map(Sneakers =>
       (
         <div key={Sneakers.id} className='Product'>
-          <img src={Sneakers.image} alt='Sneaker Image' style={{width:'300px'}}/>
+          <img className='productImage' src={Sneakers.image} alt='Sneaker' style={{width:'300px'}}/>
+          <img className='productImagenoBG' src={Sneakers.image_noBG} alt='Sneaker No BG' style={{width:'300px'}}/>
           <p>{Sneakers.name}</p>
           <p>{Sneakers.type}</p>
           <p>{Sneakers.release_year}</p>
@@ -91,6 +119,7 @@ const getValue = () => {
 <div className='menu'>
     <label htmlFor='type'>Type: {""}
       <select onChange={getValue}
+      ref={typeRef}
       name='type'
       id='type'> 
       <option value={'Any'}>Any</option>
@@ -104,6 +133,7 @@ const getValue = () => {
 
     <label htmlFor='year'>Release Year: {""}
       <select onChange={getValue}
+      ref={yearRef}
       name='year'
       id='year'> 
       <option value={'Any'}>Any</option>
@@ -113,7 +143,6 @@ const getValue = () => {
       </select>
     </label>
 
-    <button onClick={getValue}>get</button>
     </div>
 
 {/* --------------------MENU-------------------- */}

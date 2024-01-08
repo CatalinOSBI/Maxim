@@ -5,9 +5,10 @@
 
 .productContainer{
   display: flex;
-  align-items: center;
-  justify-content:center;
-  gap: 20px;
+  align-items:center;
+  gap: 21px;
+  border: solid green 2px;
+  overflow-y:hidden ;
 }
 
 .Product{
@@ -17,6 +18,29 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.productImage{
+  border-radius: 7%;
+}
+
+.contentWrapper{
+  border: solid purple;
+  position: relative;
+  top: -320px;
+}
+
+.productImagenoBG{
+  position: absolute;
+  border: solid blue;
+  top: -303px;
+  top: 20px;
+  transition: all 190ms ease-in-out;
+}
+
+.productImagenoBG:hover{
+  /* opacity: 0; */
+  transform:  scale(1.2)
 }
 
 .menu{
