@@ -91,11 +91,17 @@ const getValue = () => {
         Sneakers.map(Sneakers =>
       (
         <div key={Sneakers.id} className='Product'>
+
+          <div className='tagContainer'>
+          <div className='contentWrapper'>
           <img className='productImage' src={Sneakers.image} alt='Sneaker' style={{width:'300px'}}/>
           <img className='productImagenoBG' src={Sneakers.image_noBG} alt='Sneaker No BG' style={{width:'300px'}}/>
-          <p>{Sneakers.name}</p>
-          <p>{Sneakers.type}</p>
-          <p>{Sneakers.release_year}</p>
+          </div>
+
+          <p className='productTag' style={{left:'0%' }}>{Sneakers.name}</p>
+          <p className='productTag' style={{left:'50%'}}>{Sneakers.type}</p>
+          <p className='productTag' style={{right:'0%', top:'0%'}}>{Sneakers.release_year}</p>
+          </div>
           <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
           <button style={{width:'60px'}} onClick={()=>deleteSneaker(Sneakers.id)}>Delete</button>
         </div>       
