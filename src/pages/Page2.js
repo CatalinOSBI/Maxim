@@ -98,9 +98,10 @@ const getValue = () => {
           <img className='productImagenoBG' src={Sneakers.image_noBG} alt='Sneaker No BG' style={{width:'300px'}}/>
           </div>
 
-          <p className='productTag' style={{left:'0%' }}>{Sneakers.name}</p>
-          <p className='productTag' style={{left:'50%'}}>{Sneakers.type}</p>
-          <p className='productTag' style={{right:'0%', top:'0%'}}>{Sneakers.release_year}</p>
+          <p className='productTag sName'>{Sneakers.name}</p>
+          <p className='productTag sType' style={{fontFamily:'Helvetica Now Text Regular, Helvetica, Arial', fontSize:'0.9em'}}>{Sneakers.type}</p>
+          <p className='productTag sPrice'style={{marginTop:'16px', textShadow:'0px 0px 25px rgba(0, 0, 0, 1)'}}>Price</p>
+          <p className='productTag sYear' style={{right:'0%', top:'0%',position:'absolute'}}>{Sneakers.release_year}</p>  
           </div>
           <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
           <button style={{width:'60px'}} onClick={()=>deleteSneaker(Sneakers.id)}>Delete</button>
