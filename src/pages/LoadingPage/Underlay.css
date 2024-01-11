@@ -1,6 +1,6 @@
 @font-face {
     font-family:'Zabal';
-    src: url(./Fonts/ZabalDEMO-Ultra.ttf) format('truetype');
+    src: url(../Fonts/ZabalDEMO-Ultra.ttf) format('truetype');
   }
 
 @keyframes Slide {

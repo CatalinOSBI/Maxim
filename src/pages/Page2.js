@@ -4,12 +4,17 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import {useRef} from 'react'
+import ContentBanner from './Images/ContentBanner2.png'
 
 const Page2 = () => {
   return (
     <>
-    <div>page2</div>
+    <div className='main'>Home Page
+    <div className='bannerContainer'>
+      <img className='bannerImage' src={ContentBanner}/>
+    </div>
     <Sneakers/>
+    </div>
     </>
   )
 }
@@ -22,6 +27,25 @@ function Sneakers(){
   const [dynamicjustifyContent, setdynamicjustifyContent] = useState('space-between')
   const typeRef = useRef('Any')
   const yearRef = useRef('Any')
+  const productContainerRef = useRef(null)
+
+  //SCROLL BUTTONS
+  //RIGHT
+  const scrollRight = () => {
+    if(productContainerRef.current)
+    {
+      productContainerRef.current.scrollLeft += 1170;
+    }
+  }
+  //LEFT
+  const scrollLeft = () => {
+    if(productContainerRef.current)
+    {
+      productContainerRef.current.scrollLeft -= 1170;
+    }
+  }
+
+  //SCROLL BUTTONS
 
   // GET VALUE START
 
@@ -86,7 +110,7 @@ const getValue = () => {
 
   return(
     <>
-      <div className='productContainer' style={{justifyContent: dynamicjustifyContent}}>
+      <div id='productContainer' className='productContainer' ref={productContainerRef} style={{justifyContent: dynamicjustifyContent}}>
       {Sneakers.length > 0 ? (
         Sneakers.map(Sneakers =>
       (
@@ -100,7 +124,7 @@ const getValue = () => {
 
           <p className='productTag sName'>{Sneakers.name}</p>
           <p className='productTag sType' style={{fontFamily:'Helvetica Now Text Regular, Helvetica, Arial', fontSize:'0.9em'}}>{Sneakers.type}</p>
-          <p className='productTag sPrice'style={{marginTop:'16px', textShadow:'0px 0px 25px rgba(0, 0, 0, 1)'}}>Price</p>
+          <p className='productTag sPrice'style={{marginTop:'16px', textShadow:'0px 0px 25px rgba(0, 0, 0, 1)'}}>${Sneakers.price}</p>
           <p className='productTag sYear' style={{right:'0%', top:'0%',position:'absolute'}}>{Sneakers.release_year}</p>  
           </div>
           <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
@@ -149,6 +173,9 @@ const getValue = () => {
       <option value={'2021'}>2021</option>
       </select>
     </label>
+
+    <button onClick={scrollRight}>Move Right</button>
+    <button onClick={scrollLeft}>Move Left</button>
 
     </div>
 

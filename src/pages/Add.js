@@ -22,6 +22,7 @@ const Sneakers = () => {
     name:"",
     image:"",
     image_noBG:"",
+    price:"",
   })
 
   const getData = (event) =>{
@@ -43,6 +44,7 @@ const Sneakers = () => {
       <input name='name' id='name' type='text' placeholder='name' onChange={getData}/>
       <input name='image' id='image' type='text' placeholder='image' onChange={getData}/>
       <input name='image_noBG' id='image-noBG' type='text' placeholder='image_noBG' onChange={getData}/>
+      <input name='price' id='price' type="number" placeholder='price' min="1" step="any" onChange={getData} />
       <h1>{Info.name}</h1>
       </>   
   )

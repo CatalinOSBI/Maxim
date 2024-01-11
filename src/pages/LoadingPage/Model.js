@@ -10,7 +10,7 @@ function Model() {
 
 function Sneaker(props) {
   const ref = useRef()
-  const { nodes, materials } = useGLTF("./Sneaker/scene.glb");
+  const { nodes, materials } = useGLTF("./Assets/Sneaker/scene.glb");
 
   
   

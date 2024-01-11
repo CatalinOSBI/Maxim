@@ -11,6 +11,7 @@ function Update() {
     name:"",
     image:"",
     image_noBG:"",
+    price:"",
   })
 
   let location = useLocation()
@@ -21,13 +22,15 @@ function Update() {
     const [Data, setData] = useState('')
 
     useEffect(()=>{
+
       axios.get("http://localhost:1989/sneakers/"+id)
       
           .then(res => {
               const {id, ...dataWithNoId} = res.data[0]
               setData(dataWithNoId)
-              console.log(Data)
+
           })   
+          
     // Putting the API Response in an array      
     },[]);
 
@@ -62,6 +65,7 @@ function Update() {
     document.getElementById('name').value = Data.name
     document.getElementById('image').value = Data.image
     document.getElementById('image_noBG').value = Data.image_noBG
+    document.getElementById('price').value = Data.price
 
     setInfo(Data)
 
@@ -78,6 +82,7 @@ function Update() {
     <input name='name' id='name' type='text' placeholder='name' onChange={getData}/>
     <input name='image' id='image' type='text' placeholder='image' onChange={getData}/>
     <input name='image_noBG' id='image_noBG' type='text' placeholder='image_noBG' onChange={getData}/>
+    <input name='price' id='price' type="number" placeholder='price' min="1" step="any" onChange={getData} />
 
     <h1>{Info.name}</h1>
     <button onClick={originalData}>Get Original Data</button>
