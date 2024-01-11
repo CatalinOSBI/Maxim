@@ -4,6 +4,7 @@ import Add from './pages/Add';
 import Page2 from './pages/Page2';
 import Update from './pages/Update';
 import LoadingScreen from './pages/LoadingPage/LoadingScreen';
+import ProductPage from './pages/Product';
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         <Route path='/page2' element ={<Page2/>}/>
         <Route path='/Add' element ={<Add/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
-        <Route path='/Loading' element ={<LoadingScreen/>}/> 
+        <Route path='/Loading' element ={<LoadingScreen/>}/>
+        <Route path='/Product/:id' element ={<ProductPage/>}/>  
       </Routes>
     </BrowserRouter>
     </div>

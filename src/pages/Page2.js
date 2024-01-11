@@ -110,16 +110,20 @@ const getValue = () => {
 
   return(
     <>
+    
       <div id='productContainer' className='productContainer' ref={productContainerRef} style={{justifyContent: dynamicjustifyContent}}>
       {Sneakers.length > 0 ? (
         Sneakers.map(Sneakers =>
       (
+        <a href={`/Product/${Sneakers.id}`} style={{textDecoration:'none'}}>
         <div key={Sneakers.id} className='Product'>
 
           <div className='tagContainer'>
           <div className='contentWrapper'>
           <img className='productImage' src={Sneakers.image} alt='Sneaker' style={{width:'300px'}}/>
+          <Link to={`/Product/${Sneakers.id}`}>
           <img className='productImagenoBG' src={Sneakers.image_noBG} alt='Sneaker No BG' style={{width:'300px'}}/>
+          </Link>
           </div>
 
           <p className='productTag sName'>{Sneakers.name}</p>
@@ -130,6 +134,7 @@ const getValue = () => {
           <button style={{width:'60px'}}><Link to={`/update/${Sneakers.id}`}>Update</Link></button>
           <button style={{width:'60px'}} onClick={()=>deleteSneaker(Sneakers.id)}>Delete</button>
         </div>       
+        </a>
       ))
       //else if there are no items show a no result screen
       ) : Sneakers.length === 0 ? (
