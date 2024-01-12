@@ -21,6 +21,7 @@
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  overflow-x: hidden;
 }
 
 /* SNEAKERS START */
@@ -38,6 +39,7 @@
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
   padding-right: 24px;
+  
 }
 
 .Product{
@@ -122,7 +124,41 @@ h1{
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
 }
 
+.buttonContainer{
+  /* border: solid violet; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 1900px; */
+  height: fit-content;
+  position: relative;
+  gap: 24px;
+}
+
+.scrollButton{
+  z-index: 3;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-family: Helvetica Now Text Medium, Helvetica, Arial;
+  border: solid black 1px;
+  /* margin: 8px; */
+  transition:opacity 160ms ease-in-out, background-color 160ms ease-in-out;
+  position: relative;
+}
+
+.scrollButton:hover{
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
+}
+
+.scrollButton:active{
+  border: solid transparent 1px;
+}
+
 /* SNEAKERS END */
+
+/* HEADER START */
 
 .bannerContainer{
   border: solid black;
@@ -130,7 +166,7 @@ h1{
   margin-bottom: -5%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   height: auto;
 }
@@ -141,3 +177,57 @@ h1{
   /* transform: scale(0.8); */
   clip-path: polygon(0 2%, 100% 2%, 100% 85%, 0 85%);
 }
+
+/* HEADER END */
+
+/* MENU START */
+
+.buttonContainer{
+  border: solid violet;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: fit-content;
+  position: relative;
+  gap: 24px;
+}
+
+.scrollButton{
+  z-index: 3;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-family: Helvetica Now Text Medium, Helvetica, Arial;
+  border: solid black 1px;
+  transition: background-color 160ms ease-in-out;
+  position: relative;
+  /* font-size: 1rem; */
+}
+
+.scrollButton:hover{
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
+}
+
+.scrollButton:active{
+  border: solid transparent 1px;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+/* MENU END */
