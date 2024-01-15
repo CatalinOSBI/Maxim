@@ -27,9 +27,9 @@ function Sneaker(props) {
 
   return (
     <group {...props} dispose={null} ref={ref}>
-      <group scale={0.001} ref={ref}>
-        <group rotation={[0, 0, 0]} ref={ref}>
-          <group rotation={[Math.PI, 0, 0]} scale={65} ref={ref}>
+      <group scale={0.001} >
+        <group rotation={[0, 0, 0]} >
+          <group rotation={[Math.PI, 0, 0]} scale={65} >
             <mesh
               castShadow
               receiveShadow
