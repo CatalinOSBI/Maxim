@@ -28,6 +28,8 @@ function Sneakers() {
   const productContainerRef = useRef(null);
   const [currentScroll, setCurrentScroll] = useState(0);
 
+  // SCROLL RIGHT
+
   const scrollRight = () => {
     if (productContainerRef.current) {
 
@@ -35,6 +37,8 @@ function Sneakers() {
 
     }
   };
+
+  // SCROLL LEFT
 
   const scrollLeft = () => {
     if (productContainerRef.current) {
@@ -61,6 +65,8 @@ function Sneakers() {
     setApiUrl(newApiUrl);
   };
 
+   // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
+
   useEffect(() => {
     if (typeRef.current.value === 'Any' && yearRef.current.value === 'Any') {
       setDynamicJustifyContent('space-between');
@@ -69,16 +75,22 @@ function Sneakers() {
     }
   }, [typeRef.current.value, yearRef.current.value]);
 
+  //API
+
   useEffect(() => {
     axios.get(apiUrl).then((res) => {
       setSneakers(res.data);
     });
   }, [apiUrl]);
 
+  //DELETE
+
   const deleteSneaker = (id) => {
     axios.delete(`http://localhost:1989/sneakers/${id}`);
     window.location.reload();
   };
+
+  //DYNAMIC OPACITY with event listeners
 
   const handleScroll = () => {
     if (productContainerRef.current) {
@@ -120,6 +132,8 @@ function Sneakers() {
 
     }
   }, [currentScroll]);
+
+   //RENDER
 
   return (
     <>
