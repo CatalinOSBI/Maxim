@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ContentBanner from './Images/ContentBanner2.png';
+import Banner from '../Banner';
+import Header from '../Header';
 
 const Page2 = () => {
   return (
     <>
       <div className='main'>
-        Home Page
-        <div className='bannerContainer'>
-          <img className='bannerImage' src={ContentBanner} alt='Banner' />
-        </div>
+        <Header/>
+        <Banner/>
         <Sneakers />
       </div>
     </>
@@ -23,10 +22,15 @@ function Sneakers() {
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
+  const [currentScroll, setCurrentScroll] = useState(0);
+  const [cNumber, setcNumber] = useState(1)
   const typeRef = useRef('Any');
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
-  const [currentScroll, setCurrentScroll] = useState(0);
+
+  const addNumber = () => {
+    setcNumber(prevcNumber => prevcNumber + 1 )  //TESTING CART FUNCTION
+  }
 
   // SCROLL RIGHT
 
@@ -48,7 +52,16 @@ function Sneakers() {
     }
   };
 
+  //API FILTER
+
   const getValue = () => {
+
+    setTimeout(() => {
+
+      productContainerRef.current.scrollLeft = 0;
+      
+    }, 500);
+
     let filterType = 'type=' + typeRef.current.value;
 
     if (filterType === 'type=Any') {
@@ -68,11 +81,31 @@ function Sneakers() {
    // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
 
   useEffect(() => {
+
     if (typeRef.current.value === 'Any' && yearRef.current.value === 'Any') {
       setDynamicJustifyContent('space-between');
     } else {
       setDynamicJustifyContent('center');
     }
+
+    //Check if container is scrollable horizontally done with freaking timeout
+    setTimeout(() => {
+      
+      const container = productContainerRef.current;
+
+      if (container.scrollWidth > container.clientWidth) 
+      {
+        setDynamicOpacityRight(1)
+        console.log('Turn on')
+      }
+      else
+      {
+        setDynamicOpacityRight(0.4)
+        console.log('Turn off')
+      }
+
+    }, 160);
+
   }, [typeRef.current.value, yearRef.current.value]);
 
   //API
@@ -81,6 +114,7 @@ function Sneakers() {
     axios.get(apiUrl).then((res) => {
       setSneakers(res.data);
     });
+
   }, [apiUrl]);
 
   //DELETE
@@ -115,7 +149,7 @@ function Sneakers() {
       const container = productContainerRef.current;
       const maxScroll = container.scrollWidth - container.clientWidth;
 
-      if (currentScroll > maxScroll) 
+      if (currentScroll >= maxScroll && maxScroll !== 0 ) 
       {
         setDynamicOpacityRight(0.4);
       }
@@ -128,7 +162,6 @@ function Sneakers() {
         setDynamicOpacityLeft(1)
         setDynamicOpacityRight(1)
       }
-
 
     }
   }, [currentScroll]);
@@ -206,6 +239,9 @@ function Sneakers() {
             <option value={'2021'}>2021</option>
           </select>
         </label>
+
+          <button onClick={addNumber}>Add To Cart</button>
+
       </div>
 
       {/* --------------------MENU-------------------- */}

@@ -1,0 +1,24 @@
+.headerContainer{
+    width: 100vw;
+    height: 75px;
+    background-color: #191919;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header{
+    position: sticky;
+    top: 0;
+
+}
+
+.cartCircle{
+    width: 50px;
+    height: 50px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

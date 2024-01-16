@@ -1,5 +1,4 @@
 import React from 'react';
-import './Underlay.css';
 import Model from './Model';
 import Underlay from './Underlay';
 

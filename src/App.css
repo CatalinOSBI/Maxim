@@ -16,13 +16,17 @@
 .main{
   /* border: solid red 1px; */
   width: 100%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
+
+/* HEADER START */
+
+/* HEADER END */
 
 /* SNEAKERS START */
 
@@ -157,28 +161,6 @@ h1{
 }
 
 /* SNEAKERS END */
-
-/* HEADER START */
-
-.bannerContainer{
-  border: solid black;
-  border-radius: 16px;
-  margin-bottom: -5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  height: auto;
-}
-
-.bannerImage{
-  width: 100%;
-  height: auto;
-  /* transform: scale(0.8); */
-  clip-path: polygon(0 2%, 100% 2%, 100% 85%, 0 85%);
-}
-
-/* HEADER END */
 
 /* MENU START */
 

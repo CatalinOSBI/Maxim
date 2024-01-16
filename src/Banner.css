@@ -1,0 +1,21 @@
+/* Banner START */
+
+.bannerContainer{
+    border: solid black;
+    border-radius: 16px;
+    margin-bottom: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 65%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .bannerImage{
+    width: 100%;
+    height: auto;
+    /* transform: scale(0.8); */
+  }
+  
+  /* Banner END */

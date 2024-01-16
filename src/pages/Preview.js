@@ -250,9 +250,9 @@ function Scene() {
 
       <ambientLight intensity={0.7} />
       <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
-      <Environment preset="city" background blur={1} />
+      <Environment preset="warehouse" />
       <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
-      <Boot position={[-20,1,1]} scale={[1,1,1]}/>
+      <Boot position={[-20,-3,-5]} scale={[1,1,1]} />
       <OrbitControls/>
       </Canvas>
     </div>
