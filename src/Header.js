@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { useCart } from './CartContext';
 import './Header.css'
 
 function Header() {
+  const { cNumber } = useCart();
 
-    return (
+  return (
     <header>
-        <div className='headerContainer'>
-            <div className='cartCircle'>
-                <p className='cartNumber'>{cNumber}</p>
-            </div>
+      <div className='headerContainer'>
+        <div className='cartCircle'>
+          <p className='cartNumber'>{cNumber}</p>
         </div>
-    </header>    
-  )
+      </div>
+    </header>
+  );
 }
 
-export default Header
+export default Header;

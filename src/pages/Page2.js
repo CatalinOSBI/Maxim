@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Banner from '../Banner';
 import Header from '../Header';
+import CartButton from '../CartButton';
 
 const Page2 = () => {
   return (
@@ -11,6 +12,7 @@ const Page2 = () => {
         <Header/>
         <Banner/>
         <Sneakers />
+        <CartButton/>
       </div>
     </>
   );
@@ -23,14 +25,9 @@ function Sneakers() {
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
   const [currentScroll, setCurrentScroll] = useState(0);
-  const [cNumber, setcNumber] = useState(1)
   const typeRef = useRef('Any');
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
-
-  const addNumber = () => {
-    setcNumber(prevcNumber => prevcNumber + 1 )  //TESTING CART FUNCTION
-  }
 
   // SCROLL RIGHT
 
@@ -239,8 +236,6 @@ function Sneakers() {
             <option value={'2021'}>2021</option>
           </select>
         </label>
-
-          <button onClick={addNumber}>Add To Cart</button>
 
       </div>
 
