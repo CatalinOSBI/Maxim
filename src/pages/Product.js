@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react'
 import axios from 'axios';
+import Header from '../Header';
 
 function Product() {
 
@@ -32,7 +33,9 @@ function Product() {
     }
 
   return (
-<>
+<>  
+
+    <Header/>
     <div>{Sneakers.name}</div>
     <img src={Sneakers.image}/>
     <button onClick={getSneakers}>Get Info</button>

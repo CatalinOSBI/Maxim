@@ -9,10 +9,10 @@ const Page2 = () => {
   return (
     <>
       <div className='main'>
-        <Header/>
-        <Banner/>
+        <Header />
+        <Banner />
         <Sneakers />
-        <CartButton/>
+        <CartButton />
       </div>
     </>
   );
@@ -56,7 +56,7 @@ function Sneakers() {
     setTimeout(() => {
 
       productContainerRef.current.scrollLeft = 0;
-      
+
     }, 500);
 
     let filterType = 'type=' + typeRef.current.value;
@@ -73,9 +73,10 @@ function Sneakers() {
 
     const newApiUrl = `http://localhost:1989/sneaker2/filter?${filterType}&${filterYear}`;
     setApiUrl(newApiUrl);
+
   };
 
-   // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
+  // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
 
   useEffect(() => {
 
@@ -87,16 +88,14 @@ function Sneakers() {
 
     //Check if container is scrollable horizontally done with freaking timeout
     setTimeout(() => {
-      
+
       const container = productContainerRef.current;
 
-      if (container.scrollWidth > container.clientWidth) 
-      {
+      if (container.scrollWidth > container.clientWidth) {
         setDynamicOpacityRight(1)
         console.log('Turn on')
       }
-      else
-      {
+      else {
         setDynamicOpacityRight(0.4)
         console.log('Turn off')
       }
@@ -146,16 +145,13 @@ function Sneakers() {
       const container = productContainerRef.current;
       const maxScroll = container.scrollWidth - container.clientWidth;
 
-      if (currentScroll >= maxScroll && maxScroll !== 0 ) 
-      {
+      if (currentScroll >= maxScroll && maxScroll !== 0) {
         setDynamicOpacityRight(0.4);
       }
-      else if (currentScroll === 0) 
-      {
+      else if (currentScroll === 0) {
         setDynamicOpacityLeft(0.4);
       }
-      else
-      {
+      else {
         setDynamicOpacityLeft(1)
         setDynamicOpacityRight(1)
       }
@@ -163,7 +159,7 @@ function Sneakers() {
     }
   }, [currentScroll]);
 
-   //RENDER
+  //RENDER
 
   return (
     <>
@@ -204,10 +200,10 @@ function Sneakers() {
       </div>
 
       <div className='buttonContainer'>
-        <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition:'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
+        <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
           <i className='arrow left'></i>
         </button>
-        <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition:'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
+        <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
           <i className='arrow right'></i>
         </button>
       </div>
