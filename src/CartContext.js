@@ -4,7 +4,8 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cNumber, setcNumber] = useState(0);
-  const [storageNumber, setstorageNumber] = useState(0)
+  const [storageNumber, setstorageNumber] = useState(1)
+  const [test, settest] = useState(1)
 
   const addNumber = () => {
     setcNumber(prevcNumber => prevcNumber + 1);
@@ -15,8 +16,16 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cNumber Local Storage', storageNumber.toString())
    }
 
+   const Reset = () => { 
+
+    localStorage.setItem('cNumber Local Storage', 0)
+    setstorageNumber(1)
+    settest(prev => prev + 1)
+
+    }
+
   return (
-    <CartContext.Provider value={{ cNumber, addNumber, addNumberStorage }}>
+    <CartContext.Provider value={{ cNumber, addNumber, addNumberStorage, Reset }}>
       {children}
     </CartContext.Provider>
   );
