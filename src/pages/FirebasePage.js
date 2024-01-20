@@ -20,7 +20,7 @@ const FirebasePage = () => {
   const FireBaseApp = initializeApp(firebaseConfig);
 
   const auth = getAuth(FireBaseApp);
-  connectAuthEmulator(auth, 'http://localhost:3000');
+  connectAuthEmulator(auth, 'http://localhost:3002');
 
   const logIn = async () => {
     const email = emailRef.current.value
@@ -34,19 +34,19 @@ const FirebasePage = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
       <div style={{ padding: '20px', boxShadow: '5px 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', width: '300px', textAlign: 'center', backgroundColor: '#C5CAE9' }}>
         <h2 style={{marginBottom:'20px'}}>Login</h2>
-        <form onSubmit={logIn}>
+
           <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
             Email:
-            <input type="email" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef}/>
+            <input type="text" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef}/>
           </label>
           <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
             Password:
             <input type="password" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef}/>
           </label>
-          <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+          <button onClick={logIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
             Log In
           </button>
-        </form>
+
       </div>
     </div>
   );
