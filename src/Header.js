@@ -14,9 +14,9 @@ function Header() {
           <p className='cartNumber'>{cNumber}</p>
         </div>
 
-      <div className='cartCircle'>
-        <p className='cartNumber'>{storedNumber}</p>
-      </div>
+        <div className='cartCircle'>
+          <p className='cartNumber'>{storedNumber}</p>
+        </div>
 
       </div>
     </header>

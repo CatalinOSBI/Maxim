@@ -12,17 +12,17 @@ export const CartProvider = ({ children }) => {
   };
 
   const addNumberStorage = () => {
-    setstorageNumber (prev => prev + 1)
+    setstorageNumber(prev => prev + 1)
     localStorage.setItem('cNumber Local Storage', storageNumber.toString())
-   }
+  }
 
-   const Reset = () => { 
+  const Reset = () => {
 
     localStorage.setItem('cNumber Local Storage', 0)
     setstorageNumber(1)
     settest(prev => prev + 1)
 
-    }
+  }
 
   return (
     <CartContext.Provider value={{ cNumber, addNumber, addNumberStorage, Reset }}>
