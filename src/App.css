@@ -35,7 +35,7 @@
   display: flex;
   align-items:center;
   gap: 21px;
-  border: solid green 2px;
+  /* border: solid green 2px; */
   overflow-y:hidden ;
   height: 500px;
   min-height: 500px;
@@ -43,8 +43,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
-  padding-right: 24px;
-  
+  padding-right: 23px;
 }
 
 .Product{
