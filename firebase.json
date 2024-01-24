@@ -2,7 +2,7 @@
   "emulators": {
     "singleProjectMode": true,
     "auth": {
-      "port": 3002
+      "port": 9099
     },
     "ui": {
       "enabled": true

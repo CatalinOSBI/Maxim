@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Banner from '../Banner';
-import Header from '../Header';
-import CartButton from '../CartButton';
+import Banner from '../Components/Banner/Banner';
+import Header from '../Components/Header/Header';
+import CartButton from '../Components/Cart/CartButton';
 
 const Page2 = () => {
   return (
@@ -169,9 +169,9 @@ function Sneakers() {
             <div key={sneaker.id} className='Product'>
               <div className='tagContainer'>
                 <div className='contentWrapper'>
-                  <img className='productImage' src={sneaker.image} alt='Sneaker' style={{ width: '300px' }} />
+                  <img className='productImage' src={sneaker.image} alt='Sneaker' />
                   <Link to={`/Product/${sneaker.id}`}>
-                    <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' style={{ width: '300px' }} />
+                    <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
                   </Link>
                 </div>
 
@@ -188,7 +188,7 @@ function Sneakers() {
                 <Link to={`/update/${sneaker.id}`}>Update</Link>
               </button>
               <button style={{ width: '60px' }} onClick={() => deleteSneaker(sneaker.id)}>
-                Delete
+                {/* add name here to show the button */}
               </button>
             </div>
           ))
@@ -198,6 +198,7 @@ function Sneakers() {
           <p id='loading'>Loading...</p>
         )}
       </div>
+      {/* --------------------SCROLL BUTTONS-------------------- */}
 
       <div className='buttonContainer'>
         <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
@@ -235,7 +236,6 @@ function Sneakers() {
 
       </div>
 
-      {/* --------------------MENU-------------------- */}
     </>
   );
 }

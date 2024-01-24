@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from './CartContext';
+import { useCart } from '../Cart/CartContext';
 import './Header.css'
 
 function Header() {

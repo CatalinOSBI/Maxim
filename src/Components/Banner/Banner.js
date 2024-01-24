@@ -1,5 +1,5 @@
 import React from 'react'
-import ContentBanner from './pages/Images/ContentBanner.png';
+import ContentBanner from './ContentBanner.png';
 import './Banner.css'
 
 function Banner() {

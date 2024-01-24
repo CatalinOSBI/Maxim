@@ -10,6 +10,7 @@
     width: 65%;
     height: auto;
     overflow: hidden;
+    /* min-width: 600px; */
   }
   
   .bannerImage{
