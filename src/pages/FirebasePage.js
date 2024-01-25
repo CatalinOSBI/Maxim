@@ -5,7 +5,6 @@ import React, { useRef, useEffect, useState } from 'react'
 
 const FirebasePage = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const thingRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordSignRef = useRef()
@@ -26,11 +25,7 @@ const FirebasePage = () => {
 
   const providerGoogle = new GoogleAuthProvider()
 
-  const auth = getAuth(FireBaseApp)
-  connectAuthEmulator(auth, 'http://localhost:9099');
-
-
-  
+  const auth = getAuth(FireBaseApp)  
 
   // Google signin
   const handleGoogleSignIn = (e) => {
@@ -93,6 +88,23 @@ const FirebasePage = () => {
    }
 
   //check if user is logged in or not
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('IT IS SIGNED IN');
+        setisLoggedIn(true)
+
+      } else {
+        console.log('IT IS SIGNED OUT');
+        setisLoggedIn(false)
+
+      }
+    });
+  
+    return () => {
+      unsubscribe(); // Cleanup the subscription when the component unmounts
+    };
+  }, []);
 
 
   return (
@@ -144,15 +156,15 @@ const FirebasePage = () => {
           
         </form>
 
-        <button onClick={handleGoogleSignIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        <button onClick={handleGoogleSignIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop:'20px', marginBottom:'20px' }}>
             Use Google
           </button>
 
-          <button onClick={handleGetUserData} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+          <button onClick={handleGetUserData} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: `${isLoggedIn ? 'pointer' :'not-allowed'}`, marginBottom:'20px' }}>
             Get user Info
           </button>
 
-          <button onClick={handleSignOut} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+          <button onClick={handleSignOut} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom:'20px' }}>
             Sign Out
           </button>
 
