@@ -37,6 +37,8 @@ export const AuthProvider = ({ children }) => {
     console.log(currentUser.emailVerified)
   }
 
+
+  //check when user logs in/out
 useEffect(() => {
   
   const unsubscribe = auth.onAuthStateChanged(user => {

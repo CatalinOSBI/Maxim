@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, connectAuthEmulator, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, setDoc, doc} from 'firebase/firestore'
 import React, { useRef, useEffect, useState } from 'react'
 
 
@@ -22,13 +23,14 @@ const FirebasePage = () => {
 
   // Initialize Firebase
   const FireBaseApp = initializeApp(firebaseConfig);
+  const FireStoreDB = getFirestore(FireBaseApp)
 
   const providerGoogle = new GoogleAuthProvider()
 
   const auth = getAuth(FireBaseApp)  
 
   // Google signin
-  const handleGoogleSignIn = (e) => {
+  const handleGoogleSignIn = async (e) => {
     e.preventDefault()
     signInWithPopup(auth, providerGoogle)
       .then(result => {
@@ -45,6 +47,10 @@ const FirebasePage = () => {
       }).catch(error => {
         console.log(error.message)
       });
+
+    // Signed up w/ google
+
+    // Add user to DB 
 
   }
 
@@ -69,6 +75,33 @@ const FirebasePage = () => {
     // Signed up 
     await updateProfile(auth.currentUser, { displayName: username })
     console.log('Signed Up')
+    
+    // Add user to DB
+    handleUpdateUserDB()
+  }
+
+//Update userDB  
+  const handleUpdateUserDB = async () => { 
+    const currentUser = auth.currentUser
+
+  if (currentUser){  
+    const uID = currentUser.uid
+    // DB Object
+    const docData = {
+      role:"user"
+    }
+    // DB Doc Path
+    const docPath = doc(FireStoreDB, `users/${uID}`); 
+    try {;
+    // Update DB  
+      setDoc(docPath, docData)
+      console.log('Updated User DB')
+
+    } catch (error) {
+      console.log(error)
+
+    }
+   }
   }
 
 //get user data
@@ -166,6 +199,10 @@ const FirebasePage = () => {
 
           <button onClick={handleSignOut} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom:'20px' }}>
             Sign Out
+          </button>
+
+          <button onClick={handleUpdateUserDB} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom:'20px' }}>
+            Update DB
           </button>
 
       </div>
