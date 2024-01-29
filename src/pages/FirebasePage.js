@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, setDoc, doc} from 'firebase/firestore'
+import { getFirestore, setDoc, doc, getDoc} from 'firebase/firestore'
 import React, { useRef, useEffect, useState } from 'react'
 
 
@@ -44,6 +44,9 @@ const FirebasePage = () => {
         console.log(credential)
         console.log(token)
         console.log(user)
+        // Signed up w/ google
+        // Add user to DB 
+        handleUpdateUserDB()
       }).catch(error => {
         console.log(error.message)
       });
@@ -51,7 +54,7 @@ const FirebasePage = () => {
     // Signed up w/ google
 
     // Add user to DB 
-
+    handleUpdateUserDB()
   }
 
 //login
@@ -94,7 +97,7 @@ const FirebasePage = () => {
     const docPath = doc(FireStoreDB, `users/${uID}`); 
     try {;
     // Update DB  
-      setDoc(docPath, docData)
+      await setDoc(docPath, docData)
       console.log('Updated User DB')
 
     } catch (error) {
@@ -103,6 +106,21 @@ const FirebasePage = () => {
     }
    }
   }
+
+//check user role
+  const handleCheckUserRole = async() => { 
+
+      const uID = auth.currentUser.uid
+      //doc path
+      const docPath = doc(FireStoreDB, `users/${uID}`); 
+      //waiting to retireve document
+      const myDocument = await getDoc(docPath)
+      
+      if (myDocument.exists()){
+        const docData = myDocument.data()
+        console.log(docData.role)
+      }
+   }
 
 //get user data
   const handleGetUserData = () => { 
@@ -201,8 +219,8 @@ const FirebasePage = () => {
             Sign Out
           </button>
 
-          <button onClick={handleUpdateUserDB} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom:'20px' }}>
-            Update DB
+          <button onClick={handleCheckUserRole} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom:'20px' }}>
+            Check User Role
           </button>
 
       </div>

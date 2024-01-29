@@ -1,13 +1,16 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getFirestore, setDoc, doc, getDoc} from 'firebase/firestore'
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
+  const [UserRole, setUserRole] = useState();
   const [UserEmail, setUserEmail] = useState();
   const [UserDisplayName, setUserDisplayName] = useState();
+  const [uID, setuID] = useState();
   const [UserEmailVerified, setUserEmailVerified] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -26,6 +29,7 @@ export const AuthProvider = ({ children }) => {
   // const providerGoogle = new GoogleAuthProvider()
 
   const auth = getAuth(FireBaseApp)
+  const FireStoreDB = getFirestore(FireBaseApp)
 
 
   //get user data
@@ -62,8 +66,25 @@ useEffect(() => {
     console.log('User Signed Out - Button')
    }
 
+   //check user role
+  const handleCheckUserRole = async() => { 
+
+    setuID(auth.currentUser.uid)
+    //doc path
+    const docPath = doc(FireStoreDB, `users/${uID}`); 
+    //waiting to retireve document
+    const myDocument = await getDoc(docPath)
+    
+    if (myDocument.exists()){
+      const docData = myDocument.data()
+      
+      console.log(docData.role)
+      setUserRole(docData.role)
+    }
+ }
+
   return (
-    <AuthContext.Provider value={{handleSignOut, handleGetUserData, UserEmail, UserDisplayName, UserEmailVerified, IsLoggedIn }}>
+    <AuthContext.Provider value={{handleSignOut, handleGetUserData, UserEmail, UserDisplayName, UserEmailVerified, IsLoggedIn, UserRole, handleCheckUserRole }}>
       {children}
     </AuthContext.Provider>
   );

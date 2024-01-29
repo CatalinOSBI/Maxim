@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Banner from '../Components/Banner/Banner';
-import Header from '../Components/Header/Header';
+import Banner from '../Components/Banner';
+import Header from '../Components/Header';
 import CartButton from '../Components/Cart/CartButton';
 
 const Page2 = () => {
