@@ -7,6 +7,7 @@ import LoadingScreen from './pages/LoadingPage/LoadingScreen';
 import ProductPage from './pages/Product';
 import Preview from './pages/Preview';
 import FirebasePage from './pages/FirebasePage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/Product/:id' element ={<ProductPage/>}/> 
         <Route path='/Preview' element ={<Preview/>}/> 
         <Route path='/Login' element ={<FirebasePage/>}/>
+        <Route path='/AdminPage' element ={<AdminPage/>}/>
       </Routes>
     </BrowserRouter>
     </div>

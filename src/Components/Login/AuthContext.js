@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   const [UserRole, setUserRole] = useState();
   const [UserEmail, setUserEmail] = useState();
   const [UserDisplayName, setUserDisplayName] = useState();
-  const [uID, setuID] = useState();
   const [UserEmailVerified, setUserEmailVerified] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -69,7 +68,7 @@ useEffect(() => {
    //check user role
   const handleCheckUserRole = async() => { 
 
-    setuID(auth.currentUser.uid)
+    const uID = auth.currentUser.uid
     //doc path
     const docPath = doc(FireStoreDB, `users/${uID}`); 
     //waiting to retireve document
@@ -81,6 +80,7 @@ useEffect(() => {
       console.log(docData.role)
       setUserRole(docData.role)
     }
+
  }
 
   return (

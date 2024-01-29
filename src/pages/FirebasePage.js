@@ -29,7 +29,7 @@ const FirebasePage = () => {
 
   const auth = getAuth(FireBaseApp)  
 
-  // Google signin
+  // Google SignIn
   const handleGoogleSignIn = async (e) => {
     e.preventDefault()
     signInWithPopup(auth, providerGoogle)
@@ -50,12 +50,28 @@ const FirebasePage = () => {
       }).catch(error => {
         console.log(error.message)
       });
-
-    // Signed up w/ google
-
-    // Add user to DB 
-    handleUpdateUserDB()
   }
+
+    // Google SignIn
+    const handleGoogleLogIn = async (e) => {
+      e.preventDefault()
+      signInWithPopup(auth, providerGoogle)
+        .then(result => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+          console.log(credential)
+          console.log(token)
+          console.log(user)
+          // Signed up w/ google...
+        }).catch(error => {
+          console.log(error.message)
+        });
+    }
 
 //login
   const handleLogIn = async () => {
@@ -179,6 +195,11 @@ const FirebasePage = () => {
         <button onClick={handleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
           Log In
         </button>
+
+        <button onClick={handleGoogleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop:'20px', marginBottom:'20px' }}>
+            Use Google
+          </button>
+
       </div>
       {/* signin */}
 
