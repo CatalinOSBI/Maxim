@@ -12,6 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [UserDisplayName, setUserDisplayName] = useState();
   const [UserEmailVerified, setUserEmailVerified] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // Modal Vars
+  const [OpenModal, setOpenModal] = useState(false);
 
   const firebaseConfig = {
     apiKey: "AIzaSyAYmAqt2FF5wzU3JG-S0AKQOgNweObybiI",
@@ -80,11 +83,36 @@ useEffect(() => {
       console.log(docData.role)
       setUserRole(docData.role)
     }
-
  }
+////////////
+//  MODAL //
+////////////
+
+  //Open modal
+ const handleOpenModal = () => { 
+  setOpenModal(true)
+}
+  //Close Modal
+const handleCloseModal = () => { 
+  setOpenModal(false)
+}
 
   return (
-    <AuthContext.Provider value={{handleSignOut, handleGetUserData, UserEmail, UserDisplayName, UserEmailVerified, IsLoggedIn, UserRole, handleCheckUserRole }}>
+    <AuthContext.Provider value={{
+      handleSignOut,
+      handleGetUserData,
+      UserEmail,
+      UserDisplayName,
+      UserEmailVerified,
+      IsLoggedIn,
+      UserRole,
+      handleCheckUserRole,
+      OpenModal,
+      setOpenModal,
+      handleCloseModal,
+      handleOpenModal 
+      }}>
+
       {children}
     </AuthContext.Provider>
   );

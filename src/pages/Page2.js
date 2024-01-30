@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import Banner from '../Components/Banner';
 import Header from '../Components/Header';
 import CartButton from '../Components/Cart/CartButton';
+import LoginModal from '../Components/Login/LoginModal';
 
 const Page2 = () => {
   return (
     <>
       <div className='main'>
         <Header />
+        <LoginModal/>
         <Banner />
         <Sneakers />
         <CartButton />
