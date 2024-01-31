@@ -22,3 +22,12 @@
 body.modal-active{
     overflow-y: hidden;
 }
+
+.modalA{
+    padding: 20px;
+    box-Shadow: 5px 4px 8px rgba(0, 0, 0, 0.1);
+    border-Radius: 8px;
+    width: 300px;
+    text-Align: center;
+    background-Color: #C5CAE9;
+}
