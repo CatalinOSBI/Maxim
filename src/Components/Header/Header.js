@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/AuthContext';
 import { useCart } from '../Cart/CartContext';
@@ -15,13 +16,21 @@ function Header() {
           } = useAuth()
 
   const { cNumber, reset } = useCart();
+  const navigate = useNavigate()
 
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
+
+  //check wether user is admin or not
+  const handleGoToAdminPage = async() => { 
+    await handleCheckUserRole()
+    navigate('/AdminPage')
+   }
 
   return (
     <header>
       <div className='headerContainer'>
 
+        <button>View Cart</button>
         <div className='cartCircle'>
           <p className='cartNumber'>{storedCartNumber}</p>
         </div>
@@ -31,8 +40,8 @@ function Header() {
     <button onClick={handleCheckUserRole}>Pass Role</button>
     <button onClick={handleOpenModal}>Sign In</button>
 
-    <button>
-      <Link to={'/AdminPage'}>Go to Admin Page</Link>
+    <button onClick={handleGoToAdminPage}>
+      Go to Admin Page
     </button>
 
     <p style={{marginRight:'20px', color:'white'}}>{UserDisplayName}</p>

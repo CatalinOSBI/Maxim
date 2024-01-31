@@ -1,7 +1,7 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
-import { getFirestore, setDoc, doc, getDoc} from 'firebase/firestore'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { getFirestore,  doc, getDoc} from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -12,7 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [UserDisplayName, setUserDisplayName] = useState();
   const [UserEmailVerified, setUserEmailVerified] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const emailRef = useRef()
+  const passwordRef = useRef()
+
   // Modal Vars
   const [OpenModal, setOpenModal] = useState(false);
 
@@ -28,14 +30,14 @@ export const AuthProvider = ({ children }) => {
   // Initialize Firebase
   const FireBaseApp = initializeApp(firebaseConfig);
 
-  // const providerGoogle = new GoogleAuthProvider()
+  const providerGoogle = new GoogleAuthProvider()
 
   const auth = getAuth(FireBaseApp)
   const FireStoreDB = getFirestore(FireBaseApp)
 
 
   //get user data
-  const handleGetUserData = () => { 
+  const handleGetUserData = () => {
     const currentUser = auth.currentUser
 
     console.log(currentUser.displayName)
@@ -45,57 +47,93 @@ export const AuthProvider = ({ children }) => {
 
 
   //check when user logs in/out
-useEffect(() => {
-  
-  const unsubscribe = auth.onAuthStateChanged(user => {
-    if(user){
-      setUserEmail(user.email)
-      setUserDisplayName(user.displayName)
-      setUserEmailVerified(user.emailVerified)
-      
-      setIsLoggedIn(true)
-    } else{
-      setIsLoggedIn(false)
-    }
-  })
+  useEffect(() => {
 
-  return unsubscribe
-}, []);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setUserEmail(user.email)
+        setUserDisplayName(user.displayName)
+        setUserEmailVerified(user.emailVerified)
+
+        setIsLoggedIn(true)
+      } else {
+        setIsLoggedIn(false)
+      }
+    })
+
+    return unsubscribe
+  }, []);
 
   //sign out
   const handleSignOut = (e) => {
-      signOut(auth);
+    signOut(auth);
     console.log('User Signed Out - Button')
-   }
+    window.location.reload()
+  }
 
-   //check user role
-  const handleCheckUserRole = async() => { 
+  //check user role
+  const handleCheckUserRole = async () => {
 
     const uID = auth.currentUser.uid
     //doc path
-    const docPath = doc(FireStoreDB, `users/${uID}`); 
+    const docPath = doc(FireStoreDB, `users/${uID}`);
     //waiting to retireve document
     const myDocument = await getDoc(docPath)
-    
-    if (myDocument.exists()){
+
+    if (myDocument.exists()) {
       const docData = myDocument.data()
-      
+
       console.log(docData.role)
       setUserRole(docData.role)
     }
- }
-////////////
-//  MODAL //
-////////////
+  }
+
+  // Google LogIn
+  const handleGoogleLogIn = async (e) => {
+    e.preventDefault()
+    signInWithPopup(auth, providerGoogle)
+      .then(result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(credential)
+        console.log(token)
+        console.log(user)
+        // Signed up w/ google...
+        handleCloseModal()
+        handleCheckUserRole()
+      }).catch(error => {
+        console.log(error.message)
+      });
+  }
+
+  //login
+  const handleLogIn = async () => {
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
+
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log(userCredential.user)
+    handleCloseModal()
+    handleCheckUserRole()
+  }
+
+  ////////////
+  //  MODAL //
+  ////////////
 
   //Open modal
- const handleOpenModal = () => { 
-  setOpenModal(true)
-}
+  const handleOpenModal = () => {
+    setOpenModal(true)
+  }
   //Close Modal
-const handleCloseModal = () => { 
-  setOpenModal(false)
-}
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
 
   return (
     <AuthContext.Provider value={{
@@ -110,8 +148,12 @@ const handleCloseModal = () => {
       OpenModal,
       setOpenModal,
       handleCloseModal,
-      handleOpenModal 
-      }}>
+      handleOpenModal,
+      handleGoogleLogIn,
+      handleLogIn,
+      emailRef,
+      passwordRef
+    }}>
 
       {children}
     </AuthContext.Provider>

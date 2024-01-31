@@ -52,7 +52,7 @@ const FirebasePage = () => {
       });
   }
 
-    // Google SignIn
+    // Google LogIn
     const handleGoogleLogIn = async (e) => {
       e.preventDefault()
       signInWithPopup(auth, providerGoogle)
