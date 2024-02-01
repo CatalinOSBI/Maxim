@@ -4,25 +4,46 @@ import { useAuth } from './AuthContext';
 
 function LoginModal() {
 
-  const { handleCloseModal, OpenModal, handleGoogleLogIn, handleLogIn, emailRef, passwordRef } = useAuth()
+  const { handleCloseModal,
+    OpenModal,
+    handleGoogleLogIn,
+    handleLogIn,
+    emailRef,
+    passwordRef,
+    emailSignRef,
+    passwordSignRef,
+    usernameSignRef,
+    handleSignIn,
+  } = useAuth()
+
   const [modalA, setmodalA] = useState(false);
   const [modalB, setmodalB] = useState(false);
+  const [modalC, setmodalC] = useState(false);
 
   useEffect(() => {
 
     setmodalA(true)
     setmodalB(false)
+    setmodalC(false)
 
   }, [OpenModal]);
 
   const handleShowModalA = () => {
     setmodalB(false)
+    setmodalC(false)
     setmodalA(true)
   }
 
   const handleShowModalB = () => {
     setmodalA(false)
+    setmodalC(false)
     setmodalB(true)
+  }
+
+  const handleShowModalC = () => {
+    setmodalA(false)
+    setmodalC(true)
+    setmodalB(false)
   }
 
   //remove overflow when modal is open
@@ -39,18 +60,21 @@ function LoginModal() {
           <div className='modalContainer'>
             <button onClick={handleCloseModal}>X</button>
 
+            {/* login */}
             {modalA &&
               <div className='modal A' >
                 <h2 style={{ marginBottom: '20px' }}>Log In</h2>
+                
+                <form>
 
                 <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                   Email:
-                  <input type="text" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef} />
+                  <input type="text" autoComplete='email' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef} />
                 </label>
 
                 <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                   Password:
-                  <input type="password" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef} />
+                  <input name='password' type="password" autoComplete='off' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef} />
                 </label>
 
                 <button onClick={handleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
@@ -61,9 +85,12 @@ function LoginModal() {
                   Use Google
                 </button>
 
+                </form>
+
               </div>
             }
 
+            {/* create account /signup */}
             {modalB &&
               <div className='modal B'>
                 <h2 style={{ marginBottom: '20px' }}>Sign Up</h2>
@@ -71,45 +98,56 @@ function LoginModal() {
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                     Username:
-                    <input type="text" autoComplete="new-username" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                    <input type="text" autoComplete="new-username" ref={usernameSignRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                     Email:
-                    <input type="text" autoComplete="email" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                    <input name='email' type="email" autoComplete="email" ref={emailSignRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                  </label>
+
+                  <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
+                    Password1:
+                    <input type="password" name='new-password' autoComplete="new-password" ref={passwordSignRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                     Password:
-                    <input type="password" autoComplete="new-password" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                    <input type="password" name='new-password' autoComplete="new-password" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
-                  <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                  <button onClick={handleSignIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
                     Sign Up
                   </button>
 
                 </form>
 
-                <button onClick={() => console.log('asd')} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
-                  Use Google Sign In
-                </button>
+              </div>
+            }
 
-                <button onClick={() => console.log('asd')} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: `pointer`, marginBottom: '20px' }}>
-                  Get user Info
-                </button>
+            {/* forgot password */}
+            {modalC &&
+              <div className='modal C'>
+                <h2 style={{ marginBottom: '20px' }}>Password-Reset</h2>
+                <form >
 
-                <button onClick={() => console.log('asd')} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom: '20px' }}>
-                  Sign Out
-                </button>
+                  <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
+                    Email:
+                    <input name='email' type="email" autoComplete="email" ref={emailSignRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                  </label>
 
-                <button onClick={() => console.log('asd')} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom: '20px' }}>
-                  Check User Role
-                </button>
+                  <button onClick={() => {console.log('Reset Password')}} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
+                    Reset Password
+                  </button>
+
+                </form>
 
               </div>
             }
+
             <button onClick={handleShowModalB}>Sign Up</button>
             <button onClick={handleShowModalA}>Log In</button>
+            <button onClick={handleShowModalC}>Forgot Password</button>
 
           </div>
         </div>

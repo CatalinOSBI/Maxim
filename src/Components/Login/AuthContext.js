@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore,  doc, getDoc} from 'firebase/firestore'
+import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -14,6 +14,9 @@ export const AuthProvider = ({ children }) => {
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const emailRef = useRef()
   const passwordRef = useRef()
+  const emailSignRef = useRef()
+  const passwordSignRef = useRef()
+  const usernameSignRef = useRef()
 
   // Modal Vars
   const [OpenModal, setOpenModal] = useState(false);
@@ -51,11 +54,11 @@ export const AuthProvider = ({ children }) => {
 
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
+        setIsLoggedIn(true)
+
         setUserEmail(user.email)
         setUserDisplayName(user.displayName)
         setUserEmailVerified(user.emailVerified)
-
-        setIsLoggedIn(true)
       } else {
         setIsLoggedIn(false)
       }
@@ -64,10 +67,77 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe
   }, []);
 
+  //Update userDB  
+  const handleUpdateUserDB = async () => {
+    const currentUser = auth.currentUser
+
+    if (currentUser) {
+      const uID = currentUser.uid
+
+      // DB Object
+      const docData = {
+        role: "user"
+      }
+
+      // DB Doc Path
+      const docPath = doc(FireStoreDB, `users/${uID}`);
+      try {
+        ;
+        // Check if Document exists 
+        const myDocument = await getDoc(docPath)
+
+        if (myDocument.exists()) {
+          const documentData = myDocument.data()
+        
+          // Check if UserRole is defined or not/ IF document does exist
+          console.log('CHECKING USER ROLE')
+          if (documentData.role === '') {
+            console.log('UserRole is undefined')
+            console.log('Updating User DB...')
+            await setDoc(docPath, docData)
+          } else {
+            console.log(`UserRole is already set (${documentData.role})`)
+            console.log('Did not update User DB')
+          }
+
+          //if it the document does not exist create one
+        } else {
+          await setDoc(docPath, docData)
+          console.log('Updated User DB (New User)')
+        }
+
+        handleCheckUserRole()
+        
+      } catch (error) {
+        console.log(error)
+
+      }
+    }
+  }
+
   //sign out
   const handleSignOut = (e) => {
     signOut(auth);
     console.log('User Signed Out - Button')
+    window.location.reload()
+  }
+
+  //signin
+  const handleSignIn = async (e) => {
+    e.preventDefault()
+    const email = emailSignRef.current.value
+    const password = passwordSignRef.current.value
+    const username = usernameSignRef.current.value
+
+    await createUserWithEmailAndPassword(auth, email, password)
+
+    // Signed up 
+    await updateProfile(auth.currentUser, { displayName: username })
+    console.log('Updated Username')
+    console.log('Signed Up')
+
+    // Add user to DB
+    await handleUpdateUserDB()
     window.location.reload()
   }
 
@@ -104,15 +174,16 @@ export const AuthProvider = ({ children }) => {
         console.log(token)
         console.log(user)
         // Signed up w/ google...
+        handleUpdateUserDB()
         handleCloseModal()
-        handleCheckUserRole()
       }).catch(error => {
         console.log(error.message)
       });
   }
 
   //login
-  const handleLogIn = async () => {
+  const handleLogIn = async (e) => {
+    e.preventDefault()
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
@@ -152,7 +223,11 @@ export const AuthProvider = ({ children }) => {
       handleGoogleLogIn,
       handleLogIn,
       emailRef,
-      passwordRef
+      passwordRef,
+      emailSignRef,
+      passwordSignRef,
+      usernameSignRef,
+      handleSignIn,
     }}>
 
       {children}
