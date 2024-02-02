@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react'
 import axios from 'axios';
-import Header from '../Components/Header/Header';
+import Header from '../Components/Header';
+import LoginModal from '../Components/Login/LoginModal';
 
 function Product() {
 
@@ -36,6 +37,7 @@ function Product() {
 <>  
 
     <Header/>
+    <LoginModal/>
     <div>{Sneakers.name}</div>
     <img src={Sneakers.image}/>
     <button onClick={getSneakers}>Get Info</button>

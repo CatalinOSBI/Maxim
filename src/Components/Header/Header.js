@@ -29,8 +29,11 @@ function Header() {
   return (
     <header>
       <div className='headerContainer'>
+        
+        <button>
+          <Link to={'/Cart'}>View Cart</Link>
+        </button>
 
-        <button>View Cart</button>
         <div className='cartCircle'>
           <p className='cartNumber'>{storedCartNumber}</p>
         </div>

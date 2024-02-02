@@ -8,6 +8,7 @@ import ProductPage from './pages/Product';
 import Preview from './pages/Preview';
 import FirebasePage from './pages/FirebasePage';
 import AdminPage from './pages/AdminPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/Preview' element ={<Preview/>}/> 
         <Route path='/Login' element ={<FirebasePage/>}/>
         <Route path='/AdminPage' element ={<AdminPage/>}/>
+        <Route path='/Cart' element ={<CartPage/>}/>
       </Routes>
     </BrowserRouter>
     </div>

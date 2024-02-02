@@ -1,7 +1,19 @@
 import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore'
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification,
+} from "firebase/auth";
 
 const AuthContext = createContext();
 
@@ -17,6 +29,7 @@ export const AuthProvider = ({ children }) => {
   const emailSignRef = useRef()
   const passwordSignRef = useRef()
   const usernameSignRef = useRef()
+  const emailResetPasswordRef = useRef()
 
   // Modal Vars
   const [OpenModal, setOpenModal] = useState(false);
@@ -48,6 +61,21 @@ export const AuthProvider = ({ children }) => {
     console.log(currentUser.emailVerified)
   }
 
+  //reset password
+  const handleResetPassword = async (e) => {
+    e.preventDefault()
+
+    const email = emailResetPasswordRef.current.value
+
+    await sendPasswordResetEmail(auth, email)
+    console.log('Email Sent (Password-Reset)')
+  }
+
+  const handleSendVerificationEmail = async() => {
+
+    await sendEmailVerification(auth.currentUser)
+    console.log('Email Sent (Verification-Email)')
+  }
 
   //check when user logs in/out
   useEffect(() => {
@@ -88,7 +116,7 @@ export const AuthProvider = ({ children }) => {
 
         if (myDocument.exists()) {
           const documentData = myDocument.data()
-        
+
           // Check if UserRole is defined or not/ IF document does exist
           console.log('CHECKING USER ROLE')
           if (documentData.role === '') {
@@ -106,8 +134,6 @@ export const AuthProvider = ({ children }) => {
           console.log('Updated User DB (New User)')
         }
 
-        handleCheckUserRole()
-        
       } catch (error) {
         console.log(error)
 
@@ -138,6 +164,8 @@ export const AuthProvider = ({ children }) => {
 
     // Add user to DB
     await handleUpdateUserDB()
+    // Send Verfication Email
+    await handleSendVerificationEmail()
     window.location.reload()
   }
 
@@ -228,6 +256,8 @@ export const AuthProvider = ({ children }) => {
       passwordSignRef,
       usernameSignRef,
       handleSignIn,
+      handleResetPassword,
+      emailResetPasswordRef,
     }}>
 
       {children}

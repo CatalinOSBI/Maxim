@@ -14,6 +14,8 @@ function LoginModal() {
     passwordSignRef,
     usernameSignRef,
     handleSignIn,
+    handleResetPassword,
+    emailResetPasswordRef,
   } = useAuth()
 
   const [modalA, setmodalA] = useState(false);
@@ -133,10 +135,10 @@ function LoginModal() {
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
                     Email:
-                    <input name='email' type="email" autoComplete="email" ref={emailSignRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
+                    <input name='email' type="email" autoComplete="email" ref={emailResetPasswordRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
-                  <button onClick={() => {console.log('Reset Password')}} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
+                  <button onClick={handleResetPassword} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
                     Reset Password
                   </button>
 
@@ -145,8 +147,8 @@ function LoginModal() {
               </div>
             }
 
-            <button onClick={handleShowModalB}>Sign Up</button>
             <button onClick={handleShowModalA}>Log In</button>
+            <button onClick={handleShowModalB}>Sign Up</button>
             <button onClick={handleShowModalC}>Forgot Password</button>
 
           </div>
