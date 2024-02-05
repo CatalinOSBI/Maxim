@@ -66,26 +66,26 @@ function LoginModal() {
             {modalA &&
               <div className='modal A' >
                 <h2 style={{ marginBottom: '20px' }}>Log In</h2>
-                
+
                 <form>
 
-                <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
-                  Email:
-                  <input type="text" autoComplete='email' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef} />
-                </label>
+                  <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
+                    Email:
+                    <input type="text" autoComplete='email' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={emailRef} />
+                  </label>
 
-                <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
-                  Password:
-                  <input name='password' type="password" autoComplete='off' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef} />
-                </label>
+                  <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
+                    Password:
+                    <input name='password' type="password" autoComplete='off' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef} />
+                  </label>
 
-                <button onClick={handleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-                  Log In
-                </button>
+                  <button onClick={handleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                    Log In
+                  </button>
 
-                <button onClick={handleGoogleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
-                  Use Google
-                </button>
+                  <button onClick={handleGoogleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
+                    Use Google
+                  </button>
 
                 </form>
 

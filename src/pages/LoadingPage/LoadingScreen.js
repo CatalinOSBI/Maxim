@@ -7,7 +7,7 @@ function LoadingScreen() {
   return (
     <>
     <Underlay />
-    <Model onLoad={setTimeout(() => {window.location.href="Page2"; }, 5500)} />
+    <Model onLoad={setTimeout(() => {window.location.href="Home"; }, 5500)} />
     </>
   );
 }

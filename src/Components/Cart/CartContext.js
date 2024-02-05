@@ -7,12 +7,12 @@ export const CartProvider = ({ children }) => {
   const [test, settest] = useState(1)
 
 
-  const addCartNumberStorage = () => {
+  const handleAddCartNumberStorage = () => {
     setstorageCartNumber(prev => prev + 1)
     localStorage.setItem('cNumber Local Storage', storageCartNumber.toString())
   }
 
-  const Reset = () => {
+  const handleReset = () => {
 
     localStorage.setItem('cNumber Local Storage', 0)
     setstorageCartNumber(1)
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
   }
 
   return (
-    <CartContext.Provider value={{ addCartNumberStorage, Reset }}>
+    <CartContext.Provider value={{ handleAddCartNumberStorage, handleReset }}>
       {children}
     </CartContext.Provider>
   );

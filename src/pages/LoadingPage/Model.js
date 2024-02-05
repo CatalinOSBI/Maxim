@@ -16,8 +16,6 @@ function Sneaker(props) {
   
   useFrame((state,delta) => {
     const timer = state.clock.getElapsedTime()
-  
-
 
     ref.current.rotation.set(1.8+ Math.cos(timer / 1) / 4, 1 + Math.cos(timer / 1.8) /2,  0.3)
     ref.current.position.x += delta * 1.20

@@ -1,7 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
 import Add from './pages/Add';
-import Page2 from './pages/Page2';
+import Home from './pages/Home';
 import Update from './pages/Update';
 import LoadingScreen from './pages/LoadingPage/LoadingScreen';
 import ProductPage from './pages/Product';
@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<LoadingScreen/>}/> 
-        <Route path='/page2' element ={<Page2/>}/>
+        <Route path='/Home' element ={<Home/>}/>
         <Route path='/Add' element ={<Add/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
         <Route path='/Loading' element ={<LoadingScreen/>}/>

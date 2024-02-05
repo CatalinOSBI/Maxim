@@ -1,24 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Banner from '../Components/Banner';
-import Header from '../Components/Header';
-import CartButton from '../Components/Cart/CartButton';
-import LoginModal from '../Components/Login/LoginModal';
-
-const Page2 = () => {
-  return (
-    <>
-      <div className='main'>
-        <Header />
-        <LoginModal/>
-        <Banner />
-        <Sneakers />
-        <CartButton />
-      </div>
-    </>
-  );
-};
+import './Sneakers.css'
+import { useCart } from '../Cart/CartContext';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
@@ -30,6 +14,23 @@ function Sneakers() {
   const typeRef = useRef('Any');
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
+
+  const [cartList, setCartList] = useState({
+    CartList: []
+  });
+
+  const { handleAddCartNumberStorage } = useCart();
+  const storedCartNumber = localStorage.getItem('cNumber Local Storage')
+
+  const handleAddToCartButton = (newSneaker) => { 
+
+    setCartList((prev) => ({
+      CartList: [...prev.CartList, newSneaker],
+    }));
+
+    console.log(cartList.CartList)
+
+   }
 
   // SCROLL RIGHT
 
@@ -160,7 +161,6 @@ function Sneakers() {
 
     }
   }, [currentScroll]);
-
   //RENDER
 
   return (
@@ -168,32 +168,45 @@ function Sneakers() {
       <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
         {sneakers.length > 0 ? (
           sneakers.map((sneaker) => (
+
             <div key={sneaker.id} className='Product'>
               <div className='tagContainer'>
+
                 <div className='contentWrapper'>
+
                   <img className='productImage' src={sneaker.image} alt='Sneaker' />
+
                   <Link to={`/Product/${sneaker.id}`}>
                     <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
                   </Link>
+
                 </div>
 
                 <Link to={`/Product/${sneaker.id}`} style={{ textDecoration: 'none' }}>
                   <p className='productTag sName'>{sneaker.name}</p>
                 </Link>
-                <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}>
-                  {sneaker.type}
-                </p>
+
+                <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
                 <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)' }}>${sneaker.price}</p>
                 <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
+
               </div>
+
               <button style={{ width: '60px' }}>
                 <Link to={`/update/${sneaker.id}`}>Update</Link>
               </button>
+
               <button style={{ width: '60px' }} onClick={() => deleteSneaker(sneaker.id)}>
                 {/* add name here to show the button */}
               </button>
+
+              <button style={{ width: '60px' }} onClick={() => handleAddToCartButton(sneaker)}>
+                Add To Cart
+              </button>
+
             </div>
           ))
+
         ) : sneakers.length === 0 ? (
           <p>No Result Found</p>
         ) : (
@@ -206,6 +219,7 @@ function Sneakers() {
         <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
           <i className='arrow left'></i>
         </button>
+
         <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
           <i className='arrow right'></i>
         </button>
@@ -242,4 +256,4 @@ function Sneakers() {
   );
 }
 
-export default Page2;
+export default Sneakers
