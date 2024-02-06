@@ -15,22 +15,45 @@ function Sneakers() {
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
 
+  //Cart States(Variables)
   const [cartList, setCartList] = useState({
-    CartList: []
+    CartList:[]
   });
+  const [quantity, setQuantity] = useState(0);
 
   const { handleAddCartNumberStorage } = useCart();
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
 
-  const handleAddToCartButton = (newSneaker) => { 
+//Check quantity  
+  const addQuantity = (newSneaker) => {
 
-    setCartList((prev) => ({
-      CartList: [...prev.CartList, newSneaker],
-    }));
+  const update = {...newSneaker, Quantity: quantity}
+
+  setCartList((prev) => ({
+    CartList: [...prev.CartList, update],
+  }));
+
+  };
+
+//Add item to cart
+  const handleAddToCart = (newSneaker) => { 
+
+    addQuantity(newSneaker)
 
     console.log(cartList.CartList)
 
    }
+
+//Remove item from cart   
+   const handleRemoveFromCart = (removedSneakerName) => { 
+
+    setCartList((prev) => ({
+      CartList: prev.CartList.filter((sneaker) => sneaker.name !== removedSneakerName),
+    }));
+
+    console.log(cartList.CartList)
+
+    }
 
   // SCROLL RIGHT
 
@@ -200,8 +223,16 @@ function Sneakers() {
                 {/* add name here to show the button */}
               </button>
 
-              <button style={{ width: '60px' }} onClick={() => handleAddToCartButton(sneaker)}>
+              <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
                 Add To Cart
+              </button>
+
+              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker.name)}>
+                Remove
+              </button>
+
+              <button style={{ width: '60px' }} onClick={() => console.log(cartList.CartList)}>
+                log
               </button>
 
             </div>
