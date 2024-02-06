@@ -15,7 +15,7 @@ function Sneakers() {
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
 
-  //Cart States(Variables)
+  //Cart States(Variabless)
   const [cartList, setCartList] = useState({
     CartList:[]
   });
