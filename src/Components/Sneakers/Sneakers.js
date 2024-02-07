@@ -19,39 +19,95 @@ function Sneakers() {
   const [cartList, setCartList] = useState({
     CartList:[]
   });
-  const [quantity, setQuantity] = useState(0);
 
   const { handleAddCartNumberStorage } = useCart();
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
 
-//Check quantity  
-  const addQuantity = (newSneaker) => {
-
-  const update = {...newSneaker, Quantity: quantity}
-
-  setCartList((prev) => ({
-    CartList: [...prev.CartList, update],
-  }));
-
+//check if the product is inside the cart
+  const isSneakerInCart = (sneakerToCheck) => {
+    return cartList.CartList.some((product) => product.id === sneakerToCheck.id);
   };
+
+//Add Quantity  
+const handleAddQuantity = (newSneaker) => {
+  const sneakerIsInCart = isSneakerInCart(newSneaker);
+  const mapFunction = (product) =>
+    product.id === newSneaker.id ? { ...product, Quantity: product.Quantity + 1 } : product
+
+  if (sneakerIsInCart) {
+    // Sneaker is already in cart
+    console.log('Porduct already in cart');
+
+    setCartList((prev) => ({
+      CartList: prev.CartList.map( mapFunction )
+    }));
+
+  } else {
+    // Sneaker is not in cart
+    console.log('Porduct not in cart');
+
+    const update = { ...newSneaker, Quantity: 1 }
+
+    setCartList((prev) => ({
+      CartList: [...prev.CartList, update],
+    }));
+  }
+};
+
+const handleTest = () => { 
+  const mapFunction2 = (product) =>
+    product.Quantity === 1 ? console.log('Quantity is 1, this product should be removed on the next check') : console.log('That was not the last product in the cart, did not remove the product')
+
+  cartList.CartList.map(mapFunction2)
+ }
+
+//remove quantity  
+const handleRemoveQuantity = (newSneaker) => {
+  const sneakerIsInCart = isSneakerInCart(newSneaker);
+  const mapFunction = (product) =>
+    product.id === newSneaker.id ? { ...product, Quantity: product.Quantity - 1 } : product
+
+  if (sneakerIsInCart) {
+    // Sneaker is already in cart
+    console.log('Porduct already in cart');
+
+    setCartList((prev) => ({
+      CartList: prev.CartList.map( mapFunction ),
+    }));
+    
+    //if theres only 1 product left in the cart after product removal / delete that product
+    const mapFunction2 = (product) =>
+      product.Quantity === 1 ? handleRemoveFromCart(newSneaker) : console.log('That was not the last product in the cart, did not remove the product')
+
+    cartList.CartList.map( mapFunction2 )
+    
+  } else {
+    // Sneaker is not in cart
+    console.log('Porduct not in cart');
+
+    const update = { ...newSneaker, Quantity: 1 }
+
+    setCartList((prev) => ({
+      CartList: [...prev.CartList, update],
+    }));
+
+  }
+
+};
 
 //Add item to cart
   const handleAddToCart = (newSneaker) => { 
 
-    addQuantity(newSneaker)
-
-    console.log(cartList.CartList)
+    handleAddQuantity(newSneaker)
 
    }
 
 //Remove item from cart   
-   const handleRemoveFromCart = (removedSneakerName) => { 
+   const handleRemoveFromCart = (removedSneaker) => { 
 
     setCartList((prev) => ({
-      CartList: prev.CartList.filter((sneaker) => sneaker.name !== removedSneakerName),
+      CartList: prev.CartList.filter((sneaker) => sneaker.id !== removedSneaker.id),
     }));
-
-    console.log(cartList.CartList)
 
     }
 
@@ -224,11 +280,15 @@ function Sneakers() {
               </button>
 
               <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
-                Add To Cart
+                Add To C
               </button>
 
-              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker.name)}>
-                Remove
+              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker.id)}>
+                Rem. All
+              </button>
+
+              <button style={{ width: '60px' }} onClick={() => handleRemoveQuantity(sneaker)}>
+                Rem. 1
               </button>
 
               <button style={{ width: '60px' }} onClick={() => console.log(cartList.CartList)}>
@@ -253,6 +313,10 @@ function Sneakers() {
 
         <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
           <i className='arrow right'></i>
+        </button>
+
+        <button onClick={handleTest}>
+          <p> Test </p>
         </button>
       </div>
 
