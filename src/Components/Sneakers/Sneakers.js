@@ -14,16 +14,30 @@ function Sneakers() {
   const typeRef = useRef('Any');
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
-
+  
+  
+  
   //Cart States(Variabless)
-  const [cartList, setCartList] = useState({
-    CartList:[]
-  });
+  const [cartList, setCartList] = useState(
+    //checking for when the user first loads the page (if its the first time than load the empty Cart / load the items he already had in the cart)
+    // study this later
+    (() => {
+      const localStorageCart = localStorage.getItem('Shopping Cart');
+      return localStorageCart ? JSON.parse(localStorageCart) : { CartList: [] };
+    })
+  );
 
   const { handleAddCartNumberStorage } = useCart();
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
 
-//check if the product is inside the cart
+  //UseEffect for Cart(LocalStorage)
+  useEffect(() => {
+    
+    localStorage.setItem('Shopping Cart', JSON.stringify(cartList))
+
+  }, [cartList]);
+
+  //check if the product is inside the cart
   const isSneakerInCart = (sneakerToCheck) => {
     return cartList.CartList.some((product) => product.id === sneakerToCheck.id);
   };
@@ -104,6 +118,8 @@ const handleRemoveQuantity = (newSneaker) => {
 
 //Remove item from cart   
    const handleRemoveFromCart = (removedSneaker) => { 
+
+    console.log('Deleted product from cart')
 
     setCartList((prev) => ({
       CartList: prev.CartList.filter((sneaker) => sneaker.id !== removedSneaker.id),
