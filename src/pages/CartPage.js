@@ -1,13 +1,14 @@
 import React from 'react'
 import Header from '../Components/Header'
 import LoginModal from '../Components/Login/LoginModal'
+import CartContent from '../Components/Cart/CartContent'
 
 function CartPage() {
   return (
     <>
       <Header />
       <LoginModal />
-      <div>CartPage</div>
+      <CartContent/>
     </>
   )
 }

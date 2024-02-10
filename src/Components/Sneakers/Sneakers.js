@@ -17,115 +17,24 @@ function Sneakers() {
   
   
   
-  //Cart States(Variabless)
-  const [cartList, setCartList] = useState(
-    //checking for when the user first loads the page (if its the first time than load the empty Cart / load the items he already had in the cart)
-    // study this later
-    (() => {
-      const localStorageCart = localStorage.getItem('Shopping Cart');
-      return localStorageCart ? JSON.parse(localStorageCart) : { CartList: [] };
-    })
-  );
+//   //Cart States(Variabless)
+//   const [cartList, setCartList] = useState(
+//     //checking for when the user first loads the page (if its the first time than load the empty Cart / load the items he already had in the cart)
+//     // study this later
+//     (() => {
+//       const localStorageCart = localStorage.getItem('Shopping Cart');
+//       return localStorageCart ? JSON.parse(localStorageCart) : { CartList: [] };
+//     })
+//   );
 
-  const { handleAddCartNumberStorage } = useCart();
+  const { handleAddCartNumberStorage,
+          handleAddToCart,
+          handleRemoveFromCart,
+          handleRemoveQuantity,
+          cartList,
+  } = useCart();
+
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
-
-  //UseEffect for Cart(LocalStorage)
-  useEffect(() => {
-    
-    localStorage.setItem('Shopping Cart', JSON.stringify(cartList))
-
-  }, [cartList]);
-
-  //check if the product is inside the cart
-  const isSneakerInCart = (sneakerToCheck) => {
-    return cartList.CartList.some((product) => product.id === sneakerToCheck.id);
-  };
-
-//Add Quantity  
-const handleAddQuantity = (newSneaker) => {
-  const sneakerIsInCart = isSneakerInCart(newSneaker);
-  const mapFunction = (product) =>
-    product.id === newSneaker.id ? { ...product, Quantity: product.Quantity + 1 } : product
-
-  if (sneakerIsInCart) {
-    // Sneaker is already in cart
-    console.log('Porduct already in cart');
-
-    setCartList((prev) => ({
-      CartList: prev.CartList.map( mapFunction )
-    }));
-
-  } else {
-    // Sneaker is not in cart
-    console.log('Porduct not in cart');
-
-    const update = { ...newSneaker, Quantity: 1 }
-
-    setCartList((prev) => ({
-      CartList: [...prev.CartList, update],
-    }));
-  }
-};
-
-const handleTest = () => { 
-  const mapFunction2 = (product) =>
-    product.Quantity === 1 ? console.log('Quantity is 1, this product should be removed on the next check') : console.log('That was not the last product in the cart, did not remove the product')
-
-  cartList.CartList.map(mapFunction2)
- }
-
-//remove quantity  
-const handleRemoveQuantity = (newSneaker) => {
-  const sneakerIsInCart = isSneakerInCart(newSneaker);
-  const mapFunction = (product) =>
-    product.id === newSneaker.id ? { ...product, Quantity: product.Quantity - 1 } : product
-
-  if (sneakerIsInCart) {
-    // Sneaker is already in cart
-    console.log('Porduct already in cart');
-
-    setCartList((prev) => ({
-      CartList: prev.CartList.map( mapFunction ),
-    }));
-    
-    //if theres only 1 product left in the cart after product removal / delete that product
-    const mapFunction2 = (product) =>
-      product.Quantity === 1 ? handleRemoveFromCart(newSneaker) : console.log('That was not the last product in the cart, did not remove the product')
-
-    cartList.CartList.map( mapFunction2 )
-    
-  } else {
-    // Sneaker is not in cart
-    console.log('Porduct not in cart');
-
-    const update = { ...newSneaker, Quantity: 1 }
-
-    setCartList((prev) => ({
-      CartList: [...prev.CartList, update],
-    }));
-
-  }
-
-};
-
-//Add item to cart
-  const handleAddToCart = (newSneaker) => { 
-
-    handleAddQuantity(newSneaker)
-
-   }
-
-//Remove item from cart   
-   const handleRemoveFromCart = (removedSneaker) => { 
-
-    console.log('Deleted product from cart')
-
-    setCartList((prev) => ({
-      CartList: prev.CartList.filter((sneaker) => sneaker.id !== removedSneaker.id),
-    }));
-
-    }
 
   // SCROLL RIGHT
 
@@ -299,7 +208,7 @@ const handleRemoveQuantity = (newSneaker) => {
                 Add To C
               </button>
 
-              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker.id)}>
+              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker)}>
                 Rem. All
               </button>
 
@@ -331,9 +240,6 @@ const handleRemoveQuantity = (newSneaker) => {
           <i className='arrow right'></i>
         </button>
 
-        <button onClick={handleTest}>
-          <p> Test </p>
-        </button>
       </div>
 
       {/* --------------------MENU-------------------- */}
