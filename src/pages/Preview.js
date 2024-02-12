@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber'
-import { useGLTF, OrbitControls, Environment, ContactShadows } from '@react-three/drei';
+import { useGLTF, OrbitControls, Environment, ContactShadows, MeshReflectorMaterial } from '@react-three/drei';
 
 function Model() {
   return (
@@ -11,10 +11,11 @@ function Model() {
 function Boot(props) {
   const modelRef = useRef()
   const { nodes, materials } = useGLTF("./Assets/Boot/Boot.glb");
+  const scale = 10
 
   return (
-    <group {...props} dispose={null} ref={modelRef} >
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+    <group {...props} dispose={null} ref={modelRef} position={[0, -4.882, 0]}>
+      <group rotation={[-Math.PI / 2, 0, 0]} scale={scale} >
         <mesh
           castShadow
           receiveShadow
@@ -232,10 +233,93 @@ function Boot(props) {
         geometry={nodes.RealBootLine_FabricForBoot002_0.geometry}
         material={materials["FabricForBoot.002"]}
         rotation={[-Math.PI / 2, 0, 0]}
-        scale={100}
+        scale={scale}
       />
     </group>
   );
+}
+
+export function Robot(props) {
+  const { nodes, materials } = useGLTF("./Assets/Robot/robot.glb");
+  return (
+    <group {...props} dispose={null} position={[0, -5, 0]}>
+      <group scale={0.01}>
+        <primitive object={nodes._rootJoint} />
+        <skinnedMesh
+          geometry={nodes.Object_5.geometry}
+          material={materials.AR_01}
+          skeleton={nodes.Object_5.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_6.geometry}
+          material={materials.AR_02}
+          skeleton={nodes.Object_6.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_7.geometry}
+          material={materials.AR_05}
+          skeleton={nodes.Object_7.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_8.geometry}
+          material={materials.AR_03}
+          skeleton={nodes.Object_8.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_9.geometry}
+          material={materials.AR_03}
+          skeleton={nodes.Object_9.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_10.geometry}
+          material={materials.AR_04}
+          skeleton={nodes.Object_10.skeleton}
+        />
+        <skinnedMesh
+          geometry={nodes.Object_11.geometry}
+          material={materials.AR_04}
+          skeleton={nodes.Object_11.skeleton}
+        />
+      </group>
+    </group>
+  );
+}
+
+const Floor = () => {
+  return (
+    <group position={[0, -5, 0]} scale={7}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[5, 5]} />
+        <MeshReflectorMaterial
+          blur={[500, 500]}
+          resolution={2048}
+          mixStrength={10}
+          mixBlur={1}
+          roughness={1}
+          depthScale={1}
+          minDepthThreshold={0}
+          maxDepthThreshold={0}
+          color="#353535" // Light gray color
+          metalness={1}
+        />
+      </mesh>
+    </group>
+  )
+}
+
+function Frame() {
+  return (
+    <group>
+      <mesh scale={[1, 1.61803398875, 0.05]} position={[3, 1.61803398875 / 2, 0]}>
+        <boxGeometry />
+        <meshStandardMaterial color="#151515" metalness={0.5} roughness={0.5} envMapIntensity={2} />
+        <mesh raycast={() => null} scale={[0.9, 0.93, 0.9]} position={[0, 0, 0.2]}>
+          <boxGeometry />
+          <meshBasicMaterial toneMapped={false} fog={false} />
+        </mesh>
+      </mesh>
+    </group>
+  )
 }
 
 function Scene() {
@@ -244,15 +328,17 @@ function Scene() {
     <>
       <div >
         <Canvas
-          style={{ position: 'absolute', height: '100vh', width: '100vw' }}
-          camera={{ position: [0, 10, 35] }}
-        >
-
+          style={{ position: 'absolute', width: '100%' }}
+          camera={{ position: [0, 10, 35] }}>
+          <color attach="background" args={['#101000']} />
           <ambientLight intensity={0.7} />
           <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, -5]} castShadow />
           <Environment preset="warehouse" />
           <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
-          <Boot position={[-20, -3, -5]} scale={[1, 1, 1]} />
+          <Boot />
+          <Frame />
+          <Robot />
+          <Floor />
           <OrbitControls />
         </Canvas>
       </div>
