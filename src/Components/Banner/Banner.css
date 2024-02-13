@@ -8,7 +8,20 @@
     align-items: center;
     justify-content: space-around;
     width: 65%;
-    height: auto;
+    height: 100%;
+    overflow: hidden;
+    /* min-width: 600px; */
+  }
+
+  .banner3DContainer{
+    border: solid black;
+    border-radius: 16px;
+    margin-bottom: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 65%;
+    height: 72.7vh;
     overflow: hidden;
     /* min-width: 600px; */
   }
@@ -20,3 +33,56 @@
   }
   
   /* Banner END */
+
+  /* 3D BANNER START */
+
+  .par{
+    cursor: none;
+  }
+
+  .overlay3DBanner{
+    color: white;
+    position: absolute;
+    transform: translateY(-25vw);
+  }
+
+  .overlayContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: auto;
+  }
+
+  .workers{
+    font-size: 4rem;
+    font-family: "Work Sans", sans-serif;
+    color: #ffff99;
+  }
+
+  .maxim{
+    font-size: 3rem;
+    font-family: 'Zabal';
+    margin-bottom: -24px;
+  }
+
+  .new{
+    font-size: 1.5rem;
+    font-family: "Zabal", sans-serif;
+    margin-bottom: -17px;
+    color: #ffff99;
+  }
+  
+  .series{
+    font-size: 3.5rem;
+    font-family: "Work Sans", sans-serif;
+    margin-bottom: 20px;
+  }
+
+  .upcoming{
+    font-size: 1.5rem;
+    font-family: "Zabal", sans-serif;
+  }
+
+  /* 3D BANNER END */
