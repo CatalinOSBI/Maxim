@@ -265,9 +265,9 @@ function Scene() {
 
   return (
     <>
- 
+      <div className='canvasContainer'>
         <Canvas
-          style={{height:'100vh', position:'relative'}}
+          style={{ width:'100%', height:'100%' }}
           camera={{ position: [4, -0.9, 8], fov: 70 }}
           dpr={[1, 1.5]}>
           <color attach="background" args={['#0F0F0E']} />
@@ -302,7 +302,7 @@ function Scene() {
             <Floor position={[0, -3.23, 0]} />
           </Float>
         </Canvas>
-
+      </div>
     </>
 
   );

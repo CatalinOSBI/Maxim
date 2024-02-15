@@ -7,7 +7,7 @@ function SecondBanner() {
     <>
     
     <Model/>
-    <Overlay/>
+    {/* <Overlay/> */}
     </>
   )
 }
