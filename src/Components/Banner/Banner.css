@@ -1,35 +1,40 @@
 /* Banner START */
 
 .bannerContainer{
-    border: solid black;
-    border-radius: 16px;
+    /* border: solid black;
+    border-radius: 16px; */
     margin-bottom: 8%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 65%;
+    width: 100%;
     height: auto;
     overflow: hidden;
     /* min-width: 600px; */
   }
 
+  .banner3DContainer {
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    object-fit:cover;
+    object-position: center;
+  }
+
   .bannerImage{
-    width: 100%;
+    border-radius: 16px;
+    width: 65%;
     height: auto;
-    display: block;
+    object-fit:cover;
+    object-position: center;
+    aspect-ratio: 16 / 6 ;
   }
   
   /* Banner END */
   
   /* 3D BANNER START */
-  
-  .banner3DContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
   
   .canvasContainer {
     position: absolute;
@@ -40,52 +45,47 @@
   }
 
   .par{
-    cursor: none;
+
   }
 
   .overlay3DBanner{
     color: white;
     position: absolute;
-    transform: translateY(-25vw);
   }
 
   .overlayContainer{
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 350px;
-    height: auto;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .workers{
-    font-size: 4rem;
+    font-size: 64px;
     font-family: "Work Sans", sans-serif;
     color: #ffff99;
   }
 
   .maxim{
-    font-size: 3rem;
+    font-size: 48px;
     font-family: 'Zabal';
     margin-bottom: -24px;
   }
 
   .new{
-    font-size: 1.5rem;
+    font-size: 24px;
     font-family: "Zabal", sans-serif;
     margin-bottom: -17px;
     color: #ffff99;
   }
   
   .series{
-    font-size: 3.5rem;
+    font-size: 56px;
     font-family: "Work Sans", sans-serif;
     margin-bottom: 20px;
-  }
-
-  .upcoming{
-    font-size: 1.5rem;
-    font-family: "Zabal", sans-serif;
   }
 
   /* 3D BANNER END */
