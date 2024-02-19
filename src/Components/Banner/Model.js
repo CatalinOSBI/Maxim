@@ -267,8 +267,8 @@ function Scene() {
     <>
       <div className='canvasContainer'>
         <Canvas
-          style={{ width:'100%', height:'100%', borderRadius:'16px' }}
-          camera={{ position: [4, -0.9, 5], fov: 50 }}
+          style={{ width: '100%', height: '100%' }}
+          camera={{ position: [4, -0.9, 5], fov: 30 }}
           dpr={[1, 1.5]}>
           <color attach="background" args={['#0F0F0E']} />
           <ambientLight intensity={0.7} />
@@ -276,14 +276,14 @@ function Scene() {
           <Environment preset="warehouse" />
           <ContactShadows resolution={512} position={[0, -0.8, 0]} opacity={1} scale={10} blur={2} far={0.8} />
 
-            {/* Right Boot */}
+          {/* Right Boot */}
           <Float
             rotationIntensity={0.5} // XYZ rotation intensity, defaults to 1
             speed={0.8} // Animation speed, defaults to 1
             floatIntensity={0.01} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
             floatingRange={[0.1, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
           >
-            <Boot position={[-0.8, -1.375, 0]} scale={[1, 1, 1]} rotation={[-1.59, 0.1, 1]} />
+            <Boot position={[-0.8, -0.7975, 0]} scale={[1, 1, 1]} rotation={[-1.59, 0.1, 1]} />
           </Float>
 
           {/* Left Boot */}
@@ -292,17 +292,13 @@ function Scene() {
             floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
             floatingRange={[0.2, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
           >
-            <Boot position={[1.7, -1.33, 0]} scale={[-1, -1, -1]} rotation={[1.6, 0.1, 0]} />
+            <Boot position={[1.7, -0.7714, 0]} scale={[-1, -1, -1]} rotation={[1.6, 0.1, 0]} />
           </Float>
 
           {/* Floor */}
-          <Float
-            speed={1}
-            floatIntensity={0.1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-            floatingRange={[-0.1, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-          >
-            <Floor position={[0, -1.93, 0]} />
-          </Float>
+
+            <Floor position={[0, -1.2, 0]} />
+
         </Canvas>
       </div>
     </>

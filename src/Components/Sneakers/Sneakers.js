@@ -41,7 +41,7 @@ function Sneakers() {
   const scrollRight = () => {
     if (productContainerRef.current) {
 
-      productContainerRef.current.scrollLeft += 1170;
+      productContainerRef.current.scrollLeft += 400;
 
     }
   };
@@ -51,7 +51,7 @@ function Sneakers() {
   const scrollLeft = () => {
     if (productContainerRef.current) {
 
-      productContainerRef.current.scrollLeft -= 1170;
+      productContainerRef.current.scrollLeft -= 200;
 
     }
   };

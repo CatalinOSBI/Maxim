@@ -1,12 +1,11 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import ContentBanner from './ContentBanner.png';
 import SecondBanner from './SecondBanner';
 import './Banner.css'
-import Overlay from './Overlay'
 
 function Banner() {
   const containerRef = useRef();
-  const [containerHeight, setContainerHeight] = useState(0);
+  const [containerHeight] = useState(0);
 
   useEffect(() => {
     const handleCheckResize = () => {
@@ -14,13 +13,13 @@ function Banner() {
       // get the users width
       const clientWidth = containerRef.current.clientWidth;
       // calculate height based on the users width ex: ( if client width = 1920, height = (1920/16) * 9 wich equals 1080 ) - 1920 x 1080 (16/9 ratio)
-      const containerHeight = (clientWidth / 16) * 6;
+      const containerHeight = (clientWidth / 16) * 1.5;
 
       // add height to container
       containerRef.current.style.height = `${containerHeight}px`;
     };
 
-    handleCheckResize(); 
+    handleCheckResize();
     // event listener
     window.addEventListener('resize', handleCheckResize);
 
@@ -35,11 +34,11 @@ function Banner() {
   return (
     <>
       <div className='bannerContainer'  >
-        <img className='bannerImage' src={ContentBanner} alt='Banner'  />
+        <img className='bannerImage' src={ContentBanner} alt='Banner' />
       </div>
 
-      <div className='banner3DContainer' style={{ height: containerHeight, position:'relative' }} ref={containerRef}>
-          <SecondBanner />
+      <div className='banner3DContainer' style={{ height: containerHeight, position: 'relative' }} ref={containerRef}>
+        <SecondBanner />
       </div>
 
       <button >test</button>

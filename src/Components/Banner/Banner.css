@@ -1,9 +1,14 @@
 /* Banner START */
 
+.slider{
+  width: 200px;
+  border: solid red;
+}
+
 .bannerContainer{
     /* border: solid black;
     border-radius: 16px; */
-    margin-bottom: 8%;
+    margin-bottom: 4%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -14,7 +19,8 @@
   }
 
   .banner3DContainer {
-    width: 65%;
+    margin-bottom: 4%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,8 +30,7 @@
   }
 
   .bannerImage{
-    border-radius: 16px;
-    width: 65%;
+    width: 100%;
     height: auto;
     object-fit:cover;
     object-position: center;
@@ -44,10 +49,6 @@
     height: 100%;
   }
 
-  .par{
-
-  }
-
   .overlay3DBanner{
     color: white;
     position: absolute;
@@ -63,29 +64,19 @@
     height: 100%;
   }
 
-  .workers{
-    font-size: 64px;
-    font-family: "Work Sans", sans-serif;
-    color: #ffff99;
-  }
-
-  .maxim{
-    font-size: 48px;
-    font-family: 'Zabal';
-    margin-bottom: -24px;
-  }
-
-  .new{
+  .S{
     font-size: 24px;
     font-family: "Zabal", sans-serif;
-    margin-bottom: -17px;
-    color: #ffff99;
   }
-  
-  .series{
-    font-size: 56px;
+
+  .M{
+    font-size: 48px;
+    font-family: 'Zabal';
+  }
+
+  .L{
+    font-size: 64px;
     font-family: "Work Sans", sans-serif;
-    margin-bottom: 20px;
   }
 
   /* 3D BANNER END */

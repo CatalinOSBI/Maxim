@@ -4,11 +4,11 @@ const Overlay = () => {
   return (
     <div className='overlayContainer' >
       <div className='overlay3DBanner'>
-        <p className='par new'>New</p>
-        <p className='par series'>SERIES</p>
+        <p className='S' style={{marginBottom:'-20px', color:'#ffff99'}}>New</p>
+        <p className='L' style={{color:'#ffff99'}}>SERIES</p>
 
-        <p className='par maxim'>MaxiM</p>
-        <p className='par workers'>WORKERS</p>
+        <p className='M' style={{marginBottom:'-24px'}}>MaxiM</p>
+        <p className='L' style={{color:'#ffff99'}}>WORKERS</p>
       </div>
     </div>
   )
