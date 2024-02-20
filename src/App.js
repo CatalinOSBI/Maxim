@@ -9,6 +9,7 @@ import SecondBanner from './Components/Banner/SecondBanner';
 import FirebasePage from './pages/FirebasePage';
 import AdminPage from './pages/AdminPage';
 import CartPage from './pages/CartPage';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/Login' element ={<FirebasePage/>}/>
         <Route path='/AdminPage' element ={<AdminPage/>}/>
         <Route path='/Cart' element ={<CartPage/>}/>
+        <Route path='/Payment' element ={<PaymentPage/>}/>
       </Routes>
     </BrowserRouter>
     </div>
