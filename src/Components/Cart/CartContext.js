@@ -116,29 +116,9 @@ export const CartProvider = ({ children }) => {
   
       }
 
-  const handleAddCartNumberStorage = () => {
-    setstorageCartNumber(prev => prev + 1)
-    localStorage.setItem('cNumber Local Storage', storageCartNumber)
-  }
-
-  const handleRemoveCartNumberStorage = () => {
-    setstorageCartNumber(prev => prev - 1)
-    localStorage.setItem('cNumber Local Storage', storageCartNumber)
-  }
-
-  const handleReset = () => {
-
-    localStorage.setItem('cNumber Local Storage', 0)
-    setstorageCartNumber(1)
-    settest(prev => prev + 1)
-
-  }
 
   return (
     <CartContext.Provider value={{ 
-      handleAddCartNumberStorage,
-      handleRemoveCartNumberStorage,
-      handleReset,
       cartList,
       setCartList,
       handleAddQuantity,

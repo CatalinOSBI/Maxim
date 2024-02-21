@@ -9,7 +9,9 @@ import SecondBanner from './Components/Banner/SecondBanner';
 import FirebasePage from './pages/FirebasePage';
 import AdminPage from './pages/AdminPage';
 import CartPage from './pages/CartPage';
-import PaymentPage from './pages/PaymentPage';
+import PaymentPage from './Components/Stripe/Payment';
+import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path='/AdminPage' element ={<AdminPage/>}/>
         <Route path='/Cart' element ={<CartPage/>}/>
         <Route path='/Payment' element ={<PaymentPage/>}/>
+        <Route path='/Success' element ={<Success/>}/>
+        <Route path='/Cancel' element ={<Cancel/>}/>
       </Routes>
     </BrowserRouter>
     </div>

@@ -3,9 +3,11 @@ const mysql = require('mysql')
 const app = express()
 const port = 1989
 const cors =require('cors')
+const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(express.json())
+app.use(bodyParser.json());
 //-----------------ESTABLISHING THE CONNEXION-----------------//
 const DB = mysql.createConnection({
     host:'localhost',
@@ -155,3 +157,37 @@ app.get('/sneaker2/filter', (req, res) => {
   });
                                
   //--------------------------------------------------------------------------------//
+
+//------------------------------STRIPE--------------------------------------//
+
+const stripe = require('stripe')('sk_test_51OlrifGuYcLzddVWgAIIETyA5yE3y2WlUdU0A4ghl2cVbmcqTIkV2g0Zuciemv2VfvJFmIzrPEN16lsanLBVUQO100MRLit9Qp');
+
+const YOUR_DOMAIN = 'http://localhost:4242';
+
+app.post('/api/create-checkout-session', async (req, res) => {
+    const {ShoppingCart} = req.body;
+  
+    const lineItems = ShoppingCart.map(product => ({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: product.name,
+          images: [product.image],
+        },
+        unit_amount: product.price * 100, // Convert to cents
+      },
+      quantity: product.Quantity,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: lineItems,
+        mode: 'payment',
+        success_url: 'http://localhost:3000/success',
+        cancel_url: 'http://localhost:3000/cancel',
+      });
+
+      res.json({ id: session.id });
+    });
+
+//------------------------------STRIPE--------------------------------------//

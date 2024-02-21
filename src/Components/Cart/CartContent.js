@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useCart } from './CartContext';
+import Payment from '../Stripe/Payment';
 
 const CartContent = () => {
 
   const [displayTotal, setDisplayTotal] = useState();
-  const { handleAddCartNumberStorage,
+  const {
     handleAddToCart,
     handleRemoveFromCart,
     handleRemoveQuantity,
@@ -66,6 +67,7 @@ const CartContent = () => {
         <fieldset style={{border:'solid 1px'}}>
         </fieldset>
       <p>Total: {displayTotal} </p>
+      <Payment/>
 
     </>
   )
