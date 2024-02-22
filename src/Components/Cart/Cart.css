@@ -1,0 +1,9 @@
+.listItem{
+  width: 320px;
+}
+
+.listContainer{
+  border-bottom: solid 1px grey;
+  display: flex;
+  width: 320px
+}

@@ -14,24 +14,14 @@ function Sneakers() {
   const typeRef = useRef('Any');
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
-  
-  
-  
-//   //Cart States(Variabless)
-//   const [cartList, setCartList] = useState(
-//     //checking for when the user first loads the page (if its the first time than load the empty Cart / load the items he already had in the cart)
-//     // study this later
-//     (() => {
-//       const localStorageCart = localStorage.getItem('Shopping Cart');
-//       return localStorageCart ? JSON.parse(localStorageCart) : { CartList: [] };
-//     })
-//   );
+
+   //Cart States(Variabless)
 
   const { handleAddCartNumberStorage,
-          handleAddToCart,
-          handleRemoveFromCart,
-          handleRemoveQuantity,
-          cartList,
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleRemoveQuantity,
+    cartList,
   } = useCart();
 
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
@@ -169,6 +159,37 @@ function Sneakers() {
 
   return (
     <>
+
+      {/* --------------------MENU-------------------- */}
+
+      <div className='menu'>
+
+        <label htmlFor='type'>
+          Type: {''}
+          <select onChange={getValue} ref={typeRef} name='type' id='type'>
+            <option value={'Any'}>Any</option>
+            <option value={'Casual'}>Casual</option>
+            <option value={'Running'}>Running</option>
+            <option value={'Sport'}>Sport</option>
+            <option value={'Climbing'}>Climbing</option>
+            <option value={'Homewear'}>Homewear</option>
+          </select>
+        </label>
+
+        <label htmlFor='year'>
+          Release Year: {''}
+          <select onChange={getValue} ref={yearRef} name='year' id='year'>
+            <option value={'Any'}>Any</option>
+            <option value={'2023'}>2023</option>
+            <option value={'2022'}>2022</option>
+            <option value={'2021'}>2021</option>
+          </select>
+        </label>
+
+      </div>
+
+      {/* --------------------MENU-------------------- */}
+
       <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
         {sneakers.length > 0 ? (
           sneakers.map((sneaker) => (
@@ -232,6 +253,7 @@ function Sneakers() {
       {/* --------------------SCROLL BUTTONS-------------------- */}
 
       <div className='buttonContainer'>
+
         <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
           <i className='arrow left'></i>
         </button>
@@ -239,33 +261,6 @@ function Sneakers() {
         <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
           <i className='arrow right'></i>
         </button>
-
-      </div>
-
-      {/* --------------------MENU-------------------- */}
-
-      <div className='menu'>
-        <label htmlFor='type'>
-          Type: {''}
-          <select onChange={getValue} ref={typeRef} name='type' id='type'>
-            <option value={'Any'}>Any</option>
-            <option value={'Casual'}>Casual</option>
-            <option value={'Running'}>Running</option>
-            <option value={'Sport'}>Sport</option>
-            <option value={'Climbing'}>Climbing</option>
-            <option value={'Homewear'}>Homewear</option>
-          </select>
-        </label>
-
-        <label htmlFor='year'>
-          Release Year: {''}
-          <select onChange={getValue} ref={yearRef} name='year' id='year'>
-            <option value={'Any'}>Any</option>
-            <option value={'2023'}>2023</option>
-            <option value={'2022'}>2022</option>
-            <option value={'2021'}>2021</option>
-          </select>
-        </label>
 
       </div>
 
