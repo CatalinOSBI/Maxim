@@ -67,7 +67,7 @@
 
 .Product:hover .productImagenoBG{
   opacity: 1;
-  transform: translateY(-5%) scale(1.2);
+  transform: translate(0%, -5%) scale(1.2);
 }
 
 .menu{
@@ -138,6 +138,7 @@ h1{
   height: fit-content;
   position: relative;
   gap: 24px;
+  margin-bottom: 4%;
 }
 
 .scrollButton{

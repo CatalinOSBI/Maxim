@@ -79,4 +79,12 @@
     font-family: "Work Sans", sans-serif;
   }
 
+  .glwEffect{
+    transition: all 0.4s;
+    cursor: none;
+  }
+
+  .overlayContainer:hover .glwEffect{
+    text-shadow: 6px -6px 25px rgba(255, 255, 153, 0.5);
+  }
   /* 3D BANNER END */
