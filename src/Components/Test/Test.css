@@ -1,0 +1,65 @@
+/* Dropdown.css */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-header {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-header.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.arrow {
+  display: inline-block;
+  border: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.down {
+  transform: rotate(45deg);
+}
+
+.arrow.rotate {
+  transform: rotate(-135deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.dropdown-options.show {
+  max-height: 150px; /* Adjust as needed */
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
