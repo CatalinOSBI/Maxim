@@ -5,6 +5,7 @@
   justify-content: center;
   gap: 22px;
   width: 64.5%;
+  max-width: 1632px;
   height: auto;
   position: relative;
 }

@@ -1,22 +1,31 @@
-/* Dropdown.css */
 .dropdown-container {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  font-size: 48px;
+  font-family: 'Zabal';
+  /* border: solid green; */
+  width: 10%;
 }
 
 .dropdown-header {
+  gap: 16px;
+  width: fit-content;
   padding: 10px;
   cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 90% 10% 94% 5% / 10% 90% 10% 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 20;
+  background: #202020;
+  color: white;
 }
 
 .dropdown-header.open {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-radius: 90% 10% 95% 5% / 10% 90% 10% 90%;
 }
 
 .arrow {
@@ -37,29 +46,43 @@
 }
 
 .dropdown-options {
-  position: absolute;
+  position: relative;
   top: 100%;
   left: 0;
   width: 100%;
-  border: 1px solid #ccc;
   border-top: none;
   border-bottom: none;
   border-radius: 0 0 5px 5px;
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.4s ease-in-out;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.optionContainer {
+  border-radius: 90% 10% 95% 5% / 10% 90% 10% 90%;
+  background: #202020;
+  color: white;
+  transition: all 0.25s ease;
+
 }
 
 .dropdown-options.show {
-  max-height: 150px; /* Adjust as needed */
+  max-height: 1000px;
+  /* Adjust as needed */
+  list-style: none;
 }
 
 .option {
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease, text-shadow 0.4s ease;
+  border-radius: 90% 10% 95% 5% / 10% 90% 10% 90%;
 }
 
 .option:hover {
-  background-color: #f0f0f0;
+  text-shadow: 0px 0px 26px rgba(255, 255, 255, 0.62);;
 }

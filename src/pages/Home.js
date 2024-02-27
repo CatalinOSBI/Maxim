@@ -13,9 +13,9 @@ const Page2 = () => {
         <Header />
         <LoginModal/>
         <Banner />
+        <Test/>
         <Sneakers />
         <Ad/>
-        <Test/>
       </div>
     </>
   );

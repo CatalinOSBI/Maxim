@@ -112,14 +112,29 @@ app.put('/sneakers/:id', (req, res) =>{
 
 
 //-----------------CUSTOM GET-----------------//
-app.get('/sneakers/:id', (req,res) =>{
-    const SQL = 'SELECT * FROM maxim.sneakers WHERE id=?;'
+app.get('/sneakers/:id', (req, res) => {
     const sneakerId = req.params.id
-    
-    DB.query(SQL,[sneakerId], (err, data) =>{
-        if (err){
+    const SQL = 'SELECT * FROM maxim.sneakers WHERE id=?;'
+
+    DB.query(SQL, [sneakerId], (err, data) => {
+        if (err) {
             return res.json(err)
-        } else{
+        } else {
+            return res.json(data)
+        }
+    })
+})
+//-----------------CUSTOM GET-----------------//
+
+//-----------------CUSTOM GET (ALL FIELDS IN COLUMN)-----------------//
+app.get('/sneakers3/column/:columnName', (req, res) => {
+    const columnName = req.params.columnName
+    const SQL = `SELECT DISTINCT ?? FROM sneakers;`;
+
+    DB.query(SQL, columnName, (err, data) => {
+        if (err) {
+            return res.json(err)
+        } else {
             return res.json(data)
         }
     })
