@@ -4,18 +4,21 @@ import Banner from '../Components/Banner';
 import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import Ad from '../Components/Ad';
-import Test from '../Components/Test/Test';
+import { MenuProvider } from '../Components/Menu/MenuContext';
 
 const Page2 = () => {
   return (
     <>
       <div className='main'>
         <Header />
-        <LoginModal/>
+        <LoginModal />
         <Banner />
-        <Test/>
-        <Sneakers />
-        <Ad/>
+
+        <MenuProvider>
+          <Sneakers />
+        </MenuProvider>
+
+        <Ad />
       </div>
     </>
   );

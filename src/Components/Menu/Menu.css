@@ -1,11 +1,14 @@
 .dropdown-container {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   font-size: 48px;
   font-family: 'Zabal';
-  /* border: solid green; */
+  border: solid green;
   width: 10%;
+  left: 0;
+  top: 0;
+  width: fit-content;
 }
 
 .dropdown-header {

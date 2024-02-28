@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sneakers.css'
 import { useCart } from '../Cart/CartContext';
+import { useMenu } from '../Menu/MenuContext';
+import Menu from '../Menu/Menu';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
@@ -15,7 +17,7 @@ function Sneakers() {
   const yearRef = useRef('Any');
   const productContainerRef = useRef(null);
 
-   //Cart States(Variabless)
+  //Cart States(Variabless)
 
   const { handleAddCartNumberStorage,
     handleAddToCart,
@@ -25,6 +27,12 @@ function Sneakers() {
   } = useCart();
 
   const storedCartNumber = localStorage.getItem('cNumber Local Storage')
+
+  //menu vars
+  const {
+    optionValueType,
+    optionValueYear,
+  } = useMenu();
 
   // SCROLL RIGHT
 
@@ -48,21 +56,15 @@ function Sneakers() {
 
   //API FILTER
 
-  const getValue = () => {
-
-    setTimeout(() => {
-
-      productContainerRef.current.scrollLeft = 0;
-
-    }, 500);
-
-    let filterType = 'type=' + typeRef.current.value;
+  useEffect(() => {
+    
+    let filterType = 'type=' + optionValueType;
 
     if (filterType === 'type=Any') {
       filterType = '';
     }
 
-    let filterYear = 'release_year=' + yearRef.current.value;
+    let filterYear = 'release_year=' + optionValueYear;
 
     if (filterYear === 'release_year=Any') {
       filterYear = '';
@@ -71,7 +73,14 @@ function Sneakers() {
     const newApiUrl = `http://localhost:1989/sneaker2/filter?${filterType}&${filterYear}`;
     setApiUrl(newApiUrl);
 
-  };
+//reset scroll
+    setTimeout(() => {
+
+      productContainerRef.current.scrollLeft = 0;
+
+    }, 500);
+
+  }, [optionValueType, optionValueYear]);
 
   // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
 
@@ -162,95 +171,71 @@ function Sneakers() {
 
       {/* --------------------MENU-------------------- */}
 
-      <div className='menu'>
-
-        <label htmlFor='type'>
-          Type: {''}
-          <select onChange={getValue} ref={typeRef} name='type' id='type'>
-            <option value={'Any'}>Any</option>
-            <option value={'Casual'}>Casual</option>
-            <option value={'Running'}>Running</option>
-            <option value={'Sport'}>Sport</option>
-            <option value={'Climbing'}>Climbing</option>
-            <option value={'Homewear'}>Homewear</option>
-          </select>
-        </label>
-
-        <label htmlFor='year'>
-          Release Year: {''}
-          <select onChange={getValue} ref={yearRef} name='year' id='year'>
-            <option value={'Any'}>Any</option>
-            <option value={'2023'}>2023</option>
-            <option value={'2022'}>2022</option>
-            <option value={'2021'}>2021</option>
-          </select>
-        </label>
-
-      </div>
-
       {/* --------------------MENU-------------------- */}
+      <div className='filterContainer'>
+          <Menu />
+        <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
+          {sneakers.length > 0 ? (
+            sneakers.map((sneaker) => (
 
-      <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
-        {sneakers.length > 0 ? (
-          sneakers.map((sneaker) => (
+              <div key={sneaker.id} className='Product'>
+                <div className='tagContainer'>
 
-            <div key={sneaker.id} className='Product'>
-              <div className='tagContainer'>
+                  <div className='contentWrapper'>
 
-                <div className='contentWrapper'>
+                    <img className='productImage' src={sneaker.image} alt='Sneaker' />
 
-                  <img className='productImage' src={sneaker.image} alt='Sneaker' />
+                    <Link to={`/Product/${sneaker.id}`}>
+                      <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
+                    </Link>
 
-                  <Link to={`/Product/${sneaker.id}`}>
-                    <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
+                  </div>
+
+                  <Link to={`/Product/${sneaker.id}`} style={{ textDecoration: 'none' }}>
+                    <p className='productTag sName'>{sneaker.name}</p>
                   </Link>
+
+                  <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
+                  <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)' }}>${sneaker.price}</p>
+                  <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
 
                 </div>
 
-                <Link to={`/Product/${sneaker.id}`} style={{ textDecoration: 'none' }}>
-                  <p className='productTag sName'>{sneaker.name}</p>
-                </Link>
+                <button style={{ width: '60px' }}>
+                  <Link to={`/update/${sneaker.id}`}>Update</Link>
+                </button>
 
-                <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
-                <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)' }}>${sneaker.price}</p>
-                <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
+                <button style={{ width: '60px' }} onClick={() => deleteSneaker(sneaker.id)}>
+                  {/* add name here to show the button */}
+                </button>
+
+                <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
+                  Add To C
+                </button>
+
+                <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker)}>
+                  Rem. All
+                </button>
+
+                <button style={{ width: '60px' }} onClick={() => handleRemoveQuantity(sneaker)}>
+                  Rem. 1
+                </button>
+
+                <button style={{ width: '60px' }} onClick={() => console.log(cartList.CartList)}>
+                  log
+                </button>
 
               </div>
+            ))
 
-              <button style={{ width: '60px' }}>
-                <Link to={`/update/${sneaker.id}`}>Update</Link>
-              </button>
-
-              <button style={{ width: '60px' }} onClick={() => deleteSneaker(sneaker.id)}>
-                {/* add name here to show the button */}
-              </button>
-
-              <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
-                Add To C
-              </button>
-
-              <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker)}>
-                Rem. All
-              </button>
-
-              <button style={{ width: '60px' }} onClick={() => handleRemoveQuantity(sneaker)}>
-                Rem. 1
-              </button>
-
-              <button style={{ width: '60px' }} onClick={() => console.log(cartList.CartList)}>
-                log
-              </button>
-
-            </div>
-          ))
-
-        ) : sneakers.length === 0 ? (
-          <p>No Result Found</p>
-        ) : (
-          <p id='loading'>Loading...</p>
-        )}
+          ) : sneakers.length === 0 ? (
+            <p>No Result Found</p>
+          ) : (
+            <p id='loading'>Loading...</p>
+          )}
+        </div>
+        {/* --------------------SCROLL BUTTONS-------------------- */}
       </div>
-      {/* --------------------SCROLL BUTTONS-------------------- */}
 
       <div className='buttonContainer'>
 
@@ -264,6 +249,7 @@ function Sneakers() {
 
       </div>
 
+      <button onClick={()=>{console.log(optionValueType)}}>asd</button>
     </>
   );
 }

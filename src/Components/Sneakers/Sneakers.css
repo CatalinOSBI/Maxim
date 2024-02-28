@@ -4,7 +4,6 @@
   position: relative;
   display: flex;
   align-items:center;
-  gap: 21px;
   border: solid green 2px;
   overflow-y:hidden ;
   height: 515px;
@@ -26,6 +25,7 @@
   flex-direction: column;
   scroll-snap-align: start;
   position: relative;
+  margin-left: 21px;
 }
 
 
@@ -177,6 +177,15 @@ h1{
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
+}
+
+.filterContainer{
+  border: solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 /* MENU END */
