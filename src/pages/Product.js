@@ -5,43 +5,66 @@ import { useState } from 'react'
 import axios from 'axios';
 import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
+import './CSS pages/product.css'
+import { createRipples } from 'react-ripples'
+ 
+const MyRipples = createRipples({
+  color: 'rgba(255, 255, 255, 0.336)',
+  during: 800,
+})
 
 function Product() {
 
-    let location = useLocation()
-    let id =location.pathname.split('/')[2]
+  let location = useLocation()
+  let id = location.pathname.split('/')[2]
 
   //Post request to fill in the inputs with the current data
   const [Sneakers, setSneakers] = useState('')
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    axios.get("http://localhost:1989/sneakers/"+id)
-    
-        .then(res => {
-            setSneakers(res.data[0])
+    axios.get("http://localhost:1989/sneakers/" + id)
 
-        })   
-        
-  // Putting the API Response in an array      
-  },[]);    
+      .then(res => {
+        setSneakers(res.data[0])
 
-    function getSneakers () {
+      })
 
-        console.log(Sneakers)
+    // Putting the API Response in an array      
+  }, []);
 
-        
-    }
+  const productContent =
+    <div className='productPageContainer'>
+    <div className='giantCircle'></div>
+      <img className='productPageImage' src={Sneakers.image} />
+      <div className='productInformation'>
+
+        <section className='sectionTop'>
+          <p style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial', fontSize: '2rem' }}>{Sneakers.name} </p>
+          <p style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '1.3em', color:'#383838' }}>{Sneakers.type}</p>
+        </section>
+
+        <section className='sectionTop'>
+            <p style={{ marginTop: '16px',fontSize: '1.3em', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)',fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>${Sneakers.price}</p>
+        </section>
+
+        <section className='sectionTop' style={{position:'absolute', bottom:'0',width:'100%' , display:'flex', justifyContent:'center'}}>
+        <MyRipples>
+        <button style={{position:'relative', bottom:'0'}} className='addToCartButton' >Add to Cart</button>
+        </MyRipples>
+        </section>
+      </div>
+    </div>
+
+
 
   return (
-<>  
+    <>
 
-    <Header/>
-    <LoginModal/>
-    <div>{Sneakers.name}</div>
-    <img src={Sneakers.image}/>
-    <button onClick={getSneakers}>Get Info</button>
-</>
+      <Header />
+      <LoginModal />
+      {productContent}
+    </>
   )
 }
 

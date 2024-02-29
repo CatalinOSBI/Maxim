@@ -229,7 +229,7 @@ function Sneakers() {
             ))
 
           ) : sneakers.length === 0 ? (
-            <p>No Result Found</p>
+            <p>No Results Found</p>
           ) : (
             <p id='loading'>Loading...</p>
           )}

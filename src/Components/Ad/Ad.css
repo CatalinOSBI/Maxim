@@ -21,12 +21,12 @@
 }
 
 .imageWrapper:hover{
-  filter: grayscale(100%);
+  filter: grayscale(0%);
 }
 
 .imageWrapper:hover .adText{
-  opacity: 1;
-  transform: translate(-50%, -70%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
 }
 
 .adText{
@@ -34,11 +34,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   font-size: 48px;
   font-family: 'Zabal';
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.56);
-  opacity: 0;
+  opacity: 1;
   transition: all 0.4s;
 }
 
@@ -47,4 +47,5 @@
   width: 100%;
   position: relative;
   height: auto;
+  filter: grayscale(100%);
 }
