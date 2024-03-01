@@ -28,7 +28,9 @@ function Banner() {
     };
   }, []);
 
-
+const goToPreview = () => { 
+  window.location.href = "/Preview"
+ }
 
 
   return (
@@ -37,7 +39,7 @@ function Banner() {
         <img className='bannerImage' src={ContentBanner} alt='Banner' />
       </div>
 
-      <div className='banner3DContainer' style={{ height: containerHeight, position: 'relative' }} ref={containerRef}>
+      <div onClick={goToPreview} className='banner3DContainer' style={{ height: containerHeight, position: 'relative' }} ref={containerRef}>
         <SecondBanner />
       </div>
 

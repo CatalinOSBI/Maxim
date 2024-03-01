@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import Ad from '../Components/Ad';
 import { MenuProvider } from '../Components/Menu/MenuContext';
+import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
 
 const Page2 = () => {
   return (

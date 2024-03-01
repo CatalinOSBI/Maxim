@@ -3,17 +3,23 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sneakers.css'
 import { useCart } from '../Cart/CartContext';
-import { useMenu } from '../Menu/MenuContext';
-import Menu from '../Menu/Menu';
 
-function Sneakers() {
-  const [sneakers, setSneakers] = useState([]);
+function SneakersSimilar({Type}) {
+  const [sneakersSimilar, setSneakersSimilar] = useState([]);
   const [apiUrl, setApiUrl] = useState('http://localhost:1989/sneaker2/filter?&');
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
   const [currentScroll, setCurrentScroll] = useState(0);
   const productContainerRef = useRef(null);
+
+  //Similar vars
+  const [optionValueType, setoptionValueType] = useState(`type=${Type}`);
+  const [optionValueYear, setoptionValueYear] = useState(``);
+
+  // useEffect(() => {
+  //   setoptionValueType('type=Casual')
+  // }, []);
 
   //Cart States(Variabless)
 
@@ -23,14 +29,6 @@ function Sneakers() {
     handleRemoveQuantity,
     cartList,
   } = useCart();
-
-  const storedCartNumber = localStorage.getItem('cNumber Local Storage')
-
-  //menu vars
-  const {
-    optionValueType,
-    optionValueYear,
-  } = useMenu();
 
   // SCROLL RIGHT
 
@@ -55,21 +53,6 @@ function Sneakers() {
   //API FILTER
 
   useEffect(() => {
-    
-    let filterType = 'type=' + optionValueType;
-
-    if (filterType === 'type=Any') {
-      filterType = '';
-    }
-
-    let filterYear = 'release_year=' + optionValueYear;
-
-    if (filterYear === 'release_year=Any') {
-      filterYear = '';
-    }
-
-    const newApiUrl = `http://localhost:1989/sneaker2/filter?${filterType}&${filterYear}`;
-    setApiUrl(newApiUrl);
 
 //reset scroll
     setTimeout(() => {
@@ -111,18 +94,11 @@ function Sneakers() {
   //API
 
   useEffect(() => {
-    axios.get(apiUrl).then((res) => {
-      setSneakers(res.data);
+    axios.get(`http://localhost:1989/sneaker2/filter?${optionValueType}&`).then((res) => {
+      setSneakersSimilar(res.data);
     });
 
-  }, [apiUrl]);
-
-  //DELETE
-
-  const deleteSneaker = (id) => {
-    axios.delete(`http://localhost:1989/sneakers/${id}`);
-    window.location.reload();
-  };
+  }, [optionValueType]);
 
   //DYNAMIC OPACITY with event listeners
 
@@ -168,10 +144,9 @@ function Sneakers() {
     <>
 
       <div className='filterContainer'>
-          <Menu />
         <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
-          {sneakers.length > 0 ? (
-            sneakers.map((sneaker) => (
+          {sneakersSimilar.length > 0 ? (
+            sneakersSimilar.map((sneaker) => (
 
               <div key={sneaker.id} className='Product'>
                 <div className='tagContainer'>
@@ -196,34 +171,14 @@ function Sneakers() {
 
                 </div>
 
-                <button style={{ width: '60px' }}>
-                  <Link to={`/update/${sneaker.id}`}>Update</Link>
-                </button>
-
-                <button style={{ width: '60px' }} onClick={() => deleteSneaker(sneaker.id)}>
-                  {/* add name here to show the button */}
-                </button>
-
                 <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
                   Add To C
-                </button>
-
-                <button style={{ width: '60px' }} onClick={() => handleRemoveFromCart(sneaker)}>
-                  Rem. All
-                </button>
-
-                <button style={{ width: '60px' }} onClick={() => handleRemoveQuantity(sneaker)}>
-                  Rem. 1
-                </button>
-
-                <button style={{ width: '60px' }} onClick={() => console.log(cartList.CartList)}>
-                  log
                 </button>
 
               </div>
             ))
 
-          ) : sneakers.length === 0 ? (
+          ) : sneakersSimilar.length === 0 ? (
             <p>No Results Found</p>
           ) : (
             <p id='loading'>Loading...</p>
@@ -244,9 +199,9 @@ function Sneakers() {
 
       </div>
 
-      <button onClick={()=>{console.log(optionValueType)}}>asd</button>
+      <button onClick={() => {console.log(Type)}}>asdsds</button>
     </>
   );
 }
 
-export default Sneakers
+export default SneakersSimilar

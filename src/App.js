@@ -23,7 +23,7 @@ function App() {
         <Route path='/Add' element ={<Add/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
         <Route path='/Loading' element ={<LoadingScreen/>}/>
-        <Route path='/Product/:id' element ={<ProductPage/>}/> 
+        <Route path='/Product/:id/:Type' element ={<ProductPage/>}/> 
         <Route path='/Preview' element ={<SecondBanner/>}/> 
         <Route path='/Login' element ={<FirebasePage/>}/>
         <Route path='/AdminPage' element ={<AdminPage/>}/>
