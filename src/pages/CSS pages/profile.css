@@ -1,0 +1,71 @@
+.profilePageContainer{
+  border: solid red;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  gap: 32px;
+}
+
+.profilePageMenu{
+  width: 200px;
+  height: fit-content;
+  font-size: 1.2rem;
+  padding: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  margin: 8px;
+}
+
+.profilePageMenu ul{
+  list-style-type: none;
+  padding: 4px 0px 4px 0px;
+  font-family: 'Helvetica Now Text Regular';
+}
+
+.profilePageMenu li:hover{
+  border-left: solid 8px #e6c300;
+}
+
+ ul:hover li{
+  border-left: solid 0px transparent;
+}
+
+.profilePageMenu li + li {
+  margin-top: 10px;
+}
+
+.profileMenuContent{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 600px;
+  font-size: 1rem;
+  font-family: 'Helvetica Now Text Medium';
+  padding: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  margin: 8px;
+}
+
+.profileMenuContent p+p{
+  margin-top: 4%;
+}
+
+.profileMenuContent span{
+  font-family: 'Helvetica Now Text Regular';
+}
+
+.profileMenuContentBottom{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}

@@ -4,8 +4,7 @@ import Banner from '../Components/Banner';
 import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import Ad from '../Components/Ad';
-import { MenuProvider } from '../Components/Menu/MenuContext';
-import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
+import { MenuProvider } from '../Components/Sneakers/MenuContext';
 
 const Page2 = () => {
   return (

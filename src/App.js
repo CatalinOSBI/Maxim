@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import PaymentPage from './Components/Stripe/Payment';
 import Success from './pages/Success';
 import Cancel from './pages/Cancel';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/Payment' element ={<PaymentPage/>}/>
         <Route path='/Success' element ={<Success/>}/>
         <Route path='/Cancel' element ={<Cancel/>}/>
+        <Route path='/Profile' element ={<ProfilePage/>}/>
       </Routes>
     </BrowserRouter>
     </div>

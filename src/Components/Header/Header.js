@@ -13,6 +13,7 @@ function Header() {
           UserRole,
           handleCheckUserRole, 
           handleOpenModal, 
+          handleGetUserData,
           } = useAuth()
 
   const { cNumber, reset } = useCart();
@@ -33,6 +34,9 @@ function Header() {
         <button>
           <Link to={'/Cart'}>View Cart</Link>
         </button>
+        <button onClick={handleCheckUserRole}>
+          <Link to={'/Profile'}>My Profile</Link>
+        </button>
 
         <div className='cartCircle'>
           <p className='cartNumber'>{storedCartNumber}</p>
@@ -42,6 +46,7 @@ function Header() {
     <button onClick={handleSignOut}>Sign Out</button>
     <button onClick={handleCheckUserRole}>Pass Role</button>
     <button onClick={handleOpenModal}>Sign In</button>
+    <button onClick={handleGetUserData}>Get User Data</button>
 
     <button onClick={handleGoToAdminPage}>
       Go to Admin Page

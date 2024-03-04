@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sneakers.css'
 import { useCart } from '../Cart/CartContext';
-import { useMenu } from '../Menu/MenuContext';
-import Menu from '../Menu/Menu';
+import { useMenu } from './MenuContext';
+import Menu from './Menu';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);

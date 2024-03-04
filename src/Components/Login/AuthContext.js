@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
   const [UserEmail, setUserEmail] = useState();
   const [UserDisplayName, setUserDisplayName] = useState();
   const [UserEmailVerified, setUserEmailVerified] = useState();
+  const [UserAccountCreationTime, setUserAccountCreationTime] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -59,6 +60,7 @@ export const AuthProvider = ({ children }) => {
     console.log(currentUser.displayName)
     console.log(currentUser.email)
     console.log(currentUser.emailVerified)
+    console.log(currentUser)
   }
 
   //reset password
@@ -87,6 +89,7 @@ export const AuthProvider = ({ children }) => {
         setUserEmail(user.email)
         setUserDisplayName(user.displayName)
         setUserEmailVerified(user.emailVerified)
+        setUserAccountCreationTime(user.metadata.creationTime.slice(5,16))
       } else {
         setIsLoggedIn(false)
       }
@@ -146,6 +149,7 @@ export const AuthProvider = ({ children }) => {
     signOut(auth);
     console.log('User Signed Out - Button')
     window.location.reload()
+    window.location.href = "/Home"
   }
 
   //signin
@@ -203,6 +207,7 @@ export const AuthProvider = ({ children }) => {
         console.log(user)
         // Signed up w/ google...
         handleUpdateUserDB()
+        handleCheckUserRole()
         handleCloseModal()
       }).catch(error => {
         console.log(error.message)
@@ -258,6 +263,7 @@ export const AuthProvider = ({ children }) => {
       handleSignIn,
       handleResetPassword,
       emailResetPasswordRef,
+      UserAccountCreationTime,
     }}>
 
       {children}
