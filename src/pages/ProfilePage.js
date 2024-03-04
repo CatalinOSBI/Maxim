@@ -6,7 +6,7 @@ import { createRipples } from 'react-ripples';
 import './CSS pages/profile.css';
 
 const ProfilePage = () => {
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeMenu, setActiveMenu] = useState(0);
 
   const handleSetActive = (index) => {
     setActiveMenu(index);
@@ -33,7 +33,7 @@ const ProfilePage = () => {
     handleGetUserData } =
     useAuth();
 
-  const menuItems = ['Account Overview', 'Coming Soon'];
+  const menuItems = ['Account Overview', 'Coming Soon...'];
   const menuItemsMap = menuItems.map((item, index) => (
     <li key={index} onClick={() => handleSetActive(index)} style={getMenuListItemStyle(index)}>
       {item}
