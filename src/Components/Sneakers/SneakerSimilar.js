@@ -17,11 +17,6 @@ function SneakersSimilar({Type}) {
   const [optionValueType, setoptionValueType] = useState(`type=${Type}`);
   const [optionValueYear, setoptionValueYear] = useState(``);
 
-  // useEffect(() => {
-  //   setoptionValueType('type=Casual')
-  // }, []);
-
-  //Cart States(Variabless)
 
   const { handleAddCartNumberStorage,
     handleAddToCart,
