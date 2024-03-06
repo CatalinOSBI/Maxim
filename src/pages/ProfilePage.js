@@ -49,11 +49,11 @@ const ProfilePage = () => {
       </div>
 
       <div className='profileMenuContent'>
-        <p>Username: <span> {UserDisplayName}</span> </p>
-        <p>User Role:<span> {UserRole}</span></p>
-        <p>Email: <span> {UserEmail}</span></p>
-        <p>Email Verfied: <span> {`${UserEmailVerified ? 'Yes' : 'No'}`}</span></p>
-        <p>Account Creation Date: <span>{UserAccountCreationTime}</span></p>
+        <p> <span>Username: </span> {UserDisplayName}</p>
+        <p> <span>User Role: </span> {UserRole}</p>
+        <p> <span>Email: </span> {UserEmail}</p>
+        <p> <span>Email Verfied: </span>  {`${UserEmailVerified ? 'Yes' : 'No'}`}</p>
+        <p> <span>Account Creation Date: </span> {UserAccountCreationTime}</p>
 
         <div className='profileMenuContentBottom'>
           <MyRipples >

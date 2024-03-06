@@ -1,0 +1,70 @@
+.adminProductContainer{
+  position: relative;
+}
+
+.adminProductImage{
+  position: relative;
+  width: 16%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 16px;
+}
+
+.adminProduct{
+  position: relative;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  padding: 2% 0px 2% 0%;
+  border-radius: 16px;
+}
+
+.adminProduct:not(:first-child):not(:last-child){
+  margin: 4% 0px 4% 0px;
+}
+
+.adminProductInformation{
+  width: 100%;
+  height: auto;
+  word-break: break-all;
+  display: flex;
+  gap: 24px;
+}
+
+.adminInfoBlock{
+  position: relative;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  padding: 2% 2% 2% 2%;
+  width: fit-content;
+  max-width: 300px;
+}
+
+.adminInfoBlock p{
+  font-size: 0.9rem;
+}
+
+.adminInfoBlock span{
+  font-family: 'Helvetica Now Text Regular';
+}
+
+.adminButtonContainer{
+  width: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.adminButtonContainer button{
+  border: none;
+  background-color: black;
+  color: white;
+  width: 100px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: Helvetica Now Text Medium, Helvetica, Arial;
+}
