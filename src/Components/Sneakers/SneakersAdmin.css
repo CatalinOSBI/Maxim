@@ -15,9 +15,6 @@
   width: 100%;
   display: flex;
   background-color: white;
-  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
-  padding: 2% 0px 2% 0%;
-  border-radius: 16px;
 }
 
 .adminProduct:not(:first-child):not(:last-child){

@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
-import Add from './pages/Add';
 import Home from './pages/Home';
 import Update from './pages/Update';
 import LoadingScreen from './pages/LoadingPage/LoadingScreen';
@@ -21,7 +20,6 @@ function App() {
       <Routes>
         <Route index element={<LoadingScreen/>}/> 
         <Route path='/Home' element ={<Home/>}/>
-        <Route path='/Add' element ={<Add/>}/>   
         <Route path='/update/:id' element ={<Update/>}/> 
         <Route path='/Loading' element ={<LoadingScreen/>}/>
         <Route path='/Product/:id/:Type' element ={<ProductPage/>}/> 

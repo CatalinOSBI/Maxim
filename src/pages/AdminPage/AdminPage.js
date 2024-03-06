@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useAuth } from '../Components/Login/AuthContext';
+import { useAuth } from '../../Components/Login/AuthContext';
 import { Navigate } from 'react-router-dom';
-import Header from '../Components/Header';
-import LoginModal from '../Components/Login/LoginModal';
-import SneakersAdmin from '../Components/Sneakers/SneakersAdmin';
+import Header from '../../Components/Header';
+import LoginModal from '../../Components/Login/LoginModal';
+import SneakersAdmin from '../../Components/Sneakers/SneakersAdmin';
+import AddFunction from './Add';
 
 function AdminPage() {
 
@@ -30,7 +31,7 @@ function AdminPage() {
     });
 
     //mapping
-    const menuItems = ['Products', 'Other'];
+    const menuItems = ['Products', 'Add Product'];
     const menuItemsMap = menuItems.map((item, index) => (
         <li key={index} onClick={() => handleSetActive(index)} style={getMenuListItemStyle(index)}>
             {item}
@@ -53,18 +54,8 @@ function AdminPage() {
 
     //MENU LOGIC
 
-    // 1ST MENU
-    const Products =
-        <>
-            <SneakersAdmin/>
-        </>
-
-    // 2ND MENU
-    const Other =
-        <p>Other</p>
-
     //the array of contents REMEMBER:(the order of the contents must match with the 'menuItems' ) tldr: the arrays must match each other
-    const menuContent = [Products, Other]
+    const menuContent = [<SneakersAdmin/>, <AddFunction/>]
 
     //the actual content of the page
     const adminContent =
