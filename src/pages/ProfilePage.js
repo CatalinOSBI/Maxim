@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import { useAuth } from '../Components/Login/AuthContext';
-import { createRipples } from 'react-ripples';
 import './CSS pages/profile.css';
+import Ripple from '../Components/Ripple Button/Ripple';
 
 const ProfilePage = () => {
   const [activeMenu, setActiveMenu] = useState(0);
@@ -17,11 +17,6 @@ const ProfilePage = () => {
     transition: 'border-left 250ms',
     cursor: 'pointer',
     borderLeft: `${activeMenu === index ? 'solid 8px #e6c300' : ''}`,
-  });
-
-  const MyRipples = createRipples({
-    color: 'rgba(255, 255, 255, 0.336)',
-    during: 800,
   });
 
   const { UserEmail,
@@ -56,9 +51,9 @@ const ProfilePage = () => {
         <p> <span>Account Creation Date: </span> {UserAccountCreationTime}</p>
 
         <div className='profileMenuContentBottom'>
-          <MyRipples >
-            <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out</button>
-          </MyRipples>
+            <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out
+            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={1600}/>
+            </button>
         </div>
 
       </div>

@@ -6,13 +6,7 @@ import axios from 'axios';
 import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import './CSS pages/product.css'
-import { createRipples } from 'react-ripples'
 import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
-
-const MyRipples = createRipples({
-  color: 'rgba(255, 255, 255, 0.336)',
-  during: 800,
-})
 
 function Product() {
 
@@ -51,9 +45,7 @@ function Product() {
           </section>
 
           <section className='sectionTop' style={{ position: 'absolute', bottom: '0', width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <MyRipples>
               <button style={{ position: 'relative', bottom: '0' }} className='addToCartButton' >Add to Cart</button>
-            </MyRipples>
           </section>
         </div>
       </div>

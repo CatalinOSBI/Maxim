@@ -1,0 +1,54 @@
+.adminAddContainer{
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+}
+
+.adminAddContainer button{
+  position: relative;
+  border: none;
+  background-color: black;
+  color: white;
+  width: 100px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: Helvetica Now Text Medium, Helvetica, Arial;
+  overflow: hidden;
+}
+
+.adminPreview{
+  position: relative;
+  width: 100%;
+  display: flex;
+  height: 100%;
+}
+
+.addProductContainer{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  height: 100%;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  width: 100%;
+  padding-right: 28.5px;
+  padding-left: 28.5px;
+  /* height: auto; */
+  gap: 21px;
+}
+
+.addButtonContainer{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: fit-content;
+}

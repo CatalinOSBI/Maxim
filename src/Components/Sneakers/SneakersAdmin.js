@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './SneakersAdmin.css'
 import { useCart } from '../Cart/CartContext';
-import { createRipples } from 'react-ripples';
 
 function SneakersAdmin() {
   const [SneakersAdmin, setSneakersAdmin] = useState([]);
@@ -13,11 +12,6 @@ function SneakersAdmin() {
     handleRemoveQuantity,
     cartList,
   } = useCart();
-
-  const MyRipples = createRipples({
-    color: 'rgba(255, 255, 255, 0.336)',
-    during: 800,
-  });
 
   //API
 
@@ -62,13 +56,8 @@ function SneakersAdmin() {
 
                 {/* Buttons */}
                 <div className='adminButtonContainer'>
-                <MyRipples>
                   <button style={{marginBottom:'24%'}}>Update</button>
-                </MyRipples>
-
-                <MyRipples>
                   <button>Delete</button>
-                  </MyRipples>
                 </div>
 
               </div>
