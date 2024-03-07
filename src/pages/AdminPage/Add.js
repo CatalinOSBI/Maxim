@@ -1,16 +1,41 @@
 import React from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './Add.css'
-import Button from '../../Components/Ripple Button/Button'
 import Ripple from '../../Components/Ripple Button/Ripple'
 
 const AddFunction = () => {
 
-  const [TogglePreview, setTogglePreview] = useState(false);
+  const [TogglePreview, setTogglePreview] = useState(true);
+  const [DynamicOpacity, setDynamicOpacity] = useState(0);
+  const [Type, setType] = useState([]);
+  const typeRef = useRef()
+  const yearRef = useRef()
+  const nameRef = useRef()
+  const imageRef = useRef()
+  const imageNoBGRef = useRef()
+  const priceRef = useRef()
+
+  //Api call
+
+  useEffect(() => {
+    axios.get(`http://localhost:1989/sneakers3/column/${'type'}`)
+      .then((res) => {
+        setType(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
+  //Type Map
+  const typeList = Type.map((item) =>
+    <option key={item.index} value={item.type}>{item.type}</option>
+  )
 
   const handleTogglePreview = () => {
     setTogglePreview(!TogglePreview)
+
   }
 
   const Update_MySql_DB = async () => {
@@ -18,7 +43,30 @@ const AddFunction = () => {
     await axios.post('http://localhost:1989/sneakers', Info)
 
     console.log('MySql DB Updated2')
-    console.log(Info)
+
+    setDynamicOpacity(1)
+
+    setTimeout(() => { 
+      setDynamicOpacity(0)
+     }, 800)
+
+     setInfo({
+        type: "",
+        release_year: "",
+        name: "",
+        image: "",
+        image_noBG: "",
+        price: "",
+      })
+
+      typeRef.current.value='Choose Type'
+      yearRef.current.value=''
+      nameRef.current.value=''
+      imageRef.current.value=''
+      imageNoBGRef.current.value=''
+      priceRef.current.value=''
+
+      console.log(Info)
   }
 
   const [Info, setInfo] = useState({
@@ -30,6 +78,7 @@ const AddFunction = () => {
     price: "",
   })
 
+
   const getData = (event) => {
     const name = event.target.name
     const value = event.target.value
@@ -38,6 +87,8 @@ const AddFunction = () => {
       return { ...previous, [name]: value }
     })
 
+    console.log(Info)
+
   }
 
   return (
@@ -45,15 +96,20 @@ const AddFunction = () => {
       <div className='adminAddContainer'>
 
         <div className='adminInfoBlock' style={{ height: '65%' }}>
-          <input name='name' id='name' type='text' placeholder='name' onChange={getData} />
-          <input name='type' id='type' type='text' placeholder='type' onChange={getData} />
-          <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData} />
-          <input name='price' id='price' type="number" placeholder='price (ex: 29.99)' min="1" step="any" onChange={getData} />
+          <input name='name' id='name' type='text' placeholder='name' onChange={getData} ref={nameRef}/>
+
+          <select name="type" id="type" onChange={getData} ref={typeRef}>
+            <option value='Choose Type'>Choose Type</option>
+            {typeList}
+          </select>
+
+          <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData} ref={yearRef} />
+          <input name='price' id='price' type="number" placeholder='price (ex: 29.99)' min="1" step="any" onChange={getData} ref={priceRef} />
         </div>
 
         <div className='adminInfoBlock' style={{ height: '65%' }} >
-          <input name='image' id='image' type='text' placeholder='image' onChange={getData} />
-          <input name='image_noBG' id='image-noBG' type='text' placeholder='image_noBG' onChange={getData} />
+          <input name='image' id='image' type='text' placeholder='image' onChange={getData} ref={imageRef}/>
+          <input name='image_noBG' id='image-noBG' type='text' placeholder='image_noBG' onChange={getData} ref={imageNoBGRef} />
         </div>
 
         <div className='addButtonContainer'>
@@ -72,6 +128,7 @@ const AddFunction = () => {
       {TogglePreview &&
         <div className='adminPreview'>
           <h1 style={{ position: 'absolute' }}>Preview:</h1>
+          <h1 style={{ position: 'absolute', top:'0', right:'0', opacity: DynamicOpacity, transition: 'All 0.8s' }}>Product Added</h1>
 
           <div className='filterContainer'>
             <div className='addProductContainer'>
