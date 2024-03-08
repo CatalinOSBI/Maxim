@@ -50,6 +50,7 @@ const AddFunction = () => {
       setDynamicOpacity(0)
      }, 800)
 
+  //Clear state
      setInfo({
         type: "",
         release_year: "",
@@ -59,7 +60,8 @@ const AddFunction = () => {
         price: "",
       })
 
-      typeRef.current.value='Choose Type'
+  //Clear inputs    
+      typeRef.current.value=''
       yearRef.current.value=''
       nameRef.current.value=''
       imageRef.current.value=''
@@ -86,9 +88,7 @@ const AddFunction = () => {
     setInfo((previous) => {
       return { ...previous, [name]: value }
     })
-
-    console.log(Info)
-
+    
   }
 
   return (
@@ -98,10 +98,11 @@ const AddFunction = () => {
         <div className='adminInfoBlock' style={{ height: '65%' }}>
           <input name='name' id='name' type='text' placeholder='name' onChange={getData} ref={nameRef}/>
 
-          <select name="type" id="type" onChange={getData} ref={typeRef}>
+          {/* <select name="type" id="type" onChange={getData} ref={typeRef}>
             <option value='Choose Type'>Choose Type</option>
             {typeList}
-          </select>
+          </select> */}
+          <input name='type' id='type' type='text' placeholder='type' onChange={getData} ref={typeRef}/>
 
           <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData} ref={yearRef} />
           <input name='price' id='price' type="number" placeholder='price (ex: 29.99)' min="1" step="any" onChange={getData} ref={priceRef} />

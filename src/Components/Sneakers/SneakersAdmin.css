@@ -22,6 +22,7 @@
 }
 
 .adminProductInformation{
+  position: relative;
   width: 100%;
   height: auto;
   word-break: break-all;
@@ -44,16 +45,13 @@
   font-size: 0.9rem;
 }
 
-.adminInfoBlock span{
-  font-family: 'Helvetica Now Text Regular';
-}
-
 .adminButtonContainer{
   width: fit-content;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .adminButtonContainer button{
@@ -65,4 +63,24 @@
   border-radius: 16px;
   cursor: pointer;
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
+  overflow: hidden;
+}
+
+.updateMenu{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  word-break: break-all;
+  display: flex;
+  gap: 24px;  
+}
+
+.adminInfoBlock span{
+  font-family: 'Helvetica Now Text Regular';
+  display: inline-block; /* or inline */
+  vertical-align: top;
+}
+
+.adminInfoBlock input{
+  width: fit-content;
 }

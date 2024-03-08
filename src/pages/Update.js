@@ -18,7 +18,7 @@ function Update() {
   let id =location.pathname.split('/')[2]
 
 
-  //Post request to fill in the inputs with the current data
+  //api call
     const [Data, setData] = useState('')
 
     useEffect(()=>{
@@ -31,7 +31,7 @@ function Update() {
 
           })   
           
-    // Putting the API Response in an array      
+    //api call      
     },[]);
 
   const updateSneaker = () =>{
