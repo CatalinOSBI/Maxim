@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
   const getMenuListItemStyle = (index) => ({
     paddingLeft: '8px',
-    transition: 'border-left 250ms',
+    transition: 'border-left 160ms',
     cursor: 'pointer',
     borderLeft: `${activeMenu === index ? 'solid 8px #e6c300' : ''}`,
   });

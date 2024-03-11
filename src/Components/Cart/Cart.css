@@ -1,9 +1,56 @@
-.listItem{
+.listItem {
+  position: relative;
   width: 320px;
 }
 
-.listContainer{
+.listContainer {
+  position: relative;
   border-bottom: solid 1px grey;
   display: flex;
   width: 320px
+}
+
+.productCartContainer {
+  position: relative;
+  border: solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.cartProduct {
+  position: relative;
+  border: solid red;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100% ;
+}
+
+.productCartImage {
+  position: relative;
+  max-width: 30%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.infoBlock{
+  position: relative;
+  border: solid green;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 197px;
+}
+
+.infoTagContainer{
+  position: relative;
+  border: solid blue;
+}
+
+.infoButtonContainer{
+  position: relative;
+  border: solid purple;
 }

@@ -39,6 +39,7 @@
   width: fit-content;
   display: flex;
   flex-direction: column;
+  overflow:hidden ;
 }
 
 .adminInfoBlock p{
@@ -64,6 +65,19 @@
   cursor: pointer;
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
   overflow: hidden;
+}
+
+.adminInfoBlock button{
+  border: none;
+  background-color: black;
+  color: white;
+  width: 100px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: Helvetica Now Text Medium, Helvetica, Arial;
+  overflow: hidden;
+  margin-bottom: 2%;
 }
 
 .updateMenu{
