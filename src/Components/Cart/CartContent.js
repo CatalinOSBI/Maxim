@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useCart } from './CartContext';
 import Payment from '../Stripe/Payment';
 import './Cart.css'
+import Ripple from '../Ripple Button/Ripple';
 
 const CartContent = () => {
 
@@ -13,12 +14,17 @@ const CartContent = () => {
     handleRemoveFromCart,
     handleRemoveQuantity,
     cartList,
+    isSneakerInCart,
+    setCartList,
   } = useCart();
+
+  const trashIcon =
+    <svg style={{ width: '19px', height: "19px," }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ffffff" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" /></svg>
 
   useEffect(() => {
 
-      const height = imageRef.current.clientHeight;
-      setImageHeight(height+'px');
+    const height = imageRef.current.clientHeight;
+    setImageHeight(height + 'px');
 
   }, []);
 
@@ -61,6 +67,21 @@ const CartContent = () => {
 
     </div>
 
+    //Summary element
+    const Summary = 
+    <div className='Summary'>
+
+    <p>Summary: </p>
+    {listPrices}
+
+    <br />
+
+    {total}
+
+    {/* stripe button */}
+    <Payment />
+  </div>
+
   const updatePrice = () => {
 
     const totalPrice = cartList.CartList.reduce((total, sneaker) => {
@@ -75,49 +96,57 @@ const CartContent = () => {
 
   return (
     <>
-      <div id='productContainer' className='productCartContainer' >
-        {cartList.CartList.map((sneaker) => (
+      <div className='cartPage'>
 
-          <div key={sneaker.id} className='cartProduct'>
+        <div id='productContainer' className='productCartContainer' >
+          {cartList.CartList.map((sneaker) => (
+
+            <div key={sneaker.id} className='cartProduct'>
 
 
 
-            <img className='productCartImage' ref={imageRef} src={sneaker.image} alt='Sneaker' />
+              <img className='productCartImage' ref={imageRef} src={sneaker.image} alt='Sneaker' />
 
-            <div className='infoBlock' >
+              <div className='infoBlock' >
 
-              <div className='infoTagContainer'>
-                <p className='productTag sName'>{sneaker.name}</p>
-                <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
-                <p className='productTag sPrice' style={{ textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', right: '0%', top: '0%', position: 'absolute' }}>${sneaker.price}</p>
-                <p className='productTag ' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
+                <div className='infoTagContainer'>
+                  <p className='productTag sName'>{sneaker.name}</p>
+                  <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
+                  <p className='productTag sPrice' style={{ textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', right: '0%', top: '0%', position: 'absolute' }}>${sneaker.price}</p>
+                  <p className='productTag ' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
+                </div>
+
+                <div className='infoButtonContainer' >
+
+                  <button className='qtButton' onClick={() => handleRemoveQuantity(sneaker)}><span style={{ transform: 'translateY(-5.5%)' }}>-</span>
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+                  </button>
+
+                  <p className='productTag sQt ' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', width: '40px' }}>Qt. <span style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.Quantity}</span></p>
+
+                  <button className='qtButton' onClick={() => handleAddToCart(sneaker)}>+
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+                  </button>
+
+                  <button style={{ position: 'absolute', right: '0' }} className='qtButton' onClick={() => handleRemoveFromCart(sneaker)}>
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+                    {trashIcon}
+                  </button>
+
+                </div>
+
               </div>
 
-            <div className='infoButtonContainer' >
-              <button onClick={() => handleAddToCart(sneaker)}>Add</button>
-              <button onClick={() => handleRemoveQuantity(sneaker)}>Remove 1</button>
-              <button onClick={() => handleRemoveFromCart(sneaker)}>Remove All</button>
-            </div>
 
             </div>
+          ))
 
+          }
+        </div>
 
-          </div>
-        ))
+          {Summary}
 
-        }
       </div>
-
-      <p>Summary: </p>
-      {listPrices}
-
-      <br />
-
-      {total}
-
-      {/* stripe button */}
-      <Payment />
-
     </>
   )
 }

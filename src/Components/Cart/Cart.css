@@ -1,3 +1,13 @@
+.cartPage{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: solid violet;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
 .listItem {
   position: relative;
   width: 320px;
@@ -14,9 +24,11 @@
   position: relative;
   border: solid green;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: fit-content;
+  gap: 24px;
 }
 
 .cartProduct {
@@ -31,26 +43,80 @@
 
 .productCartImage {
   position: relative;
-  max-width: 30%;
+  max-width: 27%;
   height: auto;
   border-radius: 16px;
 }
 
 .infoBlock{
   position: relative;
-  border: solid green;
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 197px;
+  justify-content: space-between;
+  height: 155px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  padding: 2% 2% 2% 2%;
+  margin-left: 2%;
 }
 
 .infoTagContainer{
   position: relative;
-  border: solid blue;
 }
 
 .infoButtonContainer{
   position: relative;
-  border: solid purple;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+}
+
+.qtButton{
+  position: relative;
+  background-color: black;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.qtButton:hover{
+  border: solid 1.5px white;
+}
+
+.qtButton:active{
+  border:none;
+}
+
+.sQt{
+  white-space: nowrap
+}
+
+.BtnEffect{
+  position: relative;
+  padding: 4px;
+  background-color: black;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Summary{
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  padding: 16px 16px 16px 16px;
 }

@@ -67,36 +67,32 @@ export const CartProvider = ({ children }) => {
   //remove quantity  
   const handleRemoveQuantity = (newSneaker) => {
     const sneakerIsInCart = isSneakerInCart(newSneaker);
-    const mapFunction = (product) =>
-      product.id === newSneaker.id ? { ...product, Quantity: product.Quantity - 1 } : product
   
     if (sneakerIsInCart) {
-      // Sneaker is already in cart
-      console.log('Porduct already in cart');
-  
-      setCartList((prev) => ({
-        CartList: prev.CartList.map( mapFunction ),
-      }));
-      
-      //if theres only 1 product left in the cart after product removal / delete that product
-      const mapFunction2 = (product) =>
-        product.Quantity === 1 ? handleRemoveFromCart(newSneaker) : console.log('That was not the last product in the cart, did not remove the product')
-  
-      cartList.CartList.map( mapFunction2 )
-      
+      handleDecrementQuantity(newSneaker);
+      handleRemoveIfLast(newSneaker);
     } else {
-      // Sneaker is not in cart
-      console.log('Porduct not in cart');
-  
-      const update = { ...newSneaker, Quantity: 1 }
-  
-      setCartList((prev) => ({
-        CartList: [...prev.CartList, update],
-      }));
-  
+      handleAddToCart(newSneaker);
     }
-  
   };
+  
+  const handleDecrementQuantity = (newSneaker) => {
+    setCartList((prev) => ({
+      CartList: prev.CartList.map((product) =>
+        product.id === newSneaker.id ? { ...product, Quantity: product.Quantity - 1 } : product
+      ),
+    }));
+  };
+  
+  const handleRemoveIfLast = (newSneaker) => {
+    const lastProduct = cartList.CartList.find((product) => product.id === newSneaker.id && product.Quantity === 1);
+    if (lastProduct) {
+      handleRemoveFromCart(newSneaker);
+    } else {
+      console.log('Product quantity is not 1, did not remove the product');
+    }
+  };
+  
   
   // Add item to cart
     const handleAddToCart = (newSneaker) => { 
@@ -125,6 +121,7 @@ export const CartProvider = ({ children }) => {
       handleRemoveQuantity,
       handleAddToCart,
       handleRemoveFromCart,
+      isSneakerInCart,
       }}>
       {children}
     </CartContext.Provider>
