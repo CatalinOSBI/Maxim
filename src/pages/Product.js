@@ -7,12 +7,18 @@ import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import './CSS pages/product.css'
 import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
+import Ripple from '../Components/Ripple Button/Ripple';
+import { useCart } from '../Components/Cart/CartContext';
 
 function Product() {
 
   let location = useLocation()
   let id = location.pathname.split('/')[2]
   let type = location.pathname.split('/')[3]
+
+  const {
+    handleAddToCart,
+  } = useCart();
 
   //Post request to fill in the inputs with the current data
   const [Sneakers, setSneakers] = useState('')
@@ -45,14 +51,16 @@ function Product() {
           </section>
 
           <section className='sectionTop' style={{ position: 'absolute', bottom: '0', width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <button style={{ position: 'relative', bottom: '0' }} className='addToCartButton' >Add to Cart</button>
+            <button style={{ position: 'relative', bottom: '0' }} className='addToCartButton' onClick={() => handleAddToCart(Sneakers)} >Add to Cart
+              <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+            </button>
           </section>
         </div>
       </div>
 
       <div className='similarProductsContainer'>
         <p style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial', fontSize: '1.5rem', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)' }}>Similar Products:</p>
-          <SneakersSimilar Type= {type}/>
+        <SneakersSimilar Type={type} />
       </div>
 
     </>

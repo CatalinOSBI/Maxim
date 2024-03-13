@@ -1,15 +1,16 @@
 import React from 'react'
 import { useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import Ripple from '../Ripple Button/Ripple';
 
 const CheckoutButton = (ShoppingCart) => {
 
   const stripe = useStripe()
 
-  const handleCheckout = async () => { 
+  const handleCheckout = async () => {
     try {
 
-      const response = await axios.post('http://localhost:1989/api/create-checkout-session', ShoppingCart )
+      const response = await axios.post('http://localhost:1989/api/create-checkout-session', ShoppingCart)
 
       const session = response.data
 
@@ -20,18 +21,20 @@ const CheckoutButton = (ShoppingCart) => {
       if (result.error) {
         console.error(result.error.message);
       }
-      
+
     } catch (error) {
-      
+
       console.log(error.message)
 
     }
-   }
+  }
 
   return (
-    <button onClick={handleCheckout}>
-      Checkout (Stripe)
-    </button>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px', overflow: 'hidden' }}>
+      <button className='addToCartButton' onClick={handleCheckout}>Checkout
+        <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+      </button>
+    </div>
   )
 }
 

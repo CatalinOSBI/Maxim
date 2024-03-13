@@ -32,16 +32,16 @@ const CartContent = () => {
   const listPrices = cartList.CartList.map((sneaker) =>
     <>
       <br />
-      <p key={sneaker.id}>{sneaker.name}</p>
+      <p style={{fontFamily:'Helvetica Now Text Regular, Helvetica, Arial'}} key={sneaker.id}>{sneaker.name}</p>
 
       <div className='listContainer'>
 
         <div className='listItem' >
-          <p key={sneaker.id}>${sneaker.price} </p>
+          <p style={{fontFamily:'Helvetica Now Text Regular, Helvetica, Arial'}} key={sneaker.id}>${sneaker.price} </p>
         </div>
 
         <div className='listItem' style={{ display: 'flex', justifyContent: 'end' }}>
-          <p key={sneaker.id}>(x{sneaker.Quantity})</p>
+          <p style={{fontFamily:'Helvetica Now Text Medium, Helvetica, Arial'}} key={sneaker.id}>(x{sneaker.Quantity})</p>
         </div>
 
       </div>
@@ -58,29 +58,27 @@ const CartContent = () => {
     <div className='listContainer' style={{ borderBottom: 'none' }}>
 
       <div className='listItem'>
-        <p>Total:</p>
+        <p style={{fontFamily:'Helvetica Now Text Medium, Helvetica, Arial'}}>Total:</p>
       </div>
 
       <div className='listItem' style={{ display: 'flex', justifyContent: 'end' }}>
-        <p>${displayTotal} </p>
+        <p style={{fontFamily:'Helvetica Now Text Medium, Helvetica, Arial', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)'}}>${displayTotal} </p>
       </div>
 
     </div>
 
-    //Summary element
-    const Summary = 
+  //Summary element
+  const Summary =
     <div className='Summary'>
 
-    <p>Summary: </p>
-    {listPrices}
+      <p style={{fontFamily:"Helvetica Now Text Medium, Helvetica, Arial", fontSize:'1.4rem'}}>Summary: </p>
+      {listPrices}
+      <br />
+      {total}
+      {/* stripe button */}
+      <Payment />
 
-    <br />
-
-    {total}
-
-    {/* stripe button */}
-    <Payment />
-  </div>
+    </div>
 
   const updatePrice = () => {
 
@@ -97,56 +95,55 @@ const CartContent = () => {
   return (
     <>
       <div className='cartPage'>
+{/* If the cart is empty show Cart is empty message */}
+{cartList.CartList.length === 0 ? <h1>Your cart is empty.</h1> :
+<div id='productContainer' className='productCartContainer' style={{justifyContent:`${cartList.CartList.length === 1 ? '':'center'}`}} > {/*dynamic justify Content*/}
+  {cartList.CartList.map((sneaker) => (
 
-        <div id='productContainer' className='productCartContainer' >
-          {cartList.CartList.map((sneaker) => (
+    <div key={sneaker.id} className='cartProduct'>
 
-            <div key={sneaker.id} className='cartProduct'>
+      <img className='productCartImage' ref={imageRef} src={sneaker.image} alt='Sneaker' />
 
+      <div className='infoBlock' >
 
-
-              <img className='productCartImage' ref={imageRef} src={sneaker.image} alt='Sneaker' />
-
-              <div className='infoBlock' >
-
-                <div className='infoTagContainer'>
-                  <p className='productTag sName'>{sneaker.name}</p>
-                  <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
-                  <p className='productTag sPrice' style={{ textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', right: '0%', top: '0%', position: 'absolute' }}>${sneaker.price}</p>
-                  <p className='productTag ' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
-                </div>
-
-                <div className='infoButtonContainer' >
-
-                  <button className='qtButton' onClick={() => handleRemoveQuantity(sneaker)}><span style={{ transform: 'translateY(-5.5%)' }}>-</span>
-                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
-                  </button>
-
-                  <p className='productTag sQt ' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', width: '40px' }}>Qt. <span style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.Quantity}</span></p>
-
-                  <button className='qtButton' onClick={() => handleAddToCart(sneaker)}>+
-                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
-                  </button>
-
-                  <button style={{ position: 'absolute', right: '0' }} className='qtButton' onClick={() => handleRemoveFromCart(sneaker)}>
-                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
-                    {trashIcon}
-                  </button>
-
-                </div>
-
-              </div>
-
-
-            </div>
-          ))
-
-          }
+        <div className='infoTagContainer'>
+          <p className='productTag sName'>{sneaker.name}</p>
+          <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
+          <p className='productTag sPrice' style={{ textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', right: '0%', top: '0%', position: 'absolute' }}>${sneaker.price}</p>
+          <p className='productTag ' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
         </div>
 
-          {Summary}
+        <div className='infoButtonContainer' >
+
+          <button className='qtButton' onClick={() => handleRemoveQuantity(sneaker)}><span style={{ transform: 'translateY(-5.5%)' }}>-</span>
+            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+          </button>
+
+          <p className='productTag sQt ' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', width: '40px' }}>Qt. <span style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.Quantity}</span></p>
+
+          <button className='qtButton' onClick={() => handleAddToCart(sneaker)}>+
+            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+          </button>
+
+          <button style={{ position: 'absolute', right: '0' }} className='qtButton' onClick={() => handleRemoveFromCart(sneaker)}>
+            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+            {trashIcon}
+          </button>
+
+        </div>
 
       </div>
+
+
+    </div>
+  ))
+
+  }
+</div>
+ }
+  {Summary}
+
+</div>
     </>
   )
 }
