@@ -9,6 +9,7 @@ import './CSS pages/product.css'
 import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
 import Ripple from '../Components/Ripple Button/Ripple';
 import { useCart } from '../Components/Cart/CartContext';
+import Footer from '../Components/Footer';
 
 function Product() {
 
@@ -71,6 +72,7 @@ function Product() {
       <Header />
       <LoginModal />
       {productContent}
+      <Footer />
     </>
   )
 }

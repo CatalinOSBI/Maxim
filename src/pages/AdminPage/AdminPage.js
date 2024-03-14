@@ -5,6 +5,7 @@ import Header from '../../Components/Header';
 import LoginModal from '../../Components/Login/LoginModal';
 import SneakersAdmin from '../../Components/Sneakers/SneakersAdmin';
 import AddFunction from './Add';
+import Footer from '../../Components/Footer';
 
 function AdminPage() {
 
@@ -63,6 +64,7 @@ function AdminPage() {
             <Header />
             <LoginModal />
             {adminPageContent}
+            <Footer/>
         </>
 
     //check if user has the admin role    

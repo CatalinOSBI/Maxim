@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../Components/Header'
 import LoginModal from '../Components/Login/LoginModal'
 import CartContent from '../Components/Cart/CartContent'
+import Footer from '../Components/Footer'
 
 function CartPage() {
   return (
@@ -9,6 +10,7 @@ function CartPage() {
       <Header />
       <LoginModal />
       <CartContent/>
+      <Footer/>
     </>
   )
 }

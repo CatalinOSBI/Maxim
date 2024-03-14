@@ -194,7 +194,6 @@ function SneakersSimilar({Type}) {
 
       </div>
 
-      <button onClick={() => {console.log(Type)}}>asdsds</button>
     </>
   );
 }

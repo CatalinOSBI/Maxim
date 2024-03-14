@@ -3,6 +3,7 @@
 .slider{
   width: 200px;
   border: solid red;
+  position: relative;
 }
 
 .bannerContainer{
@@ -16,6 +17,7 @@
     height: auto;
     overflow: hidden;
     /* min-width: 600px; */
+    position: relative;
   }
 
   .banner3DContainer {
@@ -35,6 +37,7 @@
     object-fit:cover;
     object-position: center;
     aspect-ratio: 16 / 6 ;
+    position: relative;
   }
   
   /* Banner END */
@@ -52,6 +55,7 @@
   .overlay3DBanner{
     color: white;
     position: absolute;
+    position: relative;
   }
 
   .overlayContainer{

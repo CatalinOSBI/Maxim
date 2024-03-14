@@ -30,7 +30,10 @@ function Header() {
   return (
     <header>
       <div className='headerContainer'>
-        
+
+      <button>
+          <Link to={'/Home'}>Home</Link>
+        </button>
         <button>
           <Link to={'/Cart'}>View Cart</Link>
         </button>

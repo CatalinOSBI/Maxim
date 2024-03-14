@@ -4,6 +4,7 @@ import LoginModal from '../Components/Login/LoginModal';
 import { useAuth } from '../Components/Login/AuthContext';
 import './CSS pages/profile.css';
 import Ripple from '../Components/Ripple Button/Ripple';
+import Footer from '../Components/Footer';
 
 const ProfilePage = () => {
   const [activeMenu, setActiveMenu] = useState(0);
@@ -65,6 +66,7 @@ const ProfilePage = () => {
       <Header />
       <LoginModal />
       {profilePageContent}
+      <Footer/>
     </>
   )
 }

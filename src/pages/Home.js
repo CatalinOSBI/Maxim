@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 import LoginModal from '../Components/Login/LoginModal';
 import Ad from '../Components/Ad';
 import { MenuProvider } from '../Components/Sneakers/MenuContext';
+import Footer from '../Components/Footer';
 
 const Page2 = () => {
   return (
@@ -19,6 +20,7 @@ const Page2 = () => {
         </MenuProvider>
 
         <Ad />
+        <Footer />
       </div>
     </>
   );

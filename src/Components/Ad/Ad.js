@@ -7,6 +7,8 @@ import image4 from './4.jpg'
 
 const Ad = () => {
   return (
+    <div style={{ width:'100%', display:'flex', justifyContent:'center', marginBottom:'4%'}}>
+
     <div className='adContainer'>
 
       <div className='imageWrapper'>
@@ -28,6 +30,8 @@ const Ad = () => {
         <img className='adImage' src={image4} />
         <p className='adText'>Style</p>
       </div>
+
+    </div>
 
     </div>
   )
