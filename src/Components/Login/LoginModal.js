@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Modal.css'
 import { useAuth } from './AuthContext';
+import Ripple from '../Ripple Button/Ripple';
 
 function LoginModal() {
+
+  const modalOverlayRef = useRef()
 
   const { handleCloseModal,
     OpenModal,
@@ -55,17 +58,36 @@ function LoginModal() {
     document.body.classList.remove('modal-active')
   }
 
+//event listener for esc.
+  const handleEscapeKeyPress = (e) => {
+    if (modalOverlayRef.current) {
+      if (e.key === "Escape") {
+        handleCloseModal()
+      }
+    }
+  }
+
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscapeKeyPress);
+
+    return () => {
+
+      document.removeEventListener('keydown', handleEscapeKeyPress);
+    };
+  }, []);
+
   return (
     <>
       {OpenModal &&
-        <div className='modalOverlay'>
+        <div className='modalOverlay' ref={modalOverlayRef}>
           <div className='modalContainer'>
-            <button onClick={handleCloseModal}>X</button>
+            <button className='closeButton' onClick={handleCloseModal}>X</button>
 
             {/* login */}
             {modalA &&
               <div className='modal A' >
-                <h2 style={{ marginBottom: '20px' }}>Log In</h2>
+                <h2 style={{ marginBottom: '20px', fontFamily:'Zabal', fontSize:'3rem' }}>Log In</h2>
 
                 <form>
 
@@ -79,8 +101,9 @@ function LoginModal() {
                     <input name='password' type="password" autoComplete='off' style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} ref={passwordRef} />
                   </label>
 
-                  <button onClick={handleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                  <button onClick={handleLogIn} className='addToCartButton'>
                     Log In
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
                   </button>
 
                   <button onClick={handleGoogleLogIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
@@ -95,7 +118,7 @@ function LoginModal() {
             {/* create account /signup */}
             {modalB &&
               <div className='modal B'>
-                <h2 style={{ marginBottom: '20px' }}>Sign Up</h2>
+                <h2 style={{ marginBottom: '20px', fontFamily:'Zabal', fontSize:'3rem' }}>Sign Up</h2>
                 <form >
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
@@ -118,7 +141,7 @@ function LoginModal() {
                     <input type="password" name='new-password' autoComplete="new-password" style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
-                  <button onClick={handleSignIn} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                  <button onClick={handleSignIn} className='addToCartButton'>
                     Sign Up
                   </button>
 
@@ -130,7 +153,7 @@ function LoginModal() {
             {/* forgot password */}
             {modalC &&
               <div className='modal C'>
-                <h2 style={{ marginBottom: '20px' }}>Password-Reset</h2>
+                <h2 style={{ marginBottom: '20px', fontFamily:'Zabal', fontSize:'3rem' }}>Password-Reset</h2>
                 <form >
 
                   <label style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }}>
@@ -138,7 +161,7 @@ function LoginModal() {
                     <input name='email' type="email" autoComplete="email" ref={emailResetPasswordRef} style={{ width: '100%', padding: '8px', margin: '8px 0', boxSizing: 'border-box' }} />
                   </label>
 
-                  <button onClick={handleResetPassword} style={{ width: '100%', padding: '10px', backgroundColor: '#303F9F', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '20px', marginBottom: '20px' }}>
+                  <button onClick={handleResetPassword} className='addToCartButton'>
                     Reset Password
                   </button>
 

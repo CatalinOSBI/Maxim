@@ -1,13 +1,17 @@
-.modalContainer{
-    width: 500px;
-    height: 700px;
-    background-color: white;
-    border: solid black;
+.modalContainer {
+    width: 400px;
+    height: 600px;
+    border: solid 1px black;
     position: fixed;
     top: 100px;
+    z-index: 99;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+    padding: 2% 2% 2% 2%;
 }
 
-.modalOverlay{
+.modalOverlay {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -16,18 +20,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 98;
 }
 
-body.modal-active{
+body.modal-active {
     overflow-y: hidden;
 }
 
-.modalA{
-    padding: 20px;
-    box-Shadow: 5px 4px 8px rgba(0, 0, 0, 0.1);
-    border-Radius: 8px;
-    width: 300px;
-    text-Align: center;
-    background-Color: #C5CAE9;
+.modal {
+    position: relative;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.closeButton:hover {
+    border: solid 1.5px white;
+}
+
+.closeButton:active {
+    border: none;
+}
+
+.closeButton {
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-Color: black;
+    font-Family: 'Zabal';
+    font-Size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-Radius: 50px;
+    display: "flex";
+    align-Items: center;
+    justify-Content: center;
+    cursor: pointer;
+    color: white;
+    transform: translate(24%, -24%);
 }

@@ -46,7 +46,8 @@
     align-items: center;
     position: absolute;
     background-color: #cf0000;
-    transform: translateX(100vw)
+    transform: translateX(100vw);
+    z-index: 2;
 }
 
 .Square{
@@ -58,6 +59,7 @@
     border-top-right-radius: 90px;
     animation: Size 4s ease-in-out ;
     box-shadow: 18px -14px 87px -2px rgba(90, 0, 0, 1);
+    z-index: 3;
 }
 
 .top{

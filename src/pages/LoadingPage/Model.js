@@ -107,7 +107,7 @@ function Scene() {
     <>
     <div >
       <Canvas 
-        style={{ position: 'absolute', height: '100vh', width: '100vw'}}
+        style={{ position: 'absolute', height: '100vh', width: '100vw', zIndex:'3'}}
         camera={{ fov: 75, position: [0, 0, 2] }}>
         {/* <color attach='background' args={[bgColor]}/> */}
       <ambientLight intensity={1.1} />
