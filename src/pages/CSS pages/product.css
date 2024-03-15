@@ -26,7 +26,6 @@
   position: relative;
   width: fit-content;
   height: 200px;
-  /* border: solid red; */
 }
 
 .Top{
@@ -34,9 +33,10 @@
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
 }
 
-.sectionTop{
+.sectionBottom{
   position: relative;
-  /* border: solid green; */
+  display: flex;
+  align-items: center;
 }
 
 .addToCartButton{
@@ -69,4 +69,28 @@
   border-radius: 50%;
   padding: 300px;
   box-shadow: inset 0px 0px 4px 5px rgba(0,0,0,0.07);
+}
+
+.littleCart{
+  position: relative;
+  height: 40px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(25%);
+  transition: all 160ms;
+}
+
+.littleCart p{
+  font-family: 'Helvetica Now Text Medium';
+  padding: 5px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+  margin: 8px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

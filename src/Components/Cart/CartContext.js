@@ -5,6 +5,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [storageCartNumber, setstorageCartNumber] = useState(0)
   const [test, settest] = useState(1)
+  const [dynamicOpacity, setDynamicOpacity] = useState(0);
 
   //Cart States(Variabless)
   const [cartList, setCartList] = useState(
@@ -98,6 +99,11 @@ export const CartProvider = ({ children }) => {
     const handleAddToCart = (newSneaker) => { 
   
       handleAddQuantity(newSneaker)
+      setDynamicOpacity(1)
+
+      setTimeout(() => { 
+        setDynamicOpacity(0)
+       }, 600)
   
      }
   
@@ -122,6 +128,8 @@ export const CartProvider = ({ children }) => {
       handleAddToCart,
       handleRemoveFromCart,
       isSneakerInCart,
+      dynamicOpacity,
+      setDynamicOpacity
       }}>
       {children}
     </CartContext.Provider>
