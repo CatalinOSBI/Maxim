@@ -34,7 +34,18 @@ body.modal-active {
 .modal form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.modal input{
+    width: 95%;
+    padding: 2%;
+    margin-bottom: 6%;
+    font-family: 'Helvetica now text medium';
+    font-size: 1rem;
+}
+
+.modal label{
+    font-family: 'Helvetica now text regular';
 }
 
 .closeButton:hover {
@@ -62,4 +73,55 @@ body.modal-active {
     cursor: pointer;
     color: white;
     transform: translate(24%, -24%);
+}
+
+h3{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 24px;
+}
+
+h3::after{
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: rgb(175, 175, 175);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+h3 span{
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+    color: #8b9299;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.modalInfo span{
+    position: relative;
+    color: #5c6064;
+    transition: all .218s;
+    font-size: 0.9rem;
+    font-family: 'Helvetica now text medium';
+}
+
+.modalInfo span:hover{
+    color: #202020;
+}
+
+.modalInfo p{
+    font-size: 0.9rem;
+    position: relative;
+    color: #8b9299;
+    font-family: 'Helvetica now text regular';
 }
