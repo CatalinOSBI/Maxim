@@ -20,6 +20,7 @@ function LoginModal() {
     handleSignIn,
     handleResetPassword,
     emailResetPasswordRef,
+    dynamicOpacity,
   } = useAuth()
 
   const [modalA, setmodalA] = useState(false);
@@ -100,8 +101,8 @@ function LoginModal() {
   return (
     <>
       {OpenModal &&
-        <div className='modalOverlay' ref={modalOverlayRef}>
-          <div className='modalContainer'>
+        <div className='modalOverlay' ref={modalOverlayRef} style={{opacity:dynamicOpacity}}>
+          <div className='modalContainer' style={{opacity:dynamicOpacity}}>
             <button className='closeButton' onClick={handleCloseModal}>X</button>
 
             {/* login */}
@@ -152,6 +153,17 @@ function LoginModal() {
                       <span onClick={handleShowModalC} style={{ cursor: 'pointer' }}>Forgot your password?</span>
                     </p>
                   </div>
+                </div>
+
+                {/* demo accounts */}
+                <div className="demoModal">
+                  <p>
+                    username: askjhgdakjshgd
+                  </p>
+
+                  <p>
+                    password: askjhgdakjshgd
+                  </p>
                 </div>
               </>
             }
@@ -247,7 +259,6 @@ function LoginModal() {
           </div>
         </div>
       }
-
     </>
   )
 }

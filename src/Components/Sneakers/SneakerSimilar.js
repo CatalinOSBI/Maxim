@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Sneakers.css'
 import { useCart } from '../Cart/CartContext';
 
-function SneakersSimilar({Type}) {
+function SneakersSimilar({ Type }) {
   const [sneakersSimilar, setSneakersSimilar] = useState([]);
   const [apiUrl, setApiUrl] = useState('http://localhost:1989/sneaker2/filter?&');
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
@@ -49,7 +49,7 @@ function SneakersSimilar({Type}) {
 
   useEffect(() => {
 
-//reset scroll
+    //reset scroll
     setTimeout(() => {
 
       productContainerRef.current.scrollLeft = 0;
@@ -161,14 +161,14 @@ function SneakersSimilar({Type}) {
                   </Link>
 
                   <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
-                  <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)' }}>${sneaker.price}</p>
+                  <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 32px rgba(0, 0, 0, 0.5)' }}>${sneaker.price}</p>
                   <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
 
                 </div>
 
-                <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
+                {/* <button style={{ width: '60px' }} onClick={() => handleAddToCart(sneaker)}>
                   Add To C
-                </button>
+                </button> */}
 
               </div>
             ))
@@ -184,11 +184,11 @@ function SneakersSimilar({Type}) {
 
       <div className='buttonContainer'>
 
-        <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollLeft}>
+        <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out', cursor: `${dynamicOpacityLeft === 0.4 ? 'not-allowed' : 'pointer'}` }} onClick={scrollLeft}>
           <i className='arrow left'></i>
         </button>
 
-        <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out' }} onClick={scrollRight}>
+        <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out', cursor: `${dynamicOpacityRight === 0.4 ? 'not-allowed' : 'pointer'}` }} onClick={scrollRight}>
           <i className='arrow right'></i>
         </button>
 

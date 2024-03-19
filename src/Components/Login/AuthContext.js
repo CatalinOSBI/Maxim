@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   // Modal Vars
   const [OpenModal, setOpenModal] = useState(false);
+  const [dynamicOpacity, setDynamicOpacity] = useState(0);
 
   const firebaseConfig = {
     apiKey: "AIzaSyAYmAqt2FF5wzU3JG-S0AKQOgNweObybiI",
@@ -233,10 +234,13 @@ export const AuthProvider = ({ children }) => {
   //Open modal
   const handleOpenModal = () => {
     setOpenModal(true)
+    setTimeout(() => { setDynamicOpacity(1) }, 1)
+    
   }
   //Close Modal
   const handleCloseModal = () => {
-    setOpenModal(false)
+    setDynamicOpacity(0)
+    setTimeout(() => { setOpenModal(false) }, 218)
   }
 
   return (
@@ -264,6 +268,8 @@ export const AuthProvider = ({ children }) => {
       handleResetPassword,
       emailResetPasswordRef,
       UserAccountCreationTime,
+      setDynamicOpacity,
+      dynamicOpacity,
     }}>
 
       {children}

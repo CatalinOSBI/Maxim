@@ -42,8 +42,6 @@ const goToPreview = () => {
       <div onClick={goToPreview} className='banner3DContainer' style={{ height: containerHeight, position: 'relative' }} ref={containerRef}>
         <SecondBanner />
       </div>
-
-      <button >test</button>
     </>
   )
 }

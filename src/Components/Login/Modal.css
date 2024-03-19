@@ -9,10 +9,11 @@
     border-radius: 16px;
     box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
     padding: 2% 2% 2% 2%;
+    transition: all .218s;
 }
 
 .modalOverlay {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.377);
@@ -21,6 +22,7 @@
     align-items: center;
     justify-content: center;
     z-index: 98;
+    transition: all .218s;
 }
 
 body.modal-active {
@@ -124,4 +126,19 @@ h3 span{
     position: relative;
     color: #8b9299;
     font-family: 'Helvetica now text regular';
+}
+
+.demoModal{
+    z-index: 100;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
+    padding: 2% 2% 2% 2%;
+    border: solid 1px black;
+    position: absolute;
+    width: fit-content;
+    height: 200px;
+    bottom: 0;
+    right: 0;
+    transform: translateX(110%);
 }
