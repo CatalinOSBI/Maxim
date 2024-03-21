@@ -8,7 +8,7 @@ const Footer = () => {
   let page =location.pathname.split('/')[1]
 
   return (
-      <footer style={{bottom:`${page === 'Product' ? '-28%' : '0'}`}}>
+      <footer style={{position:`${page === 'Product' ? 'relative' : 'absolute'}`}}>
         <p>MaxiM&trade;</p>
       </footer>
   )
