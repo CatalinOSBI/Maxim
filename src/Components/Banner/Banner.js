@@ -7,6 +7,7 @@ function Banner() {
   const containerRef = useRef();
   const [containerHeight] = useState(0);
 
+
   useEffect(() => {
     const handleCheckResize = () => {
 

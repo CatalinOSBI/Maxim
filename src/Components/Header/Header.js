@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/AuthContext';
@@ -15,6 +15,72 @@ function Header() {
     handleOpenModal,
     handleGetUserData,
   } = useAuth()
+
+  //event listener scroll START
+
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [dynamicTransform, setDynamicTransform] = useState('');
+  const [dynamicTransform2, setDynamicTransform2] = useState('');
+  const [scrollCheck, setScrollCheck] = useState();
+  const [dynamicOpacity, setDynamicOpacity] = useState();
+
+  const hideHeader = () => {
+    if (scrollCheck) {
+      setDynamicTransform('translateY(-160%)')
+    }
+  }
+
+  const showHeader = () => {
+    setDynamicTransform('translateY(0%)')
+  }
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollThreshold = document.documentElement.scrollHeight * 0.2; // 20% of the page (document.documentElement.scrollHeight is the TOTAL HEIGHT OF THE PAGE)
+
+      //check to see if treshhold is reached
+      if (currentScroll > scrollThreshold) {
+        setScrollCheck(true);
+        console.log('Reached 20%')
+      } else {
+        setScrollCheck(false);
+        // console.log('alternative')
+      }
+
+      if (currentScroll <= 50) {
+        setDynamicTransform2('translateY(0%)')
+      } else {
+        setDynamicTransform2('translateY(-160%)')
+        
+      }
+
+      if (currentScroll > lastScrollTop) {
+        //If scrolling DOWN
+
+        hideHeader()
+        setDynamicOpacity(0)
+
+      } else {
+        //If scrolling UP
+
+        showHeader()
+        setDynamicOpacity(1)
+
+      }
+
+      setLastScrollTop(currentScroll <= 0 ? 0 : currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  //event listener scroll END
 
   const { cNumber, reset } = useCart();
   const navigate = useNavigate()
@@ -41,9 +107,8 @@ function Header() {
 
   return (
     <>
-      <header>
-        <div className='headerContainer' style={{ justifyContent: 'flex-end', backgroundColor:'#F5F5F5' }}>
-
+      <header style={{ zIndex: '51' }}>
+        <div className='headerContainer' style={{ justifyContent: 'flex-end', backgroundColor: 'rgb(238, 238, 238)', transform: dynamicTransform }}>
           {Username}
 
           {UserRole === 'admin' ?
@@ -77,10 +142,10 @@ function Header() {
         </div>
       </header>
 
-{/* /////////////////////////////////////////////// */}
+      {/* /////////////////////////////////////////////// */}
 
       <header>
-        <div className='headerContainer'>
+        <div className='headerContainer' style={{transform: dynamicTransform2, transition:'all .218s'}} >
 
           <h1 style={{ fontFamily: 'Zabal', color: 'black', fontSize: '3rem' }}>
             <Link className='Link' to={'/Home'}>MaxiM</Link>

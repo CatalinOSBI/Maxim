@@ -7,6 +7,8 @@
     justify-content: center;
     position: relative;
     padding: 2px 0;
+    background-Color:#F5F5F5;
+    transition: all .480s;
 }
 
 header{
