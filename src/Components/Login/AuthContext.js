@@ -37,12 +37,12 @@ export const AuthProvider = ({ children }) => {
   const [dynamicOpacity, setDynamicOpacity] = useState(0);
 
   const firebaseConfig = {
-    apiKey: "AIzaSyAYmAqt2FF5wzU3JG-S0AKQOgNweObybiI",
-    authDomain: "maxim-dev-d00ec.firebaseapp.com",
-    projectId: "maxim-dev-d00ec",
-    storageBucket: "maxim-dev-d00ec.appspot.com",
-    messagingSenderId: "981508913289",
-    appId: "1:981508913289:web:6adf80d3f58259b2bc6e58"
+    apiKey: process.env.REACT_APP_FIREBASE_1,
+    authDomain: process.env.REACT_APP_FIREBASE_2,
+    projectId: process.env.REACT_APP_FIREBASE_3,
+    storageBucket: process.env.REACT_APP_FIREBASE_4,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_5,
+    appId: process.env.REACT_APP_FIREBASE_6
   };
 
   // Initialize Firebase

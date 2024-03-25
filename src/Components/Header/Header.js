@@ -37,7 +37,7 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop; //browser compatibality. i guess
       const scrollThreshold = document.documentElement.scrollHeight * 0.2; // 20% of the page (document.documentElement.scrollHeight is the TOTAL HEIGHT OF THE PAGE)
 
       //check to see if treshhold is reached
