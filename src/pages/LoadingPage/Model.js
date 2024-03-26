@@ -1,14 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect,useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF} from '@react-three/drei';
+import './Underlay.css'
+import { useMediaQuery } from 'react-responsive';
 
 function Model() {
+
   return (
     <Scene />
   );
 }
 
 function Sneaker(props) {
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
   const ref = useRef()
   const { nodes, materials } = useGLTF("./Assets/Sneaker/scene.glb");
 
@@ -17,9 +21,9 @@ function Sneaker(props) {
   useFrame((state,delta) => {
     const timer = state.clock.getElapsedTime()
 
-    ref.current.rotation.set(1.8+ Math.cos(timer / 1) / 4, 1 + Math.cos(timer / 1.8) /2,  0.3)
-    ref.current.position.x += delta * 1.20
-    ref.current.position.y = Math.cos(timer / 1) / 15
+    ref.current.rotation.set(1.8+ Math.cos(timer / 1) / 4, 1 + Math.cos(timer / 1.8) /2,  0.3) //spinning the model
+    ref.current.position.x += delta * `${isPhone ? 0.39 : 1.20}` // X >                1.20(default value)
+    ref.current.position.y = Math.cos(timer / 1) / 15 // Y ^
    
   })
 
@@ -103,11 +107,26 @@ function Sneaker(props) {
 
 function Scene() {
 
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
+
+  const responsiveStyle = {
+    position: 'absolute',
+    width: `${isPhone ? '100vw' : '100vw'}`,
+    height: `${isPhone ? '100vh' : '100vh'}`,
+    zIndex: '3',
+    transform: `${isPhone ? 'translate(0%, 0%)': 'translate(0%, 0%)'}`,
+    }
+
+    const scale = isPhone ? [0.5,0.5,0.5] : [0.7,0.7,0.7]
+    const pos = isPhone ? [-0.766,0,0.3] : [-2.5,0,0.3]
+
+
   return (
+
     <>
     <div >
-      <Canvas 
-        style={{ position: 'absolute', height: '100vh', width: '100vw', zIndex:'3'}}
+      <Canvas className='sneakerCanvas'
+        style={responsiveStyle}
         camera={{ fov: 75, position: [0, 0, 2] }}>
         {/* <color attach='background' args={[bgColor]}/> */}
       <ambientLight intensity={1.1} />
@@ -116,7 +135,7 @@ function Scene() {
       <spotLight position={[-2, 4.8, 0.3]} angle={3} penumbra={1} intensity={80} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <spotLight position={[-1.5, 13.6, -0.3]} angle={0.6} penumbra={1} intensity={1000} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <hemisphereLight position={[0.272,10,0]} intensity={0.7}/>
-      <Sneaker position={[-2.5,0,0.3]} scale={[0.7,0.7,0.7]}/>
+      <Sneaker position={pos} scale={scale}/>
       </Canvas>
     </div>
     </>

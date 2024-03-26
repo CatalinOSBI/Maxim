@@ -38,9 +38,9 @@
 }
 
 .Slider{
+    /* 3070px */
     width: 120vw;
-    height: 20rem;
-    /* border: solid 1px white; */
+    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,12 +48,13 @@
     background-color: #cf0000;
     transform: translateX(100vw);
     z-index: 2;
+    animation: Slide linear 3.8s;
+    /* border: 1px solid white; */
 }
 
 .Square{
     width: 17.6vw;
     height: 35vh;
-    background-color: white;
     position: absolute;
     transition: box-shadow 1s;
     border-top-right-radius: 90px;
@@ -73,4 +74,31 @@
     bottom: 0;
     left: 0;
     background: linear-gradient(45deg, rgba(228,0,0,1) 14%, rgba(125,0,0,1) 100%);
+}
+
+.sneakerCanvas{
+    /* border: solid green; */
+}
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+    .Square{
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .Title{
+        font-size: 6.8rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .Slider{
+        /* 3070px */
+        width: 420px;
+        height: 25vh;
+        animation: Slide linear 1.3s
+    }
 }
