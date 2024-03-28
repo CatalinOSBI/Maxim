@@ -71,3 +71,19 @@
   width: 100%;
   overflow: hidden;
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+  .profilePageContainer{
+    flex-direction: column;
+  }
+
+  .profileMenuContent{
+    width: fit-content;
+    gap:2vh;
+    height: 56vh;
+  }
+  
+  }

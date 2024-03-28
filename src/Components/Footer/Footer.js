@@ -13,7 +13,7 @@ const Footer = () => {
   const position = page ==='Product' && isPhone ? 'absolute' : (page ==='Product' ? 'absolute' : 'absolut')
 
   return (
-    <footer style={{ position: `${page ==='Product' && isPhone ? 'absolute' : (page ==='Product' ? 'relative' : 'absolute')}` }}>
+    <footer style={{ position: `${page ==='Product' && isPhone ? 'absolute' : (page ==='Product' ? 'relative' : 'absolute')}`}}>
       <p>MaxiM&trade;</p>
       <button onClick={()=>{console.log(position)}}>asd</button>
     </footer>

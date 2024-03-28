@@ -72,7 +72,7 @@ function Sneakers() {
     setApiUrl(newApiUrl);
 
 //reset scroll
-    if (productContainerRef) {
+    if (productContainerRef.current.scrollLeft) {
       setTimeout(() => {
 
         productContainerRef.current.scrollLeft = 0;
