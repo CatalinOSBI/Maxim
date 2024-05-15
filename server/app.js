@@ -1,28 +1,46 @@
+require('dotenv').config({ path: __dirname + '/../.env.local' });
+
 const express = require('express')
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const app = express()
 const port = 1989
 const cors =require('cors')
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 app.use(cors());
 app.use(express.json())
 app.use(bodyParser.json());
 //-----------------ESTABLISHING THE CONNEXION-----------------//
 const DB = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'1989',
-    database:'maxim',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER ,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: 25280,
+    connectTimeout: 20000,
+    ssl: {
+        ca: fs.readFileSync('./ca.pem').toString(),
+    }
 })
 
 app.listen(port, () =>{
     console.log(`App listening on ports ${port}...`);
 });
 
+//-----------------ERROR CATCHING-----------------//
+DB.connect(function(err) {
+    if (err) {
+        console.error('Error connecting to database:', err.stack);
+        return;
+    }
+    console.log('Connected to database as ID', DB.threadId);
+});
+//-----------------ERROR CATCHING-----------------//
+
 //-----------------GET-----------------//
 app.get('/sneakers', (req,res) =>{
-    const SQL = 'SELECT * FROM maxim.sneakers;'
+    const SQL = 'SELECT * FROM defaultdb.sneakers;'
     
     DB.query(SQL, (err, data) =>{
         if (err){
@@ -47,7 +65,7 @@ app.post('/sneakers', (req,res) =>{
         req.body.image_noBG,
         req.body.price
     ]
-    const SQL = 'INSERT INTO `maxim`.`sneakers` (`type`, `release_year`, `name`, `image`, `image_noBG`, `price`) VALUES (?);'
+    const SQL = 'INSERT INTO `defaultdb`.`sneakers` (`type`, `release_year`, `name`, `image`, `image_noBG`, `price`) VALUES (?);'
 
     DB.query(SQL,[values], (err, data) => {
             if (err){
@@ -68,7 +86,7 @@ app.post('/sneakers', (req,res) =>{
 app.delete('/sneakers/:id', (req, res) =>{
 
     const sneakerId = req.params.id;
-    const SQL = "DELETE FROM `maxim`.`sneakers` WHERE (`id` = ?) "
+    const SQL = "DELETE FROM `defaultdb`.`sneakers` WHERE (`id` = ?) "
 
     DB.query(SQL, [sneakerId], (err, data)=>{
         if (err){
@@ -87,7 +105,7 @@ app.delete('/sneakers/:id', (req, res) =>{
 app.put('/sneakers/:id', (req, res) =>{
 
     const sneakerId = req.params.id;
-    const SQL = "UPDATE `maxim`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ?, `image_noBG` = ?, `price` = ? WHERE (`id` = ?); "
+    const SQL = "UPDATE `defaultdb`.`sneakers` SET `type` = ?, `release_year` = ?, `name` = ?, `image` = ?, `image_noBG` = ?, `price` = ? WHERE (`id` = ?); "
 
     const values=[
         req.body.type,
@@ -114,7 +132,7 @@ app.put('/sneakers/:id', (req, res) =>{
 //-----------------CUSTOM GET-----------------//
 app.get('/sneakers/:id', (req, res) => {
     const sneakerId = req.params.id
-    const SQL = 'SELECT * FROM maxim.sneakers WHERE id=?;'
+    const SQL = 'SELECT * FROM defaultdb.sneakers WHERE id=?;'
 
     DB.query(SQL, [sneakerId], (err, data) => {
         if (err) {
