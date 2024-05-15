@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect, useRef } from 'react'
 import './Add.css'
 import Ripple from '../../Components/Ripple Button/Ripple'
+import { useMediaQuery } from 'react-responsive';
 
 const AddFunction = () => {
 
@@ -91,11 +92,13 @@ const AddFunction = () => {
     
   }
 
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
+
   return (
     <>
       <div className='adminAddContainer'>
 
-        <div className='adminInfoBlock' style={{ height: '65%' }}>
+        <div className='adminInfoBlock' style={{ height:`${isPhone ? '120%' : '65%'}` }}>
           <input name='name' id='name' type='text' placeholder='name' onChange={getData} ref={nameRef}/>
 
           {/* <select name="type" id="type" onChange={getData} ref={typeRef}>

@@ -1,12 +1,12 @@
 /* SNEAKERS START */
 
-.productContainer{
+.productContainer {
   position: relative;
   display: flex;
-  align-items:flex-end;
-  overflow-y:hidden ;
+  align-items: flex-end;
+  overflow-y: hidden;
   height: 450px;
-  min-width:950px ;
+  min-width: 950px;
   max-width: 1610px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -17,7 +17,7 @@
   gap: 21px;
 }
 
-.Product{
+.Product {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -28,13 +28,13 @@
 }
 
 
-.contentWrapper{
+.contentWrapper {
   position: relative;
   border: solid transparent 1px;
   /* transition: border 240ms, border-radius ease-in-out; */
 }
 
-.productImage{
+.productImage {
   border-radius: 8%;
   transition: all 160ms ease-in-out;
   border: solid transparent 3px;
@@ -42,7 +42,7 @@
   position: relative;
 }
 
-.productImagenoBG{
+.productImagenoBG {
   transform-origin: center center;
   position: absolute;
   /* border: solid blue; */
@@ -54,34 +54,34 @@
   height: auto;
 }
 
-.Product:hover .contentWrapper{
+.Product:hover .contentWrapper {
   border: solid black 1px;
   border-radius: 8%;
   /* box-shadow: -2px -2px 34px 0px rgba(0,0,0,0.75); */
-  background-color: rgb(220, 220, 220)  
+  background-color: rgb(220, 220, 220)
 }
 
-.Product:hover .productImage{
+.Product:hover .productImage {
   opacity: 0;
 }
 
-.Product:hover .productImagenoBG{
+.Product:hover .productImagenoBG {
   opacity: 1;
   transform: translate(0%, -5%) scale(1.2);
 }
 
-.menu{
+.menu {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-h1{
+h1 {
   font-family: sans-serif;
   position: relative;
 }
 
-.tagContainer{
+.tagContainer {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -90,25 +90,28 @@ h1{
   border: solid transparent 1px;
 }
 
-.productTag{
+.productTag {
   background-color: white;
   color: black;
   transition: all 250ms;
   position: relative;
 }
 
-.sYear{
+.sYear {
   box-shadow: -2px -2px 14px 0px rgba(0, 0, 0, 0.438);
   border-radius: 32px;
   padding: 4px;
   text-shadow: 0px 0px 25px rgba(0, 0, 0, 1);
 }
 
-.sName, .sPrice, .sYear, .sType{
+.sName,
+.sPrice,
+.sYear,
+.sType {
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
 }
 
-.scrollButton{
+.scrollButton {
   z-index: 3;
   width: 64px;
   height: 64px;
@@ -116,16 +119,16 @@ h1{
   font-family: Helvetica Now Text Medium, Helvetica, Arial;
   border: solid black 1px;
   /* margin: 8px; */
-  transition:opacity 160ms ease-in-out, background-color 160ms ease-in-out;
+  transition: opacity 160ms ease-in-out, background-color 160ms ease-in-out;
   position: relative;
 }
 
-.scrollButton:hover{
+.scrollButton:hover {
   background-color: rgb(220, 220, 220);
   cursor: pointer;
 }
 
-.scrollButton:active{
+.scrollButton:active {
   border: solid transparent 1px;
 }
 
@@ -133,7 +136,7 @@ h1{
 
 /* MENU START */
 
-.buttonContainer{
+.buttonContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +146,7 @@ h1{
   margin-bottom: 4%;
 }
 
-.scrollButton{
+.scrollButton {
   z-index: 3;
   width: 64px;
   height: 64px;
@@ -155,12 +158,12 @@ h1{
   /* font-size: 1rem; */
 }
 
-.scrollButton:hover{
+.scrollButton:hover {
   background-color: rgb(220, 220, 220);
   cursor: pointer;
 }
 
-.scrollButton:active{
+.scrollButton:active {
   border: solid transparent 1px;
 }
 
@@ -182,7 +185,7 @@ h1{
   -webkit-transform: rotate(135deg);
 }
 
-.filterContainer{
+.filterContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,3 +194,21 @@ h1{
 }
 
 /* MENU END */
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+
+  .main .tagContainer {
+    text-wrap: nowrap;
+  }
+
+  .buttonContainer{
+    margin-bottom: 16vh;
+  }
+
+  .main .productImage{
+    width: 18vh;
+  }
+
+}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './SneakersAdmin.css'
 import { useCart } from '../Cart/CartContext';
 import Ripple from '../Ripple Button/Ripple';
+import { useMediaQuery } from 'react-responsive';
 
 function SneakersAdmin() {
   const [SneakersAdmin, setSneakersAdmin] = useState([]);
@@ -145,7 +146,7 @@ function SneakersAdmin() {
   }
 
   ////////////////////////////////////// UPDATE //////////////////////////////////////
-
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
   //RENDER
 
   return (
@@ -161,7 +162,7 @@ function SneakersAdmin() {
               <div className='adminProductInformation'>
 
                 {/* Basic Info */}
-                <div className='adminInfoBlock' style={{ ...dynamicStyle2(sneaker.id), marginLeft: '24px' }}>
+                <div className='adminInfoBlock' style={{ ...dynamicStyle2(sneaker.id), marginLeft: `${isPhone ? '0' : '24px'}` }}>
                   <p>
                     <span>Name:</span> {sneaker.name}&nbsp; <br /><br />
                     <span>Type:</span> {sneaker.type}&nbsp; <br /><br />
@@ -171,7 +172,7 @@ function SneakersAdmin() {
                 </div>
 
                 {/* Images */}
-                <div className='adminInfoBlock' style={dynamicStyle2(sneaker.id)}>
+                <div className='adminInfoBlock' style={{...dynamicStyle2(sneaker.id), marginTop:'0'}}>
                   <p>
                     <span>Image Source:</span> {sneaker.image}&nbsp; <br /><br />
                     <span>ImageNoBG Source:</span> {sneaker.image_noBG}
@@ -182,7 +183,7 @@ function SneakersAdmin() {
                 <div className='updateMenu' style={dynamicStyle(sneaker.id)}>
 
                   {/* Basic Info */}
-                  <div className='adminInfoBlock' style={{ marginLeft: '24px' }}>
+                  <div className='adminInfoBlock' style={{ marginLeft: `${isPhone ? '0' : '24px'}` }}>
                     <p>
                       <span>Name: <input onChange={handleGetData} name='name' id={sneaker.id + 'name'} type='text' placeholder='name' /></span> &nbsp; <br /><br />
                       <span>Type: <input onChange={handleGetData} name='type' id={sneaker.id + 'type'} type='text' placeholder='type' /></span>&nbsp; <br /><br />

@@ -92,3 +92,26 @@
     text-shadow: 6px -6px 25px rgba(255, 255, 153, 0.5);
   }
   /* 3D BANNER END */
+
+  /*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+.bannerImage{
+  height: 50vh;
+  object-position: 75%
+}
+
+.S{
+  font-size: 1rem;
+}
+
+.M{
+  font-size: 2rem;
+}
+
+.L{
+  font-size: 3rem;
+}
+
+  }

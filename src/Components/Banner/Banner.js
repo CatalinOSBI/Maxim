@@ -2,11 +2,13 @@ import React, { useRef, useEffect, useState } from 'react'
 import ContentBanner from './ContentBanner.png';
 import SecondBanner from './SecondBanner';
 import './Banner.css'
+import { useMediaQuery } from 'react-responsive';
 
 function Banner() {
   const containerRef = useRef();
   const [containerHeight] = useState(0);
 
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
 
   useEffect(() => {
     const handleCheckResize = () => {
@@ -17,7 +19,7 @@ function Banner() {
       const containerHeight = (clientWidth / 16) * 1.5;
 
       // add height to container
-      containerRef.current.style.height = `${containerHeight}px`;
+      containerRef.current.style.height = `${isPhone ? 20 + 'vh' : containerHeight + 'px'}`;
     };
 
     handleCheckResize();

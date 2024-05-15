@@ -142,3 +142,13 @@ h3 span{
     right: 0;
     transform: translateX(110%);
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+    .modalContainer{
+        width: 93vw;
+    }
+    
+}

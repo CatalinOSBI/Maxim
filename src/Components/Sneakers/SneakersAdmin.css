@@ -98,3 +98,32 @@
 .adminInfoBlock input{
   width: fit-content;
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+   
+  .adminProductImage{
+    width: 70%;
+  }
+
+  .adminProduct{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .adminInfoBlock{
+    margin-top: 2vh;
+  }
+
+  .updateMenu{
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .adminProductInformation{
+    flex-direction: column;
+  }
+
+  }

@@ -16,11 +16,20 @@ function LoginModal() {
     passwordRef,
     emailSignRef,
     passwordSignRef,
+    conPasswordSignRef,
     usernameSignRef,
     handleSignIn,
     handleResetPassword,
     emailResetPasswordRef,
     dynamicOpacity,
+    handleHideErrors,
+    ErrorA1,
+    ErrorA2,
+    ErrorB1,
+    ErrorB2,
+    ErrorB3,
+    ErrorB4,
+    ErrorC1,
   } = useAuth()
 
   const [modalA, setmodalA] = useState(false);
@@ -32,6 +41,7 @@ function LoginModal() {
     setmodalA(true)
     setmodalB(false)
     setmodalC(false)
+    handleHideErrors()
 
   }, [OpenModal]);
 
@@ -39,18 +49,21 @@ function LoginModal() {
     setmodalB(false)
     setmodalC(false)
     setmodalA(true)
+    handleHideErrors()
   }
 
   const handleShowModalB = () => {
     setmodalA(false)
     setmodalC(false)
     setmodalB(true)
+    handleHideErrors()
   }
 
   const handleShowModalC = () => {
     setmodalA(false)
     setmodalC(true)
     setmodalB(false)
+    handleHideErrors()
   }
 
   //google button
@@ -101,8 +114,8 @@ function LoginModal() {
   return (
     <>
       {OpenModal &&
-        <div className='modalOverlay' ref={modalOverlayRef} style={{opacity:dynamicOpacity}}>
-          <div className='modalContainer' style={{opacity:dynamicOpacity}}>
+        <div className='modalOverlay' ref={modalOverlayRef} style={{ opacity: dynamicOpacity }}>
+          <div className='modalContainer' style={{ opacity: dynamicOpacity }}>
             <button className='closeButton' onClick={handleCloseModal}>X</button>
 
             {/* login */}
@@ -111,18 +124,27 @@ function LoginModal() {
                 <div className='modal A' >
                   <h2 style={{ marginBottom: '20px', fontFamily: 'Zabal', fontSize: '3rem' }}>Log In</h2>
 
-                  <form>
+                  <form name='formA'>
                     <div className='formContainer' style={{ position: 'relative' }}>
 
                       <label>
                         Email:
-                        <input type="text" autoComplete='email' ref={emailRef} />
+                        <input name='email' type="text" autoComplete='email' ref={emailRef} />
                       </label>
 
                       <label>
                         Password:
                         <input name='password' type="password" autoComplete='off' ref={passwordRef} />
                       </label>
+
+                      {/* Error Messages */}
+                      {ErrorA1 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[01] Both fields must be filled.</p>
+                      }
+
+                      {ErrorA2 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[02] Invalid Email or password.</p>
+                      }
 
                       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                         <button onClick={handleLogIn} className='addToCartButton'>
@@ -136,6 +158,7 @@ function LoginModal() {
                           </h3>
 
                           {gButton}
+
 
                         </div>
                       </div>
@@ -173,7 +196,7 @@ function LoginModal() {
               <>
                 <div className='modal B'>
                   <h2 style={{ marginBottom: '20px', fontFamily: 'Zabal', fontSize: '3rem' }}>Sign Up</h2>
-                  <form >
+                  <form name='formB' >
                     <div className='formContainer'>
 
                       <label>
@@ -188,13 +211,30 @@ function LoginModal() {
 
                       <label>
                         Password:
-                        <input type="password" name='new-password' autoComplete="new-password" />
+                        <input type="password" name='new-password' autoComplete="new-password" ref={passwordSignRef} />
                       </label>
 
                       <label>
                         Confirm-Password:
-                        <input type="password" name='new-password' autoComplete="new-password" ref={passwordSignRef} />
+                        <input type="password" name='new-password' autoComplete="new-password" ref={conPasswordSignRef} />
                       </label>
+
+                      {/* Error Messages */}
+                      {ErrorB1 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[03] All fields must be filled.</p>
+                      }
+
+                      {ErrorB2 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[04] Invalid Email.</p>
+                      }
+
+                      {ErrorB3 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[05] Password should be at least 6 characters.</p>
+                      }
+
+                      {ErrorB4 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[06] Passwords must match.</p>
+                      }
 
                       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
                         <button onClick={handleSignIn} className='addToCartButton'>
@@ -225,13 +265,22 @@ function LoginModal() {
               <>
                 <div className='modal C'>
                   <h2 style={{ marginBottom: '20px', fontFamily: 'Zabal', fontSize: '3rem' }}>Password-Reset</h2>
-                  <form >
+                  <form name='formC' >
                     <div className='formContainer'>
 
                       <label >
                         Email:
                         <input name='email' type="email" autoComplete="email" ref={emailResetPasswordRef} />
                       </label>
+
+                      {/* Error Messages */}
+                      {ErrorC1 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[07] Field cannot be empty.</p>
+                      }
+
+                      {ErrorB2 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[04] Invalid Email.</p>
+                      }
 
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <button onClick={handleResetPassword} className='addToCartButton'>

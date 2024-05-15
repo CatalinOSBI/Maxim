@@ -25,8 +25,16 @@ export const AuthProvider = ({ children }) => {
   const [UserEmailVerified, setUserEmailVerified] = useState();
   const [UserAccountCreationTime, setUserAccountCreationTime] = useState();
   const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  const [ErrorA1, setErrorA1] = useState(false);
+  const [ErrorA2, setErrorA2] = useState(false);
+  const [ErrorB1, setErrorB1] = useState(false);
+  const [ErrorB2, setErrorB2] = useState(false);
+  const [ErrorB3, setErrorB3] = useState(false);
+  const [ErrorB4, setErrorB4] = useState(false);
+  const [ErrorC1, setErrorC1] = useState(false);
   const emailRef = useRef()
   const passwordRef = useRef()
+  const conPasswordSignRef = useRef()
   const emailSignRef = useRef()
   const passwordSignRef = useRef()
   const usernameSignRef = useRef()
@@ -70,11 +78,27 @@ export const AuthProvider = ({ children }) => {
 
     const email = emailResetPasswordRef.current.value
 
-    await sendPasswordResetEmail(auth, email)
-    console.log('Email Sent (Password-Reset)')
+    try {
+      if (email === "") {
+        setErrorC1(true)
+        setErrorB2(false)
+        return //break
+
+      } else {
+        setErrorC1(false)
+        setErrorB2(false)
+
+        await sendPasswordResetEmail(auth, email)
+        console.log('Email Sent (Password-Reset)')
+      }
+      
+    } catch (error) {
+      setErrorB2(true)
+    }
+
   }
 
-  const handleSendVerificationEmail = async() => {
+  const handleSendVerificationEmail = async () => {
 
     await sendEmailVerification(auth.currentUser)
     console.log('Email Sent (Verification-Email)')
@@ -90,7 +114,7 @@ export const AuthProvider = ({ children }) => {
         setUserEmail(user.email)
         setUserDisplayName(user.displayName)
         setUserEmailVerified(user.emailVerified)
-        setUserAccountCreationTime(user.metadata.creationTime.slice(5,16))
+        setUserAccountCreationTime(user.metadata.creationTime.slice(5, 16))
       } else {
         setIsLoggedIn(false)
       }
@@ -159,19 +183,55 @@ export const AuthProvider = ({ children }) => {
     const email = emailSignRef.current.value
     const password = passwordSignRef.current.value
     const username = usernameSignRef.current.value
+    const conpassword = conPasswordSignRef.current.value
 
-    await createUserWithEmailAndPassword(auth, email, password)
+    try {
 
-    // Signed up 
-    await updateProfile(auth.currentUser, { displayName: username })
-    console.log('Updated Username')
-    console.log('Signed Up')
+        //MaxiM errors
+      if (email === '' || password === '' || username === "" || conpassword === "") {
+        setErrorB1(true) //all of this true false mumbo jumbo is to show only 1 error at a time
+        setErrorB2(false)
+        setErrorB3(false)
+        setErrorB4(false)
+        return //break
 
-    // Add user to DB
-    await handleUpdateUserDB()
-    // Send Verfication Email
-    await handleSendVerificationEmail()
-    window.location.reload()
+      } else if (password !== conpassword) {
+        setErrorB4(true)
+        setErrorB1(false)
+        setErrorB2(false)
+        setErrorB3(false)
+        return //break
+
+      } else {
+        setErrorB1(false)
+        setErrorB2(false)
+        setErrorB3(false)
+        setErrorB3(false)
+        setErrorB4(false)
+
+        await createUserWithEmailAndPassword(auth, email, password)
+  
+        // Signed up 
+        await updateProfile(auth.currentUser, { displayName: username })
+        console.log('Updated Username')
+        console.log('Signed Up')
+    
+        // Add user to DB
+        await handleUpdateUserDB()
+        // Send Verfication Email
+        await handleSendVerificationEmail()
+        window.location.reload()
+      }
+
+    } catch (error) { //firebase Errors
+      console.log(error.message)
+      if (error.message === 'Firebase: Error (auth/invalid-email).') {
+        setErrorB2(true)
+      } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+        setErrorB3(true)
+      }
+    }
+
   }
 
   //check user role
@@ -218,13 +278,49 @@ export const AuthProvider = ({ children }) => {
   //login
   const handleLogIn = async (e) => {
     e.preventDefault()
+
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log(userCredential.user)
-    handleCloseModal()
-    handleCheckUserRole()
+    //check if fields are filled
+    if (email === '' || password === '') {
+      setErrorA1(true)
+      setErrorA2(false)
+      return
+
+    } else {
+
+      setErrorA1(false)
+
+      try {
+        setErrorA2(false)
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log(userCredential.user)
+        handleCloseModal()
+        handleCheckUserRole()
+
+        //firebase errors
+      } catch (error) {
+        console.log('error', error.message)
+        setErrorA2(true)
+      }
+    }
+
+  }
+
+  /////////////
+  //  ERRORS //
+  /////////////
+
+  const handleHideErrors = () => { 
+    setErrorA1(false)
+    setErrorA2(false)
+    setErrorB1(false)
+    setErrorB2(false)
+    setErrorB3(false)
+    setErrorB3(false)
+    setErrorB4(false)
+    setErrorC1(false)
   }
 
   ////////////
@@ -235,12 +331,13 @@ export const AuthProvider = ({ children }) => {
   const handleOpenModal = () => {
     setOpenModal(true)
     setTimeout(() => { setDynamicOpacity(1) }, 1)
-    
+
   }
   //Close Modal
   const handleCloseModal = () => {
     setDynamicOpacity(0)
     setTimeout(() => { setOpenModal(false) }, 218)
+    handleHideErrors()
   }
 
   return (
@@ -263,6 +360,7 @@ export const AuthProvider = ({ children }) => {
       passwordRef,
       emailSignRef,
       passwordSignRef,
+      conPasswordSignRef,
       usernameSignRef,
       handleSignIn,
       handleResetPassword,
@@ -270,6 +368,14 @@ export const AuthProvider = ({ children }) => {
       UserAccountCreationTime,
       setDynamicOpacity,
       dynamicOpacity,
+      handleHideErrors,
+      ErrorA1,
+      ErrorA2,
+      ErrorB1,
+      ErrorB2,
+      ErrorB3,
+      ErrorB4,
+      ErrorC1,
     }}>
 
       {children}

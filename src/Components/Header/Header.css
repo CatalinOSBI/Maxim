@@ -57,6 +57,10 @@ header{
     background-color: aliceblue;
 }
 
+.username{
+    margin-left: 2%;
+}
+
 .username::before{
     content:'';
     position: absolute;
@@ -68,3 +72,13 @@ header{
     transform: translate(-120%);
     margin-left: 2%;
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+    .username{
+        margin-left: 5%;
+    }
+  
+    }

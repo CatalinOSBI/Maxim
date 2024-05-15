@@ -4,8 +4,8 @@ footer{
   height: 60px;
   background-color: #202020;
   color: Grey;
-  bottom: 0;
   display: flex;
   justify-content: center;
   font-family: 'Zabal';
+  /* bottom: 0; */
 }

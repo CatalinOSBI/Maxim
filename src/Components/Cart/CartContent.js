@@ -23,8 +23,11 @@ const CartContent = () => {
 
   useEffect(() => {
 
-    const height = imageRef.current.clientHeight;
-    setImageHeight(height + 'px');
+    if (imageRef.current) {
+      
+      const height = imageRef.current.clientHeight;
+      setImageHeight(height + 'px');
+    }
 
   }, []);
 
@@ -110,7 +113,7 @@ const CartContent = () => {
           <p className='productTag sName'>{sneaker.name}</p>
           <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
           <p className='productTag sPrice' style={{ textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', right: '0%', top: '0%', position: 'absolute' }}>${sneaker.price}</p>
-          <p className='productTag ' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
+          <p className='productTag Year' style={{ fontFamily: 'Helvetica Now Text Medium, Helvetica, Arial' }}>{sneaker.release_year}</p>
         </div>
 
         <div className='infoButtonContainer' >

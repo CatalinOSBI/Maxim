@@ -5,6 +5,7 @@ import './Sneakers.css'
 import { useCart } from '../Cart/CartContext';
 import { useMenu } from './MenuContext';
 import Menu from './Menu';
+import { useMediaQuery } from 'react-responsive';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
@@ -72,7 +73,7 @@ function Sneakers() {
     setApiUrl(newApiUrl);
 
 //reset scroll
-    if (productContainerRef) {
+    if (productContainerRef.current.scrollLeft) {
       setTimeout(() => {
 
         productContainerRef.current.scrollLeft = 0;
@@ -170,11 +171,13 @@ function Sneakers() {
   }, [currentScroll]);
   //RENDER
 
+  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
+
   return (
     <>
 
       <div className='filterContainer'>
-          <Menu />
+          {!isPhone && <Menu/>}
         <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
           {sneakers.length > 0 ? (
             sneakers.map((sneaker) => (

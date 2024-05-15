@@ -53,3 +53,31 @@
   width: fit-content;
   justify-content: center;
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+   
+.addButtonContainer{
+  gap: 16px;
+  margin-top: 2vh;
+}
+
+.adminAddContainer{
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addProductContainer{
+  height: 50vh;
+}
+
+.adminAddContainer .adminInfoBlock{
+  width: fit-content;
+}
+
+.adminPreview .productImage{
+  width: 60vw;
+}
+
+  }

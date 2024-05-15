@@ -6,6 +6,7 @@
   max-width: 1632px;
   height: auto;
   position: relative;
+  margin-bottom: 4%;
 }
 
 .adImage{
@@ -47,3 +48,23 @@
   height: auto;
   filter: grayscale(100%);
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+  .adContainer{
+    flex-direction: column;
+  }
+
+  .adImage{
+    width: 64%;
+  }
+
+  .imageWrapper{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  }

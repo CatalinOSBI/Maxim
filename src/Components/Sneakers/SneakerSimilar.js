@@ -49,12 +49,14 @@ function SneakersSimilar({ Type }) {
 
   useEffect(() => {
 
-    //reset scroll
-    setTimeout(() => {
+//reset scroll
+if (productContainerRef.current.scrollLeft) {
+  setTimeout(() => {
 
-      productContainerRef.current.scrollLeft = 0;
+    productContainerRef.current.scrollLeft = 0;
 
-    }, 500);
+  }, 500);
+}
 
   }, [optionValueType, optionValueYear]);
 
@@ -69,20 +71,23 @@ function SneakersSimilar({ Type }) {
     }
 
     //Check if container is scrollable horizontally done with freaking timeout
-    setTimeout(() => {
+    const container = productContainerRef.current;
+    if (container.scrollWidth) {
+      
+      setTimeout(() => {
+  
+        if (container.scrollWidth > container.clientWidth) {
+          setDynamicOpacityRight(1)
+          console.log('Turn on')
+        }
+        else {
+          setDynamicOpacityRight(0.4)
+          console.log('Turn off')
+        }
+  
+      }, 160);
 
-      const container = productContainerRef.current;
-
-      if (container.scrollWidth > container.clientWidth) {
-        setDynamicOpacityRight(1)
-        console.log('Turn on')
-      }
-      else {
-        setDynamicOpacityRight(0.4)
-        console.log('Turn off')
-      }
-
-    }, 160);
+    }
 
   }, [optionValueType, optionValueYear]);
 

@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   gap: 24px;
+  margin-top: 2vh;
 }
 
 .listItem {
@@ -119,3 +120,31 @@
   padding: 16px 16px 16px 16px;
   overflow: hidden;
 }
+
+/*------------------ MEDIA QUERY ------------------*/
+
+@media screen and (max-width: 600px) {
+    
+  .cartPage{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .infoBlock{
+    height: fit-content;
+  }
+
+  .Summary{
+    margin-bottom: 24px;
+  }
+
+  .infoBlock .Year {
+    margin-bottom: 8px;
+  }
+
+  .cartProduct:first-child{
+    margin-top: 8px;
+  }
+
+  }
