@@ -147,7 +147,7 @@ app.get('/sneakers/:id', (req, res) => {
 //-----------------CUSTOM GET (ALL FIELDS IN COLUMN)-----------------//
 app.get('/sneakers3/column/:columnName', (req, res) => {
     const columnName = req.params.columnName
-    const SQL = `SELECT DISTINCT ?? FROM sneakers;`;
+    const SQL = `SELECT DISTINCT ?? FROM defaultdb.sneakers;`;
 
     DB.query(SQL, columnName, (err, data) => {
         if (err) {
@@ -165,7 +165,7 @@ app.get('/sneakers3/column/:columnName', (req, res) => {
 app.get('/sneaker2/filter', (req, res) => {
     const { type, release_year } = req.query;
   
-    let query = 'SELECT * FROM sneakers WHERE 1'; // Start with a true condition
+    let query = 'SELECT * FROM defaultdb.sneakers WHERE 1'; // Start with a true condition
   
     const queryParams = [];
   

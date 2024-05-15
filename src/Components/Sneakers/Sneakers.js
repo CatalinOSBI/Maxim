@@ -73,7 +73,7 @@ function Sneakers() {
     setApiUrl(newApiUrl);
 
 //reset scroll
-    if (productContainerRef.current.scrollLeft) {
+    if (productContainerRef.current) {
       setTimeout(() => {
 
         productContainerRef.current.scrollLeft = 0;
@@ -96,8 +96,9 @@ function Sneakers() {
 
     //Check if container is scrollable horizontally done with freaking timeout
     const container = productContainerRef.current;
-    if (container.scrollWidth) {
-      
+    
+    if (sneakers.length > 0) {
+      console.log('sneakers.length', sneakers.length)
       setTimeout(() => {
   
         if (container.scrollWidth > container.clientWidth) {
