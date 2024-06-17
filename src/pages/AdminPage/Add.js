@@ -20,7 +20,7 @@ const AddFunction = () => {
   //Api call
 
   useEffect(() => {
-    axios.get(`http://localhost:1989/sneakers3/column/${'type'}`)
+    axios.get(`https://maxim-backend-s8un.onrender.com/sneakers3/column/${'type'}`)
       .then((res) => {
         setType(res.data);
       })
@@ -41,7 +41,7 @@ const AddFunction = () => {
 
   const Update_MySql_DB = async () => {
 
-    await axios.post('http://localhost:1989/sneakers', Info)
+    await axios.post('https://maxim-backend-s8un.onrender.com/sneakers', Info)
 
     console.log('MySql DB Updated2')
 

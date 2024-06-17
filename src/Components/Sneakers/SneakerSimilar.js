@@ -6,7 +6,7 @@ import { useCart } from '../Cart/CartContext';
 
 function SneakersSimilar({ Type }) {
   const [sneakersSimilar, setSneakersSimilar] = useState([]);
-  const [apiUrl, setApiUrl] = useState('http://localhost:1989/sneaker2/filter?&');
+  const [apiUrl, setApiUrl] = useState('https://maxim-backend-s8un.onrender.com/sneaker2/filter?&');
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
@@ -94,7 +94,7 @@ if (productContainerRef.current.scrollLeft) {
   //API
 
   useEffect(() => {
-    axios.get(`http://localhost:1989/sneaker2/filter?${optionValueType}&`).then((res) => {
+    axios.get(`https://maxim-backend-s8un.onrender.com/sneaker2/filter?${optionValueType}&`).then((res) => {
       setSneakersSimilar(res.data);
     });
 

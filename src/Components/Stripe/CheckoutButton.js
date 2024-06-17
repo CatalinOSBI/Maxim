@@ -10,7 +10,7 @@ const CheckoutButton = (ShoppingCart) => {
   const handleCheckout = async () => {
     try {
 
-      const response = await axios.post('http://localhost:1989/api/create-checkout-session', ShoppingCart)
+      const response = await axios.post('https://maxim-backend-s8un.onrender.com/api/create-checkout-session', ShoppingCart)
 
       const session = response.data
 

@@ -39,7 +39,7 @@ function SneakersAdmin() {
   //API
 
   useEffect(() => {
-    axios.get(`http://localhost:1989/sneakers`).then((res) => {
+    axios.get(`https://maxim-backend-s8un.onrender.com/sneakers`).then((res) => {
       setSneakersAdmin(res.data);
     });
 
@@ -47,8 +47,8 @@ function SneakersAdmin() {
 
   //DELETE
 
-  const handleDeleteSneaker = (id) => {
-    axios.delete(`http://localhost:1989/sneakers/${id}`);
+  const handleDeleteSneaker = async(id) => {
+    await axios.delete(`https://maxim-backend-s8un.onrender.com/sneakers/${id}`);
     console.log('deleted' + ' ' + id)
 
     setReloader((prev) => prev + 1)
@@ -67,6 +67,8 @@ function SneakersAdmin() {
 
   const handleUpdate = (id) => {
     setActiveSneaker(id)
+
+    // change this, it sucks
 
     if (DynamicOpacity === 0) {
       setDynamicOpacity(1)
@@ -91,7 +93,7 @@ function SneakersAdmin() {
   //Api call
   useEffect(() => {
 
-    axios.get("http://localhost:1989/sneakers/" + ActiveSneaker)
+    axios.get("https://maxim-backend-s8un.onrender.com/sneakers/" + ActiveSneaker)
 
       .then(res => {
         setData(res.data[0])
@@ -118,7 +120,7 @@ function SneakersAdmin() {
 
     console.log(Info)
 
-    await axios.put('http://localhost:1989/sneakers/' + id, Info)
+    await axios.put('https://maxim-backend-s8un.onrender.com/sneakers/' + id, Info)
       .then(res => {
         console.log('PUT Request Successful');
         console.log('Response Data:', res.data);

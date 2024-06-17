@@ -23,7 +23,7 @@ function Update() {
 
     useEffect(()=>{
 
-      axios.get("http://localhost:1989/sneakers/"+id)
+      axios.get("https://maxim-backend-s8un.onrender.com/sneakers/"+id)
       
           .then(res => {
               const {id, ...dataWithNoId} = res.data[0]
@@ -38,7 +38,7 @@ function Update() {
 
    console.log(Info)
 
-    axios.put('http://localhost:1989/sneakers/'+ id, Info)
+    axios.put('https://maxim-backend-s8un.onrender.com/sneakers/'+ id, Info)
     .then(res => {
       console.log('PUT Request Successful');
       console.log('Response Data:', res.data);

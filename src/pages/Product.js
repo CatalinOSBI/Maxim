@@ -32,7 +32,7 @@ function Product() {
 
   useEffect(() => {
 
-    axios.get("http://localhost:1989/sneakers/" + id)
+    axios.get("https://maxim-backend-s8un.onrender.com/sneakers/" + id)
 
       .then(res => {
         setSneakers(res.data[0])

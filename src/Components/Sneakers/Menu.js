@@ -22,7 +22,7 @@ const Menu = () => {
 
   //api calls
   useEffect(() => {
-    axios.get(`http://localhost:1989/sneakers3/column/${'type'}`)
+    axios.get(`https://maxim-backend-s8un.onrender.com/sneakers3/column/${'type'}`)
       .then((res) => {
         setType(res.data);
       })
@@ -30,7 +30,7 @@ const Menu = () => {
         console.log(err);
       })
 
-    axios.get(`http://localhost:1989/sneakers3/column/${'release_year'}`)
+    axios.get(`https://maxim-backend-s8un.onrender.com/sneakers3/column/${'release_year'}`)
       .then((res) => {
         setRelease_year(res.data);
       })

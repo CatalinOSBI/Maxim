@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
-  const [apiUrl, setApiUrl] = useState('http://localhost:1989/sneaker2/filter?&');
+  const [apiUrl, setApiUrl] = useState('https://maxim-backend-s8un.onrender.com/sneaker2/filter?&');
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
@@ -69,7 +69,7 @@ function Sneakers() {
       filterYear = '';
     }
 
-    const newApiUrl = `http://localhost:1989/sneaker2/filter?${filterType}&${filterYear}`;
+    const newApiUrl = `https://maxim-backend-s8un.onrender.com/sneaker2/filter?${filterType}&${filterYear}`;
     setApiUrl(newApiUrl);
 
 //reset scroll
@@ -128,7 +128,7 @@ function Sneakers() {
   //DELETE
 
   const deleteSneaker = (id) => {
-    axios.delete(`http://localhost:1989/sneakers/${id}`);
+    axios.delete(`https://maxim-backend-s8un.onrender.com/sneakers/${id}`);
     window.location.reload();
   };
 
