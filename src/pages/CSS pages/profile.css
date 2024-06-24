@@ -1,6 +1,6 @@
 .profilePageContainer{
   width: 100%;
-  height: fit-content;
+  min-height: calc(100vh - 158px);
   display: flex;
   align-items: top;
   justify-content: center;
@@ -65,7 +65,7 @@
 .profileMenuContentBottom{
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   position: absolute;
   bottom: 0;
   right: 0;

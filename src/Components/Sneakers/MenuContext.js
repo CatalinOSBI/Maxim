@@ -1,9 +1,9 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 const MenuContext = createContext();
 
 export const MenuProvider = ({ children }) => {
-//vars
+  //vars
   const [isOpenType, setIsOpenType] = useState(false);
   const [isOpenYear, setIsOpenYear] = useState(false);
   const [optionValueType, setoptionValueType] = useState('Any');

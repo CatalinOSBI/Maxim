@@ -34,17 +34,15 @@ function Sneakers() {
   } = useMenu();
 
   // SCROLL RIGHT
-
   const scrollRight = () => {
     if (productContainerRef.current) {
 
-      productContainerRef.current.scrollLeft += 400;
+      productContainerRef.current.scrollLeft += 200;
 
     }
   };
 
   // SCROLL LEFT
-
   const scrollLeft = () => {
     if (productContainerRef.current) {
 
@@ -54,7 +52,6 @@ function Sneakers() {
   };
 
   //API FILTER
-
   useEffect(() => {
     
     let filterType = 'type=' + optionValueType;
@@ -73,7 +70,7 @@ function Sneakers() {
     setApiUrl(newApiUrl);
 
 //reset scroll
-    if (productContainerRef.current) {
+    if (productContainerRef.current.scrollLeft) {
       setTimeout(() => {
 
         productContainerRef.current.scrollLeft = 0;
@@ -85,7 +82,6 @@ function Sneakers() {
   }, [optionValueType, optionValueYear]);
 
   // CHECK ANY START - dynamic arrangement of the products (CSS justify content)
-
   useEffect(() => {
 
     if (optionValueType === 'Any' && optionValueYear === 'Any') {
@@ -117,7 +113,6 @@ function Sneakers() {
   }, [optionValueType, optionValueYear]);
 
   //API
-
   useEffect(() => {
     axios.get(apiUrl).then((res) => {
       setSneakers(res.data);
@@ -125,15 +120,7 @@ function Sneakers() {
 
   }, [apiUrl]);
 
-  //DELETE
-
-  const deleteSneaker = (id) => {
-    axios.delete(`https://maxim-backend-s8un.onrender.com/sneakers/${id}`);
-    window.location.reload();
-  };
-
   //DYNAMIC OPACITY with event listeners
-
   const handleScroll = () => {
     if (productContainerRef.current) {
       setCurrentScroll(productContainerRef.current.scrollLeft);
@@ -170,15 +157,15 @@ function Sneakers() {
 
     }
   }, [currentScroll]);
+
   //RENDER
-
-  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
-
   return (
     <>
 
       <div className='filterContainer'>
-          {!isPhone && <Menu/>}
+
+           <Menu/>
+
         <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
           {sneakers.length > 0 ? (
             sneakers.map((sneaker) => (

@@ -75,7 +75,7 @@ header{
 
 /*------------------ MEDIA QUERY ------------------*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
     
     .username{
         margin-left: 5%;

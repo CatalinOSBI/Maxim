@@ -7,14 +7,14 @@ const Footer = () => {
   let location = useLocation()
   let page = location.pathname.split('/')[1]
 
-  const [KORN, setKORN] = useState();
+  const [position, setPosition] = useState();
 
   useEffect(() => {
 
     if (page === 'Product' && isPhone) {
-      setKORN('')
+      setPosition('')
     } else {
-      setKORN('0')
+      setPosition('0')
     } 
 
 
@@ -23,11 +23,8 @@ const Footer = () => {
 
   const isPhone = useMediaQuery({ query: '(max-width: 600px)' })
 
-  const position = page ==='Product' && isPhone ? 'absolute' : (page ==='Product' ? 'absolute' : 'absolute1')
-  const bottom = page ==='Profile' && isPhone ? '0' : (page ==='Cart' && isPhone ? '' : '')
-
   return (
-    <footer style={{ position: `${page ==='Product' && isPhone ? 'absolute' : (page ==='Product' ? 'relative' : (page ==='Home' ? 'relative' : 'absolute'))}`, bottom: KORN}}>
+    <footer>
       <p>MaxiM&trade;</p>
     </footer>
   )

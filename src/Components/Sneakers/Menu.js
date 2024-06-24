@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import './Menu.css'
 import { useMenu } from './MenuContext';
@@ -19,6 +19,22 @@ const Menu = () => {
   //vars
   const [release_year, setRelease_year] = useState([]);
   const [type, setType] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+
+    //Update width whenever it changes
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    //Event listener
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); 
 
   //api calls
   useEffect(() => {
@@ -39,64 +55,65 @@ const Menu = () => {
       })
   }, []);
 
+  //Mapping
   const typeList = type.map((item) =>
-    <div style={{color:`${optionValueType === item.type ? 'black' : 'white'}`, backgroundColor:`${optionValueType === item.type ? 'white' : 'black'}`}} className='optionContainer'>
-      <li className='option' key={item.index} onClick={() => handleGetValueType(item.type)}>
+    <div key={item.index} style={{ color: `${optionValueType === item.type ? 'black' : 'white'}`, backgroundColor: `${optionValueType === item.type ? 'white' : 'black'}` }} className='optionContainer'>
+      <li className='option' onClick={() => handleGetValueType(item.type)}>
         {item.type}
       </li>
     </div>
   );
 
   const yearList = release_year.map((item) =>
-  <div style={{color:`${optionValueYear === item.release_year ? 'black' : 'white'}`, backgroundColor:`${optionValueYear === item.release_year ? 'white' : 'black'}`}} className='optionContainer'>
-    <li className='option' key={item.index} onClick={() => handleGetValueYear(item.release_year)}>
-      {item.release_year}
-    </li>
-  </div>
-);
+    <div key={item.index} style={{ color: `${optionValueYear === item.release_year ? 'black' : 'white'}`, backgroundColor: `${optionValueYear === item.release_year ? 'white' : 'black'}` }} className='optionContainer'>
+      <li className='option' onClick={() => handleGetValueYear(item.release_year)}>
+        {item.release_year}
+      </li>
+    </div>
+  );
 
-//rendering
+  //rendering
   return (
     <>
-    {/* //type */}
-    <div className="dropdown-container">
-    <p style={{fontSize:'32px'}}>Type:</p>
+      {/* //type */}
+      <div className="dropdown-container" style={{display: windowWidth < 1400 ? 'none' : ''}}>
+        <p style={{ fontSize: '32px' }}>Type:</p>
 
-      <div className={`dropdown-header ${isOpenType ? 'open' : ''}`} onClick={toggleDropdownType}>
-        {optionValueType}
-        <p><i className={`arrow down ${isOpenType ? 'rotate' : ''}`} style={{ borderBottom: 'solid white', borderRight: 'solid white' }}></i></p>
-      </div>
-
-      <ul className={`dropdown-options ${isOpenType ? 'show' : ''}`}>
-
-      <div style={{color:`${optionValueType === 'Any' ? 'black' : 'white'}`, backgroundColor:`${optionValueType === 'Any' ? 'white' : 'black'}`}} className='optionContainer'>
-        <li className='option' onClick={() => handleGetValueType('Any')}>
-          Any
-        </li>
+        <div className={`dropdown-header ${isOpenType ? 'open' : ''}`} onClick={toggleDropdownType}>
+          {optionValueType}
+          <p><i className={`arrow down ${isOpenType ? 'rotate' : ''}`} style={{ borderBottom: 'solid white', borderRight: 'solid white' }}></i></p>
         </div>
 
-        {typeList}
-      </ul>
+        <ul className={`dropdown-options ${isOpenType ? 'show' : ''}`}>
 
-    {/* //year */}
-    <p style={{fontSize:'32px'}}>Year:</p>
+          <div key={'test2'} style={{ color: `${optionValueType === 'Any' ? 'black' : 'white'}`, backgroundColor: `${optionValueType === 'Any' ? 'white' : 'black'}` }} className='optionContainer'>
+            <li className='option' onClick={() => handleGetValueType('Any')}>
+              Any
+            </li>
+          </div>
 
-      <div className={`dropdown-header ${isOpenYear ? 'open' : ''}`} onClick={toggleDropdownYear}>
-        {optionValueYear}
-        <p><i className={`arrow down ${isOpenYear ? 'rotate' : ''}`} style={{ borderBottom: 'solid white', borderRight: 'solid white' }}></i></p>
-      </div>
+          {typeList}
+        </ul>
 
-      <ul className={`dropdown-options ${isOpenYear ? 'show' : ''}`}>
+        {/* //year */}
+        <p style={{ fontSize: '32px' }}>Year:</p>
 
-      <div style={{color:`${optionValueYear === 'Any' ? 'black' : 'white'}`, backgroundColor:`${optionValueYear === 'Any' ? 'white' : 'black'}`}} className='optionContainer'>
-        <li className='option' onClick={() => handleGetValueYear('Any')}>
-          Any
-        </li>
+        <div className={`dropdown-header ${isOpenYear ? 'open' : ''}`} onClick={toggleDropdownYear}>
+          {optionValueYear}
+          <p><i className={`arrow down ${isOpenYear ? 'rotate' : ''}`} style={{ borderBottom: 'solid white', borderRight: 'solid white' }}></i></p>
         </div>
 
-        {yearList}
-      </ul>
-    </div>
+        <ul className={`dropdown-options ${isOpenYear ? 'show' : ''}`}>
+
+          <div key={'test1'} style={{ color: `${optionValueYear === 'Any' ? 'black' : 'white'}`, backgroundColor: `${optionValueYear === 'Any' ? 'white' : 'black'}` }} className='optionContainer'>
+            <li className='option' onClick={() => handleGetValueYear('Any')}>
+              Any
+            </li>
+          </div>
+
+          {yearList}
+        </ul>
+      </div>
     </>
   );
 };

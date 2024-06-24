@@ -6,6 +6,7 @@
   align-items: flex-end;
   overflow-y: hidden;
   height: 450px;
+  /* border: solid red; */
   min-width: 950px;
   max-width: 1610px;
   scroll-snap-type: x mandatory;
@@ -13,7 +14,6 @@
   overscroll-behavior-x: contain;
   width: 64.2%;
   padding-right: 28.5px;
-  /* height: auto; */
   gap: 21px;
 }
 
@@ -227,5 +227,17 @@ h1 {
   .main .productImage{
     width: 18vh;
   }
+
+  .productContainer{
+    gap: 1%;
+  }
+
+}
+  @media only screen and (orientation: portrait) {
+
+    .productContainer{
+      min-width: 0;
+      width: 93%;
+    }
 
 }
