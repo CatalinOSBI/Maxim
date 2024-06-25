@@ -98,20 +98,18 @@ const AddFunction = () => {
     <>
       <div className='adminAddContainer'>
 
-        <div className='adminInfoBlock' style={{ height:`${isPhone ? '120%' : '65%'}` }}>
+        <div className='adminInfoBlock' style={{ height:`${isPhone ? '120%' : '65%'}`, gap:'0' }}>
           <input name='name' id='name' type='text' placeholder='name' onChange={getData} ref={nameRef}/>
-
           {/* <select name="type" id="type" onChange={getData} ref={typeRef}>
             <option value='Choose Type'>Choose Type</option>
             {typeList}
           </select> */}
           <input name='type' id='type' type='text' placeholder='type' onChange={getData} ref={typeRef}/>
-
           <input name='release_year' id='release_year' type='number' placeholder='release_year' onChange={getData} ref={yearRef} />
           <input name='price' id='price' type="number" placeholder='price (ex: 29.99)' min="1" step="any" onChange={getData} ref={priceRef} />
         </div>
 
-        <div className='adminInfoBlock' style={{ height: '65%' }} >
+        <div className='adminInfoBlock' style={{ height: '65%', gap:'0' }} >
           <input name='image' id='image' type='text' placeholder='image' onChange={getData} ref={imageRef}/>
           <input name='image_noBG' id='image-noBG' type='text' placeholder='image_noBG' onChange={getData} ref={imageNoBGRef} />
         </div>
@@ -124,7 +122,6 @@ const AddFunction = () => {
           <button onClick={handleTogglePreview}>Toggle Preview
             <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
           </button>
-
         </div>
 
       </div>

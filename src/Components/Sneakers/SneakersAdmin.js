@@ -1,40 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './SneakersAdmin.css'
-import { useCart } from '../Cart/CartContext';
 import Ripple from '../Ripple Button/Ripple';
-import { useMediaQuery } from 'react-responsive';
 
 function SneakersAdmin() {
   const [SneakersAdmin, setSneakersAdmin] = useState([]);
   const [Reloader, setReloader] = useState();
   const [ActiveSneaker, setActiveSneaker] = useState();
-  const [DynamicOpacity, setDynamicOpacity] = useState(0);
-  const [DynamicOpacity2, setDynamicOpacity2] = useState(1);
-  const [DynamicZ, setDynamicZ] = useState(0);
+  const [showUpdateMenu, setShowUpdateMenu] = useState(false);
   const [Data, setData] = useState();
 
-  //dynamic styling
-  const dynamicStyle = (id) => ({
-    zIndex: `${ActiveSneaker === id ? DynamicZ : '0'}`,
-    opacity: `${ActiveSneaker === id ? DynamicOpacity : '0'}`,
-  });
-
-  const dynamicStyle2 = (id) => ({
-    opacity: `${ActiveSneaker === id ? DynamicOpacity2 : '1'}`,
-    zIndex: '1'
-  });
 
   useEffect(() => {
     setReloader(1)
   }, []);
-
-  const { handleAddCartNumberStorage,
-    handleAddToCart,
-    handleRemoveFromCart,
-    handleRemoveQuantity,
-    cartList,
-  } = useCart();
 
   //API
 
@@ -47,7 +26,7 @@ function SneakersAdmin() {
 
   //DELETE
 
-  const handleDeleteSneaker = async(id) => {
+  const handleDeleteSneaker = async (id) => {
     await axios.delete(`https://maxim-backend-s8un.onrender.com/sneakers/${id}`);
     console.log('deleted' + ' ' + id)
 
@@ -67,27 +46,7 @@ function SneakersAdmin() {
 
   const handleUpdate = (id) => {
     setActiveSneaker(id)
-
-    // change this, it sucks
-
-    if (DynamicOpacity === 0) {
-      setDynamicOpacity(1)
-    } else {
-      setDynamicOpacity(0)
-    }
-
-    if (DynamicOpacity2 === 1) {
-      setDynamicOpacity2(0)
-    } else {
-      setDynamicOpacity2(1)
-    }
-
-    if (DynamicZ === 0) {
-      setDynamicZ(44)
-    } else {
-      setDynamicZ(0)
-    }
-
+    setShowUpdateMenu(!showUpdateMenu)
   }
 
   //Api call
@@ -148,9 +107,8 @@ function SneakersAdmin() {
   }
 
   ////////////////////////////////////// UPDATE //////////////////////////////////////
-  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
-  //RENDER
 
+  //RENDER
   return (
     <>
       <div id='adminProductContainer' className='adminProductContainer'>
@@ -159,79 +117,80 @@ function SneakersAdmin() {
 
             <div key={sneaker.id} className='adminProduct'>
 
-              <img className='adminProductImage' src={sneaker.image} alt='Sneaker' />
+              <div className='adminProductImageContainer'>
+                <img className='adminProductImage' src={sneaker.image} alt='Sneaker' />
+
+                {/* Buttons */}
+                <div className='addButtonContainer' style={{ width: '100%' }}>
+                  <button style={{ width: '100%' }} onClick={() => handleUpdate(sneaker.id)}>Update
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+                  </button>
+
+                  <button style={{ width: '100%' }} onClick={() => handleDeleteSneaker(sneaker.id)}>Delete
+                    <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
+                  </button>
+                </div>
+              </div>
 
               <div className='adminProductInformation'>
 
-                {/* Basic Info */}
-                <div className='adminInfoBlock' style={{ ...dynamicStyle2(sneaker.id), marginLeft: `${isPhone ? '0' : '24px'}` }}>
-                  <p>
-                    <span>Name:</span> {sneaker.name}&nbsp; <br /><br />
-                    <span>Type:</span> {sneaker.type}&nbsp; <br /><br />
-                    <span>Release Year:</span> {sneaker.release_year}&nbsp; <br /><br />
-                    <span>Price:</span> ${sneaker.price}
-                  </p>
-                </div>
-
-                {/* Images */}
-                <div className='adminInfoBlock' style={{...dynamicStyle2(sneaker.id), marginTop:'0'}}>
-                  <p>
-                    <span>Image Source:</span> {sneaker.image}&nbsp; <br /><br />
-                    <span>ImageNoBG Source:</span> {sneaker.image_noBG}
-                  </p>
-                </div>
-
                 {/* Show Update Menu */}
-                <div className='updateMenu' style={dynamicStyle(sneaker.id)}>
+                {showUpdateMenu && ActiveSneaker == sneaker.id ?
+                  <div className='updateMenu'>
 
-                  {/* Basic Info */}
-                  <div className='adminInfoBlock' style={{ marginLeft: `${isPhone ? '0' : '24px'}` }}>
-                    <p>
-                      <span>Name: <input onChange={handleGetData} name='name' id={sneaker.id + 'name'} type='text' placeholder='name' /></span> &nbsp; <br /><br />
-                      <span>Type: <input onChange={handleGetData} name='type' id={sneaker.id + 'type'} type='text' placeholder='type' /></span>&nbsp; <br /><br />
-                      <span>Release Year: <input onChange={handleGetData} name='release_year' id={sneaker.id + 'year'} type='number' placeholder='release year' /></span>&nbsp; <br /><br />
-                      <span>Price: <input onChange={handleGetData} name='price' id={sneaker.id + 'price'} type="number" placeholder='price' min="1" step="any" /></span>
-                    </p>
-                  </div>
+                    {/* Basic Info */}
+                    <div className='adminInfoBlock'>
+                      <p>Name: <input onChange={handleGetData} name='name' id={sneaker.id + 'name'} type='text' placeholder='name' /></p>
+                      <p>Type: <input onChange={handleGetData} name='type' id={sneaker.id + 'type'} type='text' placeholder='type' /></p>
+                      <p>Release Year: <input onChange={handleGetData} name='release_year' id={sneaker.id + 'year'} type='number' placeholder='release year' /></p>
+                      <p>Price: <input onChange={handleGetData} name='price' id={sneaker.id + 'price'} type="number" placeholder='price' min="1" step="any" /></p>
+                    </div>
 
-                  {/* Images */}
-                  <div className='adminInfoBlock'>
-                    <p>
-                      <span>Image Source: <input onChange={handleGetData} name='image' id={sneaker.id + 'image'} type='text' placeholder='image' /></span>&nbsp; <br /><br />
-                      <span>ImageNoBG Source: <input onChange={handleGetData} name='image_noBG' id={sneaker.id + 'image_noBG'} type='text' placeholder='image_noBG' /></span>
-                    </p>
+                    {/* Images */}
+                    <div className='adminInfoBlock'>
+                      <p>Image Source: <input onChange={handleGetData} name='image' id={sneaker.id + 'image'} type='text' placeholder='image' /></p>
+                      <p>ImageNoBG Source: <input onChange={handleGetData} name='image_noBG' id={sneaker.id + 'image_noBG'} type='text' placeholder='image_noBG' /></p>
+                    </div>
 
-                    <div className='profileMenuContentBottom'>
-                      <button style={{ width: 'fit-content' }} onClick={() => originalData(sneaker.id)}>Get Original Data
+                    <div className='adminButtonContainer'>
+                      <button onClick={() => originalData(sneaker.id)}>Get Original Data
+                        <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
                       </button>
 
                       <button onClick={() => handleUpdateSneaker(sneaker.id)}>Confirm
+                        <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
                       </button>
 
                       <button onClick={() => handleUpdate(sneaker.id)} style={{ marginRight: "2%" }}>Cancel
+                        <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
                       </button>
                     </div>
+
                   </div>
-                </div>
+
+                  : //Else
+                  <>
+                    {/* Show Update Menu */}
+                    {/* Basic Info */}
+                    <div className='adminInfoBlock'>
+                      <p> Name: <span className='bold'>{sneaker.name}</span></p>
+                      <p> Type: <span className='bold'>{sneaker.type}</span></p>
+                      <p> Release Year: <span className='bold'>{sneaker.release_year}</span></p>
+                      <p> Price: <span className='bold'> ${sneaker.price}</span></p>
+                    </div>
+
+                    {/* Images */}
+                    <div className='adminInfoBlock' style={{ marginTop: '0' }}>
+                      <p> Image Source: <span className='bold'>{sneaker.image}</span></p>
+                      <p> ImageNoBG Source: <span className='bold'>{sneaker.image_noBG}</span></p>
+                    </div>
+                  </>
+                }
 
               </div>
-
-              {/* Buttons */}
-              <div className='addButtonContainer'>
-                <button onClick={() => handleUpdate(sneaker.id)}>Update
-                  <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
-                </button>
-
-                <button onClick={() => handleDeleteSneaker(sneaker.id)}>Delete
-                  <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
-                </button>
-              </div>
-
             </div>
           ))
 
-        ) : SneakersAdmin.length === 0 ? (
-          <p>No Results Found</p>
         ) : (
           <p id='loading'>Loading...</p>
         )}

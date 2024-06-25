@@ -45,16 +45,16 @@ const ProfilePage = () => {
       </div>
 
       <div className='profileMenuContent'>
-        <p> <span>Username: </span> {UserDisplayName}</p>
-        <p> <span>User Role: </span> {UserRole}</p>
-        <p> <span>Email: </span> {UserEmail}</p>
-        <p> <span>Email Verfied: </span>  {`${UserEmailVerified ? 'Yes' : 'No'}`}</p>
-        <p> <span>Account Creation Date: </span> {UserAccountCreationTime}</p>
+        <p> Username: <span className='bold'>{UserDisplayName}</span></p>
+        <p> User Role: <span className='bold'> {UserRole}</span></p>
+        <p> Email: <span className='bold'>{UserEmail}</span></p>
+        <p> Email Verfied: <span className='bold'>{`${UserEmailVerified ? 'Yes' : 'No'}`}</span> </p>
+        <p> Account Creation Date: <span className='bold'>{UserAccountCreationTime}</span> </p>
 
         <div className='profileMenuContentBottom'>
-            <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out
-            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={1600}/>
-            </button>
+          <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out
+            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={1600} />
+          </button>
         </div>
 
       </div>
@@ -66,7 +66,7 @@ const ProfilePage = () => {
       <Header />
       <LoginModal />
       {profilePageContent}
-      <Footer/>
+      <Footer />
     </>
   )
 }

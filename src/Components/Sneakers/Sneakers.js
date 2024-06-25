@@ -53,7 +53,7 @@ function Sneakers() {
 
   //API FILTER
   useEffect(() => {
-    
+
     let filterType = 'type=' + optionValueType;
 
     if (filterType === 'type=Any') {
@@ -69,12 +69,12 @@ function Sneakers() {
     const newApiUrl = `https://maxim-backend-s8un.onrender.com/sneaker2/filter?${filterType}&${filterYear}`;
     setApiUrl(newApiUrl);
 
-//reset scroll
+    //reset scroll
     if (productContainerRef.current.scrollLeft) {
       setTimeout(() => {
 
         productContainerRef.current.scrollLeft = 0;
-  
+
       }, 500);
     }
 
@@ -92,11 +92,11 @@ function Sneakers() {
 
     //Check if container is scrollable horizontally done with freaking timeout
     const container = productContainerRef.current;
-    
+
     if (sneakers.length > 0) {
       console.log('sneakers.length', sneakers.length)
       setTimeout(() => {
-  
+
         if (container.scrollWidth > container.clientWidth) {
           setDynamicOpacityRight(1)
           console.log('Turn on')
@@ -105,7 +105,7 @@ function Sneakers() {
           setDynamicOpacityRight(0.4)
           console.log('Turn off')
         }
-  
+
       }, 160);
 
     }
@@ -164,7 +164,7 @@ function Sneakers() {
 
       <div className='filterContainer'>
 
-           <Menu/>
+        <Menu />
 
         <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
           {sneakers.length > 0 ? (
@@ -188,15 +188,12 @@ function Sneakers() {
                   </Link>
 
                   <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
-                  <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', marginBottom:'4%' }}>${sneaker.price}</p>
+                  <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', marginBottom: '4%' }}>${sneaker.price}</p>
                   <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
 
                 </div>
               </div>
             ))
-
-          ) : sneakers.length === 0 ? (
-            <p>No Results Found</p>
           ) : (
             <p id='loading'>Loading...</p>
           )}

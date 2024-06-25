@@ -42,24 +42,22 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 800px;
+  min-width: 400px;
   height: 600px;
   font-size: 1rem;
-  font-family: 'Helvetica Now Text Medium';
   padding: 16px;
   background: white;
   border-radius: 16px;
   box-shadow: 0px 0px 4px 5px rgba(0, 0, 0, 0.103);
   margin: 8px;
   overflow: auto;
-}
-
-.profileMenuContent p+p{
-  margin-top: 4%;
-}
-
-.profileMenuContent span{
   font-family: 'Helvetica Now Text Regular';
+  gap: 4%;
+}
+
+.bold{
+  font-family: 'Helvetica Now Text Medium';
 }
 
 .profileMenuContentBottom{
@@ -75,7 +73,7 @@
 
 /*------------------ MEDIA QUERY ------------------*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     
   .profilePageContainer{
     flex-direction: column;
@@ -83,13 +81,9 @@
 
   .profileMenuContent{
     width: 89%;
+    min-width: 0px;
     gap:2vh;
     height: 56vh;
-  }
-
-  .profileMenuContentBottom{
-    position: relative;
-    margin-top: 4vh;
   }
   
   }

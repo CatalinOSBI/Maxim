@@ -43,7 +43,6 @@
   height: 100%;
   width: 100%;
   justify-Content: flex-start;
-  border: solid green
 }
 
 .addToCartButton{
@@ -114,11 +113,6 @@
 .sectionBottom{
   width: 8rem;
   flex-direction: column;
-}
-    
-.productContainer{
-  min-width: 100%;
-  padding-right: 0;
 }
 
 .productPageContainer{

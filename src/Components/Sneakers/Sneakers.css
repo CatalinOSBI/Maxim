@@ -230,14 +230,15 @@ h1 {
 
   .productContainer{
     gap: 1%;
+    height: 40vh;
   }
 
 }
-  @media only screen and (orientation: portrait) {
+  @media only screen and (max-width: 1024px) {
 
     .productContainer{
-      min-width: 0;
-      width: 93%;
+      min-width: 100%;
+      padding-right: 0;
     }
 
 }

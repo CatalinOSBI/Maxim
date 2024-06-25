@@ -6,12 +6,14 @@ import LoginModal from '../../Components/Login/LoginModal';
 import SneakersAdmin from '../../Components/Sneakers/SneakersAdmin';
 import AddFunction from './Add';
 import Footer from '../../Components/Footer';
+import { useMediaQuery } from 'react-responsive';
 
 function AdminPage() {
 
     const { UserRole } = useAuth()
     const [activeMenu, setActiveMenu] = useState(0);
     const [activeContent, setActiveContent] = useState([]);
+    const isPhone = useMediaQuery({ query: '(max-width: 600px)' })
 
     //default to the first item in menuContent
     useEffect(() => {
@@ -47,7 +49,7 @@ function AdminPage() {
                 </ul>
             </div>
 
-            <div className='profileMenuContent'>
+            <div className='profileMenuContent' style={{minWidth: isPhone ? '' : '600px'}}>
                 {activeContent}
             </div>
 
