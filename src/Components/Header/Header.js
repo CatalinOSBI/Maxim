@@ -6,14 +6,12 @@ import { useCart } from '../Cart/CartContext';
 import './Header.css'
 
 function Header() {
-  const { UserEmail,
+  const {
     IsLoggedIn,
     UserDisplayName,
-    handleSignOut,
     UserRole,
     handleCheckUserRole,
     handleOpenModal,
-    handleGetUserData,
   } = useAuth()
 
   //event listener scroll START
@@ -53,7 +51,7 @@ function Header() {
         setDynamicTransform2('translateY(0%)')
       } else {
         setDynamicTransform2('translateY(-160%)')
-        
+
       }
 
       if (currentScroll > lastScrollTop) {
@@ -123,20 +121,27 @@ function Header() {
           }
 
           {CartIcon}
-          <button className='headerButton'>
-            <div className='cartCircle'>
-              <p className='cartNumber'>{storedCartNumber}</p>
-            </div>
-            <Link className='Link' to={'/Cart'}>View Cart</Link>
-          </button>
+          
+          <Link className='Link' to={'/Cart'}>
+            <button className='headerButton'>
+            {storedCartNumber === '0' ? '' :
+              <div className='cartCircle'>
+                <p className='cartNumber'>{storedCartNumber}</p>
+              </div>
+            }
+              View Cart
+            </button>
+          </Link>
 
           {UserIcon}
           {IsLoggedIn ?
-            <button className='headerButton' onClick={handleCheckUserRole} style={{ marginRight: '2%', padding: '5.2px' }}>
-              <Link className='Link' to={'/Profile'}>View Profile</Link>
-            </button>
+            <Link className='Link' to={'/Profile'}>
+              <button className='headerButton' onClick={handleCheckUserRole} style={{ marginRight: '2vw', padding: '5.2px' }}>
+                View Profile
+              </button>
+            </Link>
             :
-            <button className='headerButton' style={{ marginRight: '2%', padding: '5.2px' }} onClick={handleOpenModal}>Sign In</button>
+            <button className='headerButton' style={{ marginRight: '2vw', padding: '5.2px' }} onClick={handleOpenModal}>Sign In</button>
           }
 
         </div>
@@ -145,7 +150,7 @@ function Header() {
       {/* /////////////////////////////////////////////// */}
 
       <header>
-        <div className='headerContainer' style={{transform: dynamicTransform2, transition:'all .218s'}} >
+        <div className='headerContainer' style={{ transform: dynamicTransform2, transition: 'all .218s' }} >
 
           <h1 style={{ fontFamily: 'Zabal', color: 'black', fontSize: '3rem' }}>
             <Link className='Link' to={'/Home'}>MaxiM</Link>

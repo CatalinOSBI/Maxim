@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sneakers.css'
-import { useCart } from '../Cart/CartContext';
 import { useMenu } from './MenuContext';
 import Menu from './Menu';
-import { useMediaQuery } from 'react-responsive';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
@@ -15,17 +13,6 @@ function Sneakers() {
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
   const [currentScroll, setCurrentScroll] = useState(0);
   const productContainerRef = useRef(null);
-
-  //Cart States(Variabless)
-
-  const { handleAddCartNumberStorage,
-    handleAddToCart,
-    handleRemoveFromCart,
-    handleRemoveQuantity,
-    cartList,
-  } = useCart();
-
-  const storedCartNumber = localStorage.getItem('cNumber Local Storage')
 
   //menu vars
   const {

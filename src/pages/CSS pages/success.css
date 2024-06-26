@@ -1,0 +1,10 @@
+@keyframes wiggle {
+  0%   {transform: rotate(4deg);}
+  100% {transform: rotate(-4deg);}
+}
+
+.wiggle{
+  transform-origin: bottom;
+  display: inline-block;
+  animation: wiggle ease-in-out 1s infinite alternate;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import './Underlay.css'
+import './Overlay.css'
 
-function Underlay() {
+function Overlay() {
 
   return (
     <div className='Background'>
-        <div className='Slider'></div>
+        {/* <div className='Slider'></div> */}
         <div className='Square top'></div>
         <div className='Square bottom'></div>
         <h1 className='Title'>MaxiM</h1>   
@@ -13,4 +13,4 @@ function Underlay() {
   )
 }
 
-export default Underlay
+export default Overlay

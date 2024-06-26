@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Sneakers.css'
-import { useCart } from '../Cart/CartContext';
 
 function SneakersSimilar({ Type }) {
   const [sneakersSimilar, setSneakersSimilar] = useState([]);
-  const [apiUrl, setApiUrl] = useState('https://maxim-backend-s8un.onrender.com/sneaker2/filter?&');
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
@@ -16,14 +14,6 @@ function SneakersSimilar({ Type }) {
   //Similar vars
   const [optionValueType, setoptionValueType] = useState(`type=${Type}`);
   const [optionValueYear, setoptionValueYear] = useState(``);
-
-
-  const { handleAddCartNumberStorage,
-    handleAddToCart,
-    handleRemoveFromCart,
-    handleRemoveQuantity,
-    cartList,
-  } = useCart();
 
   // SCROLL RIGHT
 
@@ -144,6 +134,7 @@ if (productContainerRef.current.scrollLeft) {
     <>
 
       <div className='filterContainer'>
+      
         <div id='productContainer' className='productContainer' ref={productContainerRef} style={{ justifyContent: dynamicJustifyContent }}>
           {sneakersSimilar.length > 0 ? (
             sneakersSimilar.map((sneaker) => (

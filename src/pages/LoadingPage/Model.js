@@ -1,7 +1,7 @@
-import React, { useRef, useEffect,useState } from 'react';
+import React, { useRef, } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF} from '@react-three/drei';
-import './Underlay.css'
+import './Overlay.css'
 import { useMediaQuery } from 'react-responsive';
 
 function Model() {
@@ -113,7 +113,7 @@ function Scene() {
     position: 'absolute',
     width: `${isPhone ? '100vw' : '100vw'}`,
     height: `${isPhone ? '100vh' : '100vh'}`,
-    zIndex: '3',
+    zIndex: '1',
     transform: `${isPhone ? 'translate(0%, 0%)': 'translate(0%, 0%)'}`,
     }
 
