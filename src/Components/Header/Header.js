@@ -100,7 +100,7 @@ function Header() {
   //check wether user is admin or not
   const handleGoToAdminPage = async () => {
     await handleCheckUserRole()
-    navigate('/AdminPage')
+    navigate('/Maxim/AdminPage')
   }
 
   return (
@@ -122,7 +122,7 @@ function Header() {
 
           {CartIcon}
           
-          <Link className='Link' to={'/Cart'}>
+          <Link className='Link' to={'/Maxim/Cart'}>
             <button className='headerButton'>
             {storedCartNumber === '0' ? '' :
               <div className='cartCircle'>
@@ -135,7 +135,7 @@ function Header() {
 
           {UserIcon}
           {IsLoggedIn ?
-            <Link className='Link' to={'/Profile'}>
+            <Link className='Link' to={'/Maxim/Profile'}>
               <button className='headerButton' onClick={handleCheckUserRole} style={{ marginRight: '2vw', padding: '5.2px' }}>
                 View Profile
               </button>

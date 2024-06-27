@@ -9,7 +9,7 @@ function LoadingScreen() {
 
   return (
     <>
-    <Model onLoad={setTimeout(() => {window.location.href="Home"; }, isPhone ? 5000 : 5100)}/>
+    <Model onLoad={setTimeout(() => {window.location.href="Maxim/Home"; }, isPhone ? 5000 : 5100)}/>
     <Overlay />
     </>
   );

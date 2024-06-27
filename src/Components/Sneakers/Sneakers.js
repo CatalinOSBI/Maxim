@@ -164,13 +164,13 @@ function Sneakers() {
 
                     <img className='productImage' src={sneaker.image} alt='Sneaker' />
 
-                    <Link to={`/Product/${sneaker.id}/${sneaker.type}`}>
+                    <Link to={`/Maxim/Product/${sneaker.id}/${sneaker.type}`}>
                       <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
                     </Link>
 
                   </div>
 
-                  <Link to={`/Product/${sneaker.id}/${sneaker.type}`} style={{ textDecoration: 'none' }}>
+                  <Link to={`/Maxim/Product/${sneaker.id}/${sneaker.type}`} style={{ textDecoration: 'none' }}>
                     <p className='productTag sName'>{sneaker.name}</p>
                   </Link>
 
