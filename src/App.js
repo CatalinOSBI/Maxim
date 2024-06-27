@@ -17,7 +17,7 @@ import ProfilePage from './pages/ProfilePage';
 function App() {
   return (
     <div className="App">
-      <HashRouter basename="/Maxim">
+      <HashRouter >
         <Routes>
           <Route path="/" element={<LoadingScreen />} /> 
           <Route path="/Home" element={<Home />} />

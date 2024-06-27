@@ -1,5 +1,5 @@
 {
-  "homepage": "https://catalinosbi.github.io/Maxim/#/",
+  "homepage": "https://catalinosbi.github.io/Maxim/#",
   "name": "react-folder",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^10.0.0",
-    "react-router-dom": "^6.16.0",
+    "react-router-dom": "^6.24.0",
     "react-scripts": "^5.0.1",
     "styled-components": "^6.1.8",
     "three": "^0.157.0"

@@ -136,7 +136,7 @@ h3 span{
     padding: 2% 2% 2% 2%;
     border: solid 1px black;
     position: absolute;
-    width: fit-content;
+    width: 200px;
     height: 200px;
     bottom: 0;
     right: 0;

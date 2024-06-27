@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
   const [ErrorB2, setErrorB2] = useState(false);
   const [ErrorB3, setErrorB3] = useState(false);
   const [ErrorB4, setErrorB4] = useState(false);
+  const [ErrorB5, setErrorB5] = useState(false);
   const [ErrorC1, setErrorC1] = useState(false);
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -91,7 +92,7 @@ export const AuthProvider = ({ children }) => {
         await sendPasswordResetEmail(auth, email)
         console.log('Email Sent (Password-Reset)')
       }
-      
+
     } catch (error) {
       setErrorB2(true)
     }
@@ -170,11 +171,12 @@ export const AuthProvider = ({ children }) => {
   }
 
   //sign out
-  const handleSignOut = (e) => {
+  const handleSignOut = (e) => {;
+
     signOut(auth);
-    console.log('User Signed Out - Button')
+    window.location.href="/Maxim/#/Home"
     window.location.reload()
-    window.location.href = "/Home"
+    console.log('User Signed Out - Button')
   }
 
   //signin
@@ -187,12 +189,13 @@ export const AuthProvider = ({ children }) => {
 
     try {
 
-        //MaxiM errors
+      //MaxiM errors
       if (email === '' || password === '' || username === "" || conpassword === "") {
         setErrorB1(true) //all of this true false mumbo jumbo is to show only 1 error at a time
         setErrorB2(false)
         setErrorB3(false)
         setErrorB4(false)
+        setErrorB5(false)
         return //break
 
       } else if (password !== conpassword) {
@@ -200,22 +203,23 @@ export const AuthProvider = ({ children }) => {
         setErrorB1(false)
         setErrorB2(false)
         setErrorB3(false)
+        setErrorB5(false)
         return //break
 
       } else {
         setErrorB1(false)
         setErrorB2(false)
         setErrorB3(false)
-        setErrorB3(false)
         setErrorB4(false)
+        setErrorB5(false)
 
         await createUserWithEmailAndPassword(auth, email, password)
-  
+
         // Signed up 
         await updateProfile(auth.currentUser, { displayName: username })
         console.log('Updated Username')
         console.log('Signed Up')
-    
+
         // Add user to DB
         await handleUpdateUserDB()
         // Send Verfication Email
@@ -229,6 +233,8 @@ export const AuthProvider = ({ children }) => {
         setErrorB2(true)
       } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
         setErrorB3(true)
+      } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+        setErrorB5(true)
       }
     }
 
@@ -237,18 +243,19 @@ export const AuthProvider = ({ children }) => {
   //check user role
   const handleCheckUserRole = async () => {
 
-    const uID = auth.currentUser.uid
-    //doc path
-    const docPath = doc(FireStoreDB, `users/${uID}`);
-    //waiting to retireve document
-    const myDocument = await getDoc(docPath)
+      const uID = auth.currentUser.uid
+      //doc path
+      const docPath = doc(FireStoreDB, `users/${uID}`);
+      //waiting to retireve document
+      const myDocument = await getDoc(docPath)
 
-    if (myDocument.exists()) {
-      const docData = myDocument.data()
+      if (myDocument.exists()) {
+        const docData = myDocument.data()
 
-      console.log(docData.role)
-      setUserRole(docData.role)
-    }
+        console.log(docData.role)
+        setUserRole(docData.role)
+      }
+
   }
 
   // Google LogIn
@@ -312,7 +319,7 @@ export const AuthProvider = ({ children }) => {
   //  ERRORS //
   /////////////
 
-  const handleHideErrors = () => { 
+  const handleHideErrors = () => {
     setErrorA1(false)
     setErrorA2(false)
     setErrorB1(false)
@@ -320,6 +327,7 @@ export const AuthProvider = ({ children }) => {
     setErrorB3(false)
     setErrorB3(false)
     setErrorB4(false)
+    setErrorB5(false)
     setErrorC1(false)
   }
 
@@ -375,6 +383,7 @@ export const AuthProvider = ({ children }) => {
       ErrorB2,
       ErrorB3,
       ErrorB4,
+      ErrorB5,
       ErrorC1,
     }}>
 

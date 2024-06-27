@@ -29,6 +29,7 @@ function LoginModal() {
     ErrorB2,
     ErrorB3,
     ErrorB4,
+    ErrorB5,
     ErrorC1,
   } = useAuth()
 
@@ -180,13 +181,15 @@ function LoginModal() {
 
                 {/* demo accounts */}
                 <div className="demoModal">
-                  <p>
-                    username: askjhgdakjshgd
-                  </p>
-
-                  <p>
-                    password: askjhgdakjshgd
-                  </p>
+                  
+                <p>User Account:</p>
+                <p>email: MaxiM@gmail.com</p>  
+                <p>password: MaxiMUser</p>
+                <br></br>
+                <p>Admin Account:</p>
+                <p>email: MaxiMAdmin@gmail.com</p>  
+                <p>password: MaxiMAdmin</p>
+                  
                 </div>
               </>
             }
@@ -236,6 +239,10 @@ function LoginModal() {
                         <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[06] Passwords must match.</p>
                       }
 
+                      {ErrorB5 &&
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[07] Email already in use</p>
+                      }
+
                       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
                         <button onClick={handleSignIn} className='addToCartButton'>
                           Sign Up
@@ -275,7 +282,7 @@ function LoginModal() {
 
                       {/* Error Messages */}
                       {ErrorC1 &&
-                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[07] Field cannot be empty.</p>
+                        <p style={{ fontFamily: 'Helvetica Now Text Medium', color: '#e60000', marginBottom: '1vh' }}>[03] All fields must be filled.</p>
                       }
 
                       {ErrorB2 &&

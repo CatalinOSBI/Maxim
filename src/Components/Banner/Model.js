@@ -9,6 +9,9 @@ function ModelBanner() {
   );
 }
 
+//preload
+useGLTF.preload(modelUrl);
+
 function Boot(props) {
   const modelRef = useRef()
   const { nodes, materials } = useGLTF(modelUrl);

@@ -52,9 +52,9 @@ const ProfilePage = () => {
         <p> Account Creation Date: <span className='bold'>{UserAccountCreationTime}</span> </p>
 
         <div className='profileMenuContentBottom'>
-          <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out
-            <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={1600} />
-          </button>
+            <button onClick={handleSignOut} className='addToCartButton' style={{ margin: '16px' }}>Sign Out
+              <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={1600} />
+            </button>
         </div>
 
       </div>
