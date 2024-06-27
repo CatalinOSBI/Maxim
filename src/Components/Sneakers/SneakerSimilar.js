@@ -146,13 +146,13 @@ if (productContainerRef.current.scrollLeft) {
 
                     <img className='productImage' src={sneaker.image} alt='Sneaker' />
 
-                    <Link to={`/Maxim/Product/${sneaker.id}/${sneaker.type}`}>
+                    <Link to={`/Product/${sneaker.id}/${sneaker.type}`}>
                       <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
                     </Link>
 
                   </div>
 
-                  <Link to={`/Maxim/Product/${sneaker.id}/${sneaker.type}`} style={{ textDecoration: 'none' }}>
+                  <Link to={`/Product/${sneaker.id}/${sneaker.type}`} style={{ textDecoration: 'none' }}>
                     <p className='productTag sName'>{sneaker.name}</p>
                   </Link>
 

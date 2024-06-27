@@ -32,7 +32,7 @@ function Banner() {
   }, []);
 
 const goToPreview = () => { 
-  window.location.href = "/Maxim/Preview"
+  window.location.href = "/Preview"
  }
 
 
