@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, Environment, ContactShadows, MeshReflectorMaterial, Float } from '@react-three/drei';
+import modelUrl from './Boot/Boot.glb'
 
 function ModelBanner() {
   return (
@@ -10,7 +11,7 @@ function ModelBanner() {
 
 function Boot(props) {
   const modelRef = useRef()
-  const { nodes, materials } = useGLTF("./Assets/Boot/Boot.glb");
+  const { nodes, materials } = useGLTF(modelUrl);
   const scale = [10, 10, 10]
 
   return (

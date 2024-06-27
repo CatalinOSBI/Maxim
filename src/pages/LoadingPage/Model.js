@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF} from '@react-three/drei';
 import './Overlay.css'
 import { useMediaQuery } from 'react-responsive';
+import modalUrl from './Sneaker/scene.glb'
 
 function Model() {
 
@@ -14,7 +15,7 @@ function Model() {
 function Sneaker(props) {
   const isPhone = useMediaQuery({query:'(max-width: 600px)'})
   const ref = useRef()
-  const { nodes, materials } = useGLTF("./Assets/Sneaker/scene.glb");
+  const { nodes, materials } = useGLTF(modalUrl);
 
   
   

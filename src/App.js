@@ -19,18 +19,18 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<LoadingScreen/>}/> 
-        <Route path='/Home' element ={<Home/>}/>
-        <Route path='/update/:id' element ={<Update/>}/> 
-        <Route path='/Loading' element ={<LoadingScreen/>}/>
-        <Route path='/Product/:id/:Type' element ={<ProductPage/>}/> 
-        <Route path='/Preview' element ={<SecondBanner/>}/> 
-        <Route path='/Login' element ={<FirebasePage/>}/>
-        <Route path='/AdminPage' element ={<AdminPage/>}/>
-        <Route path='/Cart' element ={<CartPage/>}/>
-        <Route path='/Payment' element ={<PaymentPage/>}/>
-        <Route path='/Success' element ={<Success/>}/>
-        <Route path='/Cancel' element ={<Cancel/>}/>
-        <Route path='/Profile' element ={<ProfilePage/>}/>
+        <Route path='/Maxim/Home' element ={<Home/>}/>
+        <Route path='/Maxim/update/:id' element ={<Update/>}/> 
+        <Route path='/Maxim/loading' element ={<LoadingScreen/>}/>
+        <Route path='/Maxim/Product/:id/:Type' element ={<ProductPage/>}/> 
+        <Route path='/Maxim/Preview' element ={<SecondBanner/>}/> 
+        <Route path='/Maxim/Login' element ={<FirebasePage/>}/>
+        <Route path='/Maxim/AdminPage' element ={<AdminPage/>}/>
+        <Route path='/Maxim/Cart' element ={<CartPage/>}/>
+        <Route path='/Maxim/Payment' element ={<PaymentPage/>}/>
+        <Route path='/Maxim/Success' element ={<Success/>}/>
+        <Route path='/Maxim/Cancel' element ={<Cancel/>}/>
+        <Route path='/Maxim/Profile' element ={<ProfilePage/>}/>
       </Routes>
     </BrowserRouter>
     </div>
