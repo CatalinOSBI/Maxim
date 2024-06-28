@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Maxim/static/css/main.81c5dcef.css",
+    "main.css": "/Maxim/static/css/main.7e4df5fc.css",
     "main.js": "/Maxim/static/js/main.a9669aae.js",
     "static/media/Boot.glb": "/Maxim/static/media/Boot.cc60e2c31a12e3b4bc01.glb",
     "static/media/scene.glb": "/Maxim/static/media/scene.f9a94198ac63df54403b.glb",
@@ -13,11 +13,11 @@
     "static/media/1.jpg": "/Maxim/static/media/1.31051e3591841a8f6a87.jpg",
     "static/media/ZabalDEMO-Ultra.ttf": "/Maxim/static/media/ZabalDEMO-Ultra.8ad909061af308338f10.ttf",
     "index.html": "/Maxim/index.html",
-    "main.81c5dcef.css.map": "/Maxim/static/css/main.81c5dcef.css.map",
+    "main.7e4df5fc.css.map": "/Maxim/static/css/main.7e4df5fc.css.map",
     "main.a9669aae.js.map": "/Maxim/static/js/main.a9669aae.js.map"
   },
   "entrypoints": [
-    "static/css/main.81c5dcef.css",
+    "static/css/main.7e4df5fc.css",
     "static/js/main.a9669aae.js"
   ]
 }
