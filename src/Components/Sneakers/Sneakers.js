@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Sneakers.css'
 import { useMenu } from './MenuContext';
 import Menu from './Menu';
+import ImageLoader from './ImageLoader';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
@@ -159,15 +160,12 @@ function Sneakers() {
 
               <div key={sneaker.id} className='Product'>
                 <div className='tagContainer'>
-
                   <div className='contentWrapper'>
-
-                    <img className='productImage' src={sneaker.image} alt='Sneaker' />
+                    <ImageLoader className='productImage' imgSrc={sneaker.image} />
 
                     <Link to={`/Product/${sneaker.id}/${sneaker.type}`}>
                       <img className='productImagenoBG' src={sneaker.image_noBG} alt='Sneaker No BG' />
                     </Link>
-
                   </div>
 
                   <Link to={`/Product/${sneaker.id}/${sneaker.type}`} style={{ textDecoration: 'none' }}>
@@ -177,19 +175,19 @@ function Sneakers() {
                   <p className='productTag sType' style={{ fontFamily: 'Helvetica Now Text Regular, Helvetica, Arial', fontSize: '0.9em' }}> {sneaker.type}</p>
                   <p className='productTag sPrice' style={{ marginTop: '16px', textShadow: '0px 0px 25px rgba(0, 0, 0, 1)', marginBottom: '4%' }}>${sneaker.price}</p>
                   <p className='productTag sYear' style={{ right: '0%', top: '0%', position: 'absolute' }}>{sneaker.release_year}</p>
-
                 </div>
               </div>
             ))
           ) : (
-            <p id='loading'>Loading...</p>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+              <p id='loading'>Loading...</p>
+            </div>
           )}
         </div>
         {/* --------------------SCROLL BUTTONS-------------------- */}
       </div>
 
       <div className='buttonContainer'>
-
         <button className='scrollButton' style={{ opacity: dynamicOpacityLeft, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out', cursor: `${dynamicOpacityLeft === 0.4 ? 'not-allowed' : 'pointer'}` }} onClick={scrollLeft}>
           <i className='arrow left'></i>
         </button>
@@ -197,7 +195,6 @@ function Sneakers() {
         <button className='scrollButton' style={{ opacity: dynamicOpacityRight, transition: 'opacity 160ms ease-in-out, background-color 160ms ease-in-out', cursor: `${dynamicOpacityRight === 0.4 ? 'not-allowed' : 'pointer'}` }} onClick={scrollRight}>
           <i className='arrow right'></i>
         </button>
-
       </div>
 
     </>

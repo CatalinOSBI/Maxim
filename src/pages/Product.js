@@ -10,6 +10,7 @@ import SneakersSimilar from '../Components/Sneakers/SneakerSimilar';
 import Ripple from '../Components/Ripple Button/Ripple';
 import { useCart } from '../Components/Cart/CartContext';
 import Footer from '../Components/Footer';
+import ImageLoader from '../Components/Sneakers/ImageLoader';
 
 function Product() {
 
@@ -45,7 +46,12 @@ function Product() {
     <>
       <div className='productPageContainer'>
         <div className='giantCircle'></div>
-        <img className='productPageImage' src={Sneakers.image} />
+        
+        <div className='productPageImageContainer'>
+          {/* <img className='productPageImage' src={Sneakers.image} /> */}
+          <ImageLoader className={'productPageImage'} imgSrc={Sneakers.image} />
+        </div>
+
         <div className='productInformation'>
 
           <section>
@@ -58,7 +64,7 @@ function Product() {
           </section>
 
           <section className='sectionBottom'>
-            <button style={{ position: 'relative', bottom: '0', width:'100%' }} className='addToCartButton' onClick={() => handleAddToCart(Sneakers)} >Add to Cart
+            <button style={{ position: 'relative', bottom: '0', width: '100%' }} className='addToCartButton' onClick={() => handleAddToCart(Sneakers)} >Add to Cart
               <Ripple color={"rgba(255, 255, 255, 0.747)"} duration={800} />
             </button>
             <div className='littleCart' style={{ opacity: dynamicOpacity }}>
@@ -67,7 +73,7 @@ function Product() {
             </div>
           </section>
         </div>
-        
+
       </div>
 
       <div className='similarProductsContainer'>

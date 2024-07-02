@@ -13,11 +13,11 @@ const Page2 = () => {
   useEffect(() => {
 
     if (IsLoggedIn) {
-      setTimeout( () => {
+      setTimeout(() => {
         handleCheckUserRole()
       }, 300);
     }
-    
+
   }, []);
 
   const {
@@ -29,6 +29,7 @@ const Page2 = () => {
     <>
       <div className='main'>
         <Header />
+
         <LoginModal />
         <Banner />
 
