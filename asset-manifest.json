@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Maxim/static/css/main.90ef3e1b.css",
-    "main.js": "/Maxim/static/js/main.1e8c80dd.js",
+    "main.js": "/Maxim/static/js/main.38bf1c7c.js",
     "static/media/Boot.glb": "/Maxim/static/media/Boot.cc60e2c31a12e3b4bc01.glb",
     "static/media/scene.glb": "/Maxim/static/media/scene.f9a94198ac63df54403b.glb",
     "static/media/ContentBanner.png": "/Maxim/static/media/ContentBanner.2c72867f72a08523365f.png",
@@ -14,10 +14,10 @@
     "static/media/ZabalDEMO-Ultra.ttf": "/Maxim/static/media/ZabalDEMO-Ultra.8ad909061af308338f10.ttf",
     "index.html": "/Maxim/index.html",
     "main.90ef3e1b.css.map": "/Maxim/static/css/main.90ef3e1b.css.map",
-    "main.1e8c80dd.js.map": "/Maxim/static/js/main.1e8c80dd.js.map"
+    "main.38bf1c7c.js.map": "/Maxim/static/js/main.38bf1c7c.js.map"
   },
   "entrypoints": [
     "static/css/main.90ef3e1b.css",
-    "static/js/main.1e8c80dd.js"
+    "static/js/main.38bf1c7c.js"
   ]
 }
