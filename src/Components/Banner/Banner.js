@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
-import ContentBanner from './ContentBanner.png';
 import SecondBanner from './SecondBanner';
 import './Banner.css'
 import { useMediaQuery } from 'react-responsive';
 
 function Banner() {
+  const ContentBanner = './Assets/Images/ContentBanner.png'
   const containerRef = useRef();
   const [containerHeight] = useState(0);
 

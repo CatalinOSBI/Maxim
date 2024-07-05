@@ -138,7 +138,6 @@ const AddFunction = () => {
                 <div className='tagContainer'>
                   <div className='contentWrapper'>
 
-                    {/* <img className='productImage' src={Info.image} alt='Sneaker' /> */}
                     <ImageLoader imgSrc={Info.image} className='productImage'/>
                     <img className='productImagenoBG' src={Info.image_noBG} alt='Sneaker No BG' />
 

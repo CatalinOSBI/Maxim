@@ -13,7 +13,6 @@
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
   width: 64.2%;
-  padding-right: 28.5px;
   gap: 21px;
 }
 
@@ -26,7 +25,6 @@
   scroll-snap-align: start;
   position: relative;
 }
-
 
 .contentWrapper {
   position: relative;
@@ -78,6 +76,11 @@
 .Product:hover .productImagenoBG {
   opacity: 1;
   transform: translate(0%, -105%) scale(1.2);
+}
+
+.Product:last-child:hover .productImagenoBG {
+  opacity: 1;
+  transform: translate(0%, -105%) scale(1.01);
 }
 
 .menu {

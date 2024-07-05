@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, Environment, ContactShadows, MeshReflectorMaterial, Float } from '@react-three/drei';
-import modelUrl from './Boot/Boot.glb'
 
 function ModelBanner() {
   return (
     <Scene />
   );
 }
+const modelUrl = './Assets/Boot/Boot.glb'
 
 //preload
 useGLTF.preload(modelUrl);

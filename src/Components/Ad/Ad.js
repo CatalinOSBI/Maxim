@@ -1,41 +1,41 @@
 import React from 'react'
 import './Ad.css'
-import image1 from './1.jpg'
-import image2 from './2.jpg'
-import image3 from './3.jpg'
-import image4 from './4.jpg'
 import { useMediaQuery } from 'react-responsive';
 
 const Ad = () => {
 
-  const isPhone = useMediaQuery({query:'(max-width: 600px)'})
+  const imageA = `./Assets/Images/1.jpg`
+  const imageB = `./Assets/Images/2.jpg`
+  const imageC = `./Assets/Images/3.jpg`
+  const imageD = `./Assets/Images/4.jpg`
+  const isPhone = useMediaQuery({ query: '(max-width: 600px)' })
 
   return (
-    <div style={{ width:'100%', display:'flex', justifyContent:'center', marginBottom:'4vh'}}>
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '4vh' }}>
 
-    <div className='adContainer'>
+      <div className='adContainer'>
 
-      <div className='imageWrapper' style={{transform:`${isPhone ? 'translateX(-16%)' :''}`}}>
-        <img className='adImage' src={image1} />
-        <p className='adText'>Tailored</p>
+        <div className='imageWrapper' style={{ transform: `${isPhone ? 'translateX(-16%)' : ''}` }}>
+          <img className='adImage' src={imageA} alt='BannerA' />
+          <p className='adText'>Tailored</p>
+        </div>
+
+        <div className='imageWrapper'>
+          <img className='adImage' src={imageB} style={{ transform: `${isPhone ? 'translateX(25%)' : ''}` }} alt='BannerB' />
+          <p className='adText'>To</p>
+        </div>
+
+        <div className='imageWrapper'>
+          <img className='adImage' src={imageC} style={{ transform: `${isPhone ? 'translateX(-25%)' : ''}` }} alt='BannerC' />
+          <p className='adText'>Your</p>
+        </div>
+
+        <div className='imageWrapper'>
+          <img className='adImage' src={imageD} style={{ transform: `${isPhone ? 'translate(25%)' : ''}` }} alt='BannerD' />
+          <p className='adText'>Style</p>
+        </div>
+
       </div>
-
-      <div className='imageWrapper'>
-        <img className='adImage' src={image2} style={{transform:`${isPhone ? 'translateX(25%)' :''}`}} />
-        <p className='adText'>To</p>
-      </div>
-
-      <div className='imageWrapper'>
-        <img className='adImage' src={image3} style={{transform:`${isPhone ? 'translateX(-25%)' :''}`}} />
-        <p className='adText'>Your</p>
-      </div>
-
-      <div className='imageWrapper'>
-        <img className='adImage' src={image4} style={{transform:`${isPhone ? 'translate(25%)' :''}`}} />
-        <p className='adText'>Style</p>
-      </div>
-
-    </div>
 
     </div>
   )

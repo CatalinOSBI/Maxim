@@ -3,7 +3,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF} from '@react-three/drei';
 import './Overlay.css'
 import { useMediaQuery } from 'react-responsive';
-import modelUrl from './Sneaker/scene.glb'
 
 function Model() {
 
@@ -11,6 +10,8 @@ function Model() {
     <Scene />
   );
 }
+
+const modelUrl = './Assets/Sneaker/scene.glb'
 
 //preload
 useGLTF.preload(modelUrl);
