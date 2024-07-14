@@ -140,7 +140,7 @@ function Scene() {
       <spotLight position={[-2, 4.8, 0.3]} angle={3} penumbra={1} intensity={80} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <spotLight position={[-1.5, 13.6, -0.3]} angle={0.6} penumbra={1} intensity={1000} castShadow={true} shadow-mapSize={[256, 256]} color="red" />
       <hemisphereLight position={[0.272,10,0]} intensity={0.7}/>
-      <Sneaker position={pos} scale={scale}/>
+      <Sneaker resolution={1024} position={pos} scale={scale}/>
       </Canvas>
     </div>
     </>

@@ -250,7 +250,7 @@ function Floor(props) {
         <planeGeometry args={[1, 3]} />
         <MeshReflectorMaterial
           blur={[500, 500]}
-          resolution={2048}
+          resolution={1024}
           mixStrength={10}
           mixBlur={1}
           roughness={1}
@@ -287,7 +287,7 @@ function Scene() {
             floatIntensity={0.01} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
             floatingRange={[0.1, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
           >
-            <Boot position={[-0.8, -0.7975, 0]} scale={[1, 1, 1]} rotation={[-1.59, 0.1, 1]} />
+            <Boot resolution={1024} position={[-0.8, -0.7975, 0]} scale={[1, 1, 1]} rotation={[-1.59, 0.1, 1]} />
           </Float>
 
           {/* Left Boot */}
@@ -296,7 +296,7 @@ function Scene() {
             floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
             floatingRange={[0.2, 0.3]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
           >
-            <Boot position={[1.7, -0.7714, 0]} scale={[-1, -1, -1]} rotation={[1.6, 0.1, 0]} />
+            <Boot resolution={1024} position={[1.7, -0.7714, 0]} scale={[-1, -1, -1]} rotation={[1.6, 0.1, 0]} />
           </Float>
 
           {/* Floor */}
