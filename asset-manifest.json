@@ -1,23 +1,16 @@
 {
   "files": {
-    "main.css": "/Maxim/static/css/main.90ef3e1b.css",
-    "main.js": "/Maxim/static/js/main.38bf1c7c.js",
-    "static/media/Boot.glb": "/Maxim/static/media/Boot.cc60e2c31a12e3b4bc01.glb",
-    "static/media/scene.glb": "/Maxim/static/media/scene.f9a94198ac63df54403b.glb",
-    "static/media/ContentBanner.png": "/Maxim/static/media/ContentBanner.2c72867f72a08523365f.png",
-    "static/media/4.jpg": "/Maxim/static/media/4.6fdd6316ee3b7a84e09d.jpg",
-    "static/media/2.jpg": "/Maxim/static/media/2.1024d71737a5d8aa58f3.jpg",
-    "static/media/3.jpg": "/Maxim/static/media/3.dfaee2b500a0ed5d3f9f.jpg",
+    "main.css": "/Maxim/static/css/main.740bc6cb.css",
+    "main.js": "/Maxim/static/js/main.0f7e4cee.js",
     "static/media/HelveticaNowText-Medium.ttf": "/Maxim/static/media/HelveticaNowText-Medium.6a7f4a05c455a6c8bdab.ttf",
     "static/media/HelveticaNowText-Regular.ttf": "/Maxim/static/media/HelveticaNowText-Regular.e8d5799728b1def06690.ttf",
-    "static/media/1.jpg": "/Maxim/static/media/1.31051e3591841a8f6a87.jpg",
     "static/media/ZabalDEMO-Ultra.ttf": "/Maxim/static/media/ZabalDEMO-Ultra.8ad909061af308338f10.ttf",
     "index.html": "/Maxim/index.html",
-    "main.90ef3e1b.css.map": "/Maxim/static/css/main.90ef3e1b.css.map",
-    "main.38bf1c7c.js.map": "/Maxim/static/js/main.38bf1c7c.js.map"
+    "main.740bc6cb.css.map": "/Maxim/static/css/main.740bc6cb.css.map",
+    "main.0f7e4cee.js.map": "/Maxim/static/js/main.0f7e4cee.js.map"
   },
   "entrypoints": [
-    "static/css/main.90ef3e1b.css",
-    "static/js/main.38bf1c7c.js"
+    "static/css/main.740bc6cb.css",
+    "static/js/main.0f7e4cee.js"
   ]
 }
