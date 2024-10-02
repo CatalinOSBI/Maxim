@@ -8,7 +8,7 @@ import ImageLoader from './ImageLoader';
 
 function Sneakers() {
   const [sneakers, setSneakers] = useState([]);
-  const [apiUrl, setApiUrl] = useState('https://maxim-backend-s8un.onrender.com/sneaker2/filter?&');
+  const [apiUrl, setApiUrl] = useState(`${process.env.REACT_APP_SECRET}/sneaker2/filter?&`);
   const [dynamicJustifyContent, setDynamicJustifyContent] = useState('space-between');
   const [dynamicOpacityRight, setDynamicOpacityRight] = useState(1);
   const [dynamicOpacityLeft, setDynamicOpacityLeft] = useState(1);
@@ -54,7 +54,7 @@ function Sneakers() {
       filterYear = '';
     }
 
-    const newApiUrl = `https://maxim-backend-s8un.onrender.com/sneaker2/filter?${filterType}&${filterYear}`;
+    const newApiUrl = `${process.env.REACT_APP_SECRET}/sneaker2/filter?${filterType}&${filterYear}`;
     setApiUrl(newApiUrl);
 
     //reset scroll

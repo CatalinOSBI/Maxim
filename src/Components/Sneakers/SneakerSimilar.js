@@ -85,7 +85,7 @@ function SneakersSimilar({ Type }) {
   //API
 
   useEffect(() => {
-    axios.get(`https://maxim-backend-s8un.onrender.com/sneaker2/filter?${optionValueType}&`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SECRET}/sneaker2/filter?${optionValueType}&`).then((res) => {
       setSneakersSimilar(res.data);
     });
 

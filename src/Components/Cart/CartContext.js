@@ -60,7 +60,9 @@ export const CartProvider = ({ children }) => {
   
   const handleTest = () => { 
     const mapFunction2 = (product) =>
-      product.Quantity === 1 ? console.log('Quantity is 1, this product should be removed on the next check') : console.log('That was not the last product in the cart, did not remove the product')
+      product.Quantity === 1 ? 
+      console.log('Quantity is 1, this product should be removed on the next check') 
+      : console.log('That was not the last product in the cart, did not remove the product')
   
     cartList.CartList.map(mapFunction2)
    }

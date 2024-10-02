@@ -18,7 +18,7 @@ function SneakersAdmin() {
   //API
 
   useEffect(() => {
-    axios.get(`https://maxim-backend-s8un.onrender.com/sneakers`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SECRET}/sneakers`).then((res) => {
       setSneakersAdmin(res.data);
     });
 
@@ -27,7 +27,7 @@ function SneakersAdmin() {
   //DELETE
 
   const handleDeleteSneaker = async (id) => {
-    await axios.delete(`https://maxim-backend-s8un.onrender.com/sneakers/${id}`);
+    await axios.delete(`${process.env.REACT_APP_SECRET}/sneakers/${id}`);
     console.log('deleted' + ' ' + id)
 
     setReloader((prev) => prev + 1)
@@ -52,7 +52,7 @@ function SneakersAdmin() {
   //Api call
   useEffect(() => {
 
-    axios.get("https://maxim-backend-s8un.onrender.com/sneakers/" + ActiveSneaker)
+    axios.get(`${process.env.REACT_APP_SECRET}/sneakers/` + ActiveSneaker)
 
       .then(res => {
         setData(res.data[0])
@@ -79,7 +79,7 @@ function SneakersAdmin() {
 
     console.log(Info)
 
-    await axios.put('https://maxim-backend-s8un.onrender.com/sneakers/' + id, Info)
+    await axios.put(`${process.env.REACT_APP_SECRET}/sneakers/` + id, Info)
       .then(res => {
         console.log('PUT Request Successful');
         console.log('Response Data:', res.data);
