@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }) => {
           if (documentData.role === '') {
             console.log('UserRole is undefined')
             console.log('Updating User DB...')
-            await setDoc(docPath, docData)
+            await setDoc(docPath, docData, { merge: true })
           } else {
             console.log(`UserRole is already set (${documentData.role})`)
             console.log('Did not update User DB')
